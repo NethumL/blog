@@ -9,7 +9,7 @@ enableEmoji = true
   name = "Nethum Lamahewage"
 
 [permalinks]
-  posts = "/:year/:month/:filename/"
+  posts = ":year/:month/:filename/"
 
 [params]
   version = "0.2.X"
