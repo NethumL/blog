@@ -1,0 +1,162 @@
+baseURL = "https://nethuml.github.io"
+languageCode = "en-us"
+title = "Nethum Lamahewage - Thoughts"
+theme = "LoveIt"
+
+enableEmoji = true
+
+[author]
+  name = "Nethum Lamahewage"
+
+[permalinks]
+  posts = "/:year/:month/:filename/"
+
+[params]
+  version = "0.2.X"
+  description = "Nethum Lamahewage's blog"
+  keywords = ["blog"]
+  defaultTheme = "auto"
+  gitRepo = "https://github.com/NethumL/nethuml.github.io.git"
+  dateFormat = "January 2, 2006"
+
+  [params.search]
+    enable = true
+    type = "lunr"
+    contentLength = 4000
+    placeholder = ""
+    maxResultLength = 10
+    snippetLength = 30
+    highlightTag = "em"
+    absoluteURL = false
+
+  [params.header]
+    desktopMode = "fixed"
+    mobileMode = "auto"
+
+    [params.header.title]
+      logo = ""
+      name = "home"
+      pre = "<i class='fa-solid fa-terminal'></i>"
+      typeit = false
+
+  [params.footer]
+    enable = true
+    hugo = true
+    copyright = true
+    author = true
+    since = 2022
+    license = '<a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+
+  [params.section]
+    paginate = 20
+    dateFormat = "01-02"
+    rss = 10
+
+  [params.home]
+    rss = 10
+
+    [params.home.profile]
+      enable = true
+      title = "Nethum Lamahewage"
+      typeit = false
+      social = true
+
+    [params.home.posts]
+      enable = true
+      paginate = 6
+
+  [params.social]
+    GitHub = "NethumL"
+    Linkedin = "nethumlamahewage"
+    Medium = "@nethumlamahewage"
+    RSS = true
+
+  [params.page]
+    twemoji = false
+    lightgallery = false
+    fontawesome = true
+    rssFullText = false
+
+    [params.page.toc]
+      enable = true
+      keepStatic = false
+      auto = true
+
+    [params.page.math]
+      enable = false
+      copyTex = true
+      mhchem = true
+
+    [params.page.code]
+      copy = true
+      maxShownLines = 10
+
+    [params.page.share]
+      enable = true
+      Twitter = true
+      Facebook = true
+      Linkedin = true
+      WhatsApp = true
+      Pinterest = true
+      Tumblr = true
+      HackerNews = true
+      Reddit = true
+
+    [params.page.comment]
+      enable = false
+
+  [params.analytics]
+    enable = false
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    noClasses = false
+
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  taxonomyTerm = ["HTML"]
+
+[taxonomies]
+  tag      = "tags"
+  category = "categories"
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "about"
+    weight     = 1
+
+  [[menu.main]]
+    identifier = "posts"
+    name       = "Posts"
+    url        = "posts"
+    weight     = 2
+
+  [[menu.main]]
+    identifier = "tags"
+    name       = "Tags"
+    url        = "tags"
+    weight     = 3
+
+  [[menu.main]]
+    identifier = "categories"
+    name       = "Categories"
+    url        = "categories"
+    weight     = 4
+
+  [[menu.main]]
+    identifier = "github"
+    pre        = "<i class='fab fa-github fa-fw'></i>"
+    post       = ""
+    name       = ""
+    url        = "https://github.com/NethumL/nethuml.github.io"
+    title      = "GitHub"
+    weight     = 5
