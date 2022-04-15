@@ -324,3 +324,244 @@ end
 To cleanly integrate this into RecursiveBinder, much more changes are required, but for now, this works for me.
 *** Conclusion
 OK, time for some closing words. I have been using Hammerspoon for about a year and a half, and so far, I am beyond impressed. The power it brings is frankly amazing, and there is so much you can do with it. Like I said in the beginning, you are only limited by your imagination.
+* Programming :@programming:
+** Integrating spellchecking into a PyQt5 QTextEdit widget with enchant :python:pyqt:
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: pyqt-spellcheck
+:EXPORT_FILE_NAME: index
+:EXPORT_DATE: 2022-04-16
+:END:
+*** Introduction
+I was working on a project using PyQt5 when I found myself in need of spellchecking in a QTextEdit widget. I tried to find a reasonable implementation of it, but I didn't find one. Maybe it exists somewhere out there, but, it was an interesting little side project, so I decided to try making it myself. If you just want the code, you can get it from the [[https://github.com/NethumL/pyqt-spellcheck][GitHub repository]].
+
+If you are interested in an explanation of the code, read on.
+
+First, a little introduction to what will be used for this.
+**** [[https://www.riverbankcomputing.com/software/pyqt][PyQt5]]
+This is a set of Python bindings for the cross-platform [[https://www.qt.io][Qt framework]]. There is another set of bindings called [[https://wiki.qt.io/Qt_for_Python][PySide2]]. I won't go into the differences between them here, but all of the code here should work fine with PySide2 as well, with only the relevant import statements needing to be changed.
+You can install it using =pip install PyQt5=.
+**** [[https://github.com/AbiWord/enchant][enchant]]
+This is a spellchecking library written in C and C++. There are other spellchecking libraries of course, but I chose this as it seemed to work better than the others I tried. If you want to use a different library for the spellchecking, you can do that by simple replacing the implementation of the wrapper in the next section.
+You can install the library from the [[https://github.com/AbiWord/enchant][GitHub repository]], and you can install the Python bindings using =pip install pyenchant=.
+*** Wrapping enchant
+While this part isn't necessary, I initially did this in case I needed to change the library doing the spellchecking without needing to change the rest of the code. This wrapper will provide an "interface" to get a list of suggestions given a word, add a word to the personal word list, and to check a particular word's spelling.
+
+The code itself should be pretty self-explanatory, but I have added some comments as additional explanation.
+#+BEGIN_SRC python
+from typing import Callable
+from enchant import DictWithPWL
+from PyQt5.QtCore import QTemporaryFile
+
+class SpellCheckWrapper:
+    def __init__(
+        self, personal_word_list: list[str], addToDictionary: Callable[[str], None]
+    ):
+        # Here, we take a function: addToDictionary(str)
+        # That's what we call when adding a new word to the personal word list
+        # The reason we take this from outside is that this way, when using this class,
+        #   we can store the permanent personal word list however we like, and this class doesn't need to care
+
+        # Creating temporary file for enchant to store the personal word list temporarily
+        self.file = QTemporaryFile()
+        self.file.open()
+        self.dictionary = DictWithPWL(
+            "en_US",
+            self.file.fileName(),
+        )
+
+        self.addToDictionary = addToDictionary
+
+        self.word_list = set(personal_word_list)
+        self.load_words()
+
+    def load_words(self):
+        for word in self.word_list:
+            self.dictionary.add(word)
+
+    def suggestions(self, word: str) -> list[str]:
+        return self.dictionary.suggest(word)
+
+    def correction(self, word: str) -> str:
+        # Get the best match
+        return self.dictionary.suggest(word)[0]
+
+    def add(self, new_word: str) -> bool:
+        if self.check(new_word):
+            return False
+        self.word_list.add(new_word)
+        self.addToDictionary(new_word)
+        self.dictionary.add(new_word)
+        return True
+
+    def check(self, word: str) -> bool:
+        return self.dictionary.check(word)
+
+    def getNewWords(self) -> set[str]:
+        return self.word_list
+#+END_SRC
+*** Custom QSyntaxHighlighter
+Qt conveniently has a =QSyntaxHighlighter= ([[https://doc.qt.io/qt-5/qsyntaxhighlighter.html][docs]]) class which we can use to show any words that are misspelled. Here, we will subclass it to use a =SpellCheckWrapper= instance to check the spellings of all the words, and show the usual red line under any misspelled words.
+#+BEGIN_SRC python
+import re
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QSyntaxHighlighter, QTextCharFormat
+
+from spellcheckwrapper import SpellCheckWrapper
+
+
+class SpellCheckHighlighter(QSyntaxHighlighter):
+    # Matches strings of length 2 or more
+    wordRegEx = re.compile(r"\b([A-Za-z]{2,})\b")
+
+    def highlightBlock(self, text: str) -> None:
+        if not hasattr(self, "speller"):
+            return
+
+        # Formatting for misspelled words
+        self.misspelledFormat = QTextCharFormat()
+        self.misspelledFormat.setUnderlineStyle(QTextCharFormat.SpellCheckUnderline)  # Platform and theme dependent
+        self.misspelledFormat.setUnderlineColor(Qt.red)
+
+        for word_object in self.wordRegEx.finditer(text):
+            if not self.speller.check(word_object.group()):
+                self.setFormat(
+                    word_object.start(),
+                    word_object.end() - word_object.start(),
+                    self.misspelledFormat,
+                )
+
+    def setSpeller(self, speller: SpellCheckWrapper):
+        self.speller = speller
+#+END_SRC
+*** Correction action
+Now we need to create a simple =QAction= ([[https://doc.qt.io/qt-5/qaction.html][docs]]) that will fire a custom signal when clicked, and pass its text as an argument. We will be using this to create the list of suggested words in the context menu.
+#+BEGIN_SRC python
+from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWidgets import QAction
+
+
+class SpecialAction(QAction):
+    actionTriggered = pyqtSignal(str)
+
+    def __init__(self, *args):
+        super().__init__(*args)
+
+        self.triggered.connect(self.emitTriggered)
+
+    def emitTriggered(self):
+        self.actionTriggered.emit(self.text())
+#+END_SRC
+*** Subclassing QTextEdit
+Now we come to the main part of this article. I will break down this class into a few sections. The first one is for the imports and the constructor. Each one after that will be for the other methods in the class.
+**** Imports and constructor
+This part should be self-explanatory.
+#+BEGIN_SRC python
+from PyQt5.QtCore import QEvent, Qt, pyqtSlot
+from PyQt5.QtGui import QContextMenuEvent, QMouseEvent, QTextCursor
+from PyQt5.QtWidgets import QMenu, QTextEdit
+
+# Importing the classes we wrote in the previous sections
+from correction_action import SpecialAction
+from highlighter import SpellCheckHighlighter
+from spellcheckwrapper import SpellCheckWrapper
+
+
+class SpellTextEdit(QTextEdit):
+    def __init__(self, *args):
+        if args and type(args[0]) == SpellCheckWrapper:
+            super().__init__(*args[1:])
+            self.speller = args[0]
+        else:
+            super().__init__(*args)
+
+        self.highlighter = SpellCheckHighlighter(self.document())
+        if hasattr(self, "speller"):
+            self.highlighter.setSpeller(self.speller)
+#+END_SRC
+**** Set speller
+#+BEGIN_SRC python
+def setSpeller(self, speller):
+    self.speller = speller
+    self.highlighter.setSpeller(self.speller)
+#+END_SRC
+**** Mouse press event
+This is a little hack to make it so that right-clicking will move the text cursor to the mouse position. If the mouse press event is a right click, then we change that into a left click.
+#+BEGIN_SRC python
+def mousePressEvent(self, event: QMouseEvent) -> None:
+    if event.button() == Qt.RightButton:
+        event = QMouseEvent(
+            QEvent.MouseButtonPress,
+            event.pos(),
+            Qt.LeftButton,
+            Qt.LeftButton,
+            Qt.NoModifier,
+        )
+    super().mousePressEvent(event)
+#+END_SRC
+**** Context menu event
+Here, we need to build the context menu. First, we can use the built-in =createStandardContextMenu= method to make the basics. Then, we add on the list of suggestions, and a button to add to dictionary.
+
+=createSuggestionsMenu= is explained in the next section.
+#+BEGIN_SRC python
+def contextMenuEvent(self, event: QContextMenuEvent) -> None:
+    self.contextMenu = self.createStandardContextMenu(event.pos())
+
+    # Select and retrieve the word under the cursor
+    textCursor = self.textCursor()
+    textCursor.select(QTextCursor.WordUnderCursor)
+    self.setTextCursor(textCursor)
+    wordToCheck = textCursor.selectedText()
+
+    if wordToCheck != "":
+        suggestions = self.speller.suggestions(wordToCheck)
+
+        if len(suggestions) > 0:
+            self.contextMenu.addSeparator()
+            self.contextMenu.addMenu(self.createSuggestionsMenu(suggestions))
+
+        if not self.speller.check(wordToCheck):
+            # This action will add the selected word to the personal word list
+            addToDictionary_action = SpecialAction(
+                "Add to dictionary", self.contextMenu
+            )
+            addToDictionary_action.triggered.connect(self.addToDictionary)
+            self.contextMenu.addAction(addToDictionary_action)
+
+    self.contextMenu.exec_(event.globalPos())
+#+END_SRC
+**** Create suggestions menu
+We create the suggestions menu from the given list of suggestions. Here, we use that =SpecialAction= from before. When one is clicked, the =correctWord= method is called.
+#+BEGIN_SRC python
+def createSuggestionsMenu(self, suggestions: list[str]):
+    suggestionsMenu = QMenu("Change to", self)
+    for word in suggestions:
+        action = SpecialAction(word, self.contextMenu)
+        action.actionTriggered.connect(self.correctWord)
+        suggestionsMenu.addAction(action)
+
+    return suggestionsMenu
+#+END_SRC
+**** Replace the selected word with the given correction
+#+BEGIN_SRC python
+@pyqtSlot(str)
+def correctWord(self, word: str):
+    textCursor = self.textCursor()
+    textCursor.beginEditBlock()
+    textCursor.removeSelectedText()
+    textCursor.insertText(word)
+    textCursor.endEditBlock()
+#+END_SRC
+**** Add to dictionary
+This adds the selected word to the dictionary.
+#+BEGIN_SRC python
+@pyqtSlot()
+def addToDictionary(self):
+    textCursor = self.textCursor()
+    new_word = textCursor.selectedText()
+    self.speller.add(new_word)
+    self.highlighter.rehighlight()
+#+END_SRC
+*** Conclusion
+There you have it. If you want to try it out, I have included a small [[https://github.com/NethumL/pyqt-spellcheck/blob/main/src/example.py][example application]] in the GitHub repository.
+
+There are of course some improvements to be made. For example, with the current implementation, if a user selects some text and right-clicks, the selection will change to the word under the pointer. As I wrote this code for use in another project of mine, this basic functionality was enough.
