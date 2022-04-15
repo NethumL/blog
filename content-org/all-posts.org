@@ -1,0 +1,12 @@
+#+AUTHOR:
+#+HUGO_CUSTOM_FRONT_MATTER: :author "Nethum Lamahewage"
+#+HUGO_BASE_DIR: ../
+#+PROPERTY: header-args :results none
+#+MACRO: relref @@hugo:[@@$1@@hugo:]({{< relref "$2" >}})@@
+
+* About
+:PROPERTIES:
+:EXPORT_HUGO_SECTION: about
+:EXPORT_FILE_NAME: index
+:END:
+The about page
