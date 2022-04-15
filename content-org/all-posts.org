@@ -1,6 +1,7 @@
 #+AUTHOR:
 #+HUGO_CUSTOM_FRONT_MATTER: :author "Nethum Lamahewage"
 #+HUGO_BASE_DIR: ../
+#+HUGO_PAIRED_SHORTCODES: admonition
 #+PROPERTY: header-args :results none
 #+MACRO: relref @@hugo:[@@$1@@hugo:]({{< relref "$2" >}})@@
 
@@ -10,3 +11,316 @@
 :EXPORT_FILE_NAME: index
 :END:
 The about page
+* Hammerspoon :@hammerspoon:
+** Setting up a global leader key for macOS with Hammerspoon :dotfiles:hammerspoon:
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: hammerspoon-global-leader-key
+:EXPORT_FILE_NAME: index
+:EXPORT_DATE: 2022-04-15
+:END:
+*** Introduction
+I've been using macOS for a little over a year now. Before that, I had only ever known Windows. I have used Ubuntu a bit, but that barely counts. Once I moved to macOS, it took quite some time to get used to it. I do still occasionally boot into Windows, using Bootcamp, but it's only when I need to use some software that doesn't run on macOS.
+At first, I used macOS much like I used to use Windows. However, since I am doing a CS degree, I needed to get familiar with programming related tools, and that is how I found Vim. I found it interesting and gave it a go. I won't go into what that was like here, as there are many people on the internet who have told their stories of learning Vim. Eventually, I gained an interest in configuring my system to suit me better, and I came across Hammerspoon.
+*** Hammerspoon
+**** About
+Simply put, it is a automation tool running on [[https://www.lua.org][Lua]]. It has numerous APIs for macOS functionality, and with it, you can control pretty much whatever you want to. Basically, you're only limited by your imagination (and your skill at writing the relevant code).
+**** Installing
+Using either [[https://brew.sh][Homebrew]] or from the [[https://www.hammerspoon.org][website]]
+**** Configuring
+***** Setup
+- Create =~/.hammerspoon/init.lua=
+- This is the starting point of your config. You can split your config into separate files (and you should, if you do any serious configuring), and then use the [[https://www.lua.org/pil/8.1.html][=require= function]] to import them
+- The following are a couple of basic examples of what you can do with Hammerspoon
+***** Reload config
+You can replace the modifier combination with a [[https://evantravers.com/articles/2020/06/08/hammerspoon-a-better-better-hyper-key][hyper key]] if you want
+#+BEGIN_SRC lua
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "h", function()
+    hs.reload()
+    hs.console.clearConsole()
+end)
+#+END_SRC
+***** Wi-Fi watcher
+#+BEGIN_SRC lua
+local wifiwatcher = hs.wifi.watcher.new(function()
+    local net = hs.wifi.currentNetwork()
+    if net == nil then
+        hs.notify.show("You lost Wi-Fi connection", "", "", "")
+    else
+        hs.notify.show("Connected to Wi-Fi network", "", net, "")
+    end
+end)
+wifiwatcher:start()
+#+END_SRC
+**** More
+You can go to Hammerspoon's [[https://www.hammerspoon.org/go/][Getting started guide]] to see some more examples. And if you want to know more about any part of the API, you will find that it is very well [[https://www.hammerspoon.org/docs/index.html][documented]]. You can also find 'Spoons', which are basically plugins which provide additional functionality, at [[https://www.hammerspoon.org/Spoons/][this]] link. And you can find many resources out there about setting up various things using Hammerspoon.
+
+Now let's jump into the RecursiveBinder Spoon
+*** RecursiveBinder Spoon
+**** About
+- When I first started configuring Hammerspoon, I setup a hyper key, and added a few keybindings. But I soon hit a roadblock where I was using up all the keys (or at least the most easily accessible ones)
+- It wasn't that long since I had been introduced to Vim, and I was getting comfortable with the leader key system. It turned out that there was a Spoon for Hammerspoon called RecursiveBinder that could do the same thing.
+**** Installing
+- Download from [[https://www.hammerspoon.org/Spoons/RecursiveBinder.html][here]]
+- Copy into =~/.hammerspoon/Spoons=
+- Your =~/.hammerspoon= directory should now look something like this:
+#+BEGIN_SRC
+.
+├── Spoons
+│   └── RecursiveBinder.spoon
+│       ├── docs.json
+│       └── init.lua
+└── init.lua
+#+END_SRC
+**** Configuring
+***** singleKey
+- This is a convenience function used to easily create a table representing a keybinding with no modifiers, and also automatically translate capital letters to normal letters with shift modifier
+- For example, =singleKey('o', 'open')= returns ={{}, 'o', 'open'}=, and =singleKey('O', 'open')= returns ={{'shift'}, 'o', 'open'}=
+***** Simple keymap and binding
+#+BEGIN_SRC lua
+hs.loadSpoon("RecursiveBinder")
+
+spoon.RecursiveBinder.escapeKey = {{}, 'escape'}  -- Press escape to abort
+
+local singleKey = spoon.RecursiveBinder.singleKey
+
+local keyMap = {
+  [singleKey('b', 'browser')] = function() hs.application.launchOrFocus("Firefox") end,
+  [singleKey('t', 'terminal')] = function() hs.application.launchOrFocus("Terminal") end,
+  [singleKey('d', 'domain+')] = {
+    [singleKey('g', 'github')] = function() hs.urlevent.openURL("github.com") end,
+    [singleKey('y', 'youtube')] = function() hs.urlevent.openURL("youtube.com") end
+  }
+}
+
+hs.hotkey.bind({'option'}, 'space', spoon.RecursiveBinder.recursiveBind(keyMap))
+#+END_SRC
+****** Explanation
+- First load the spoon using =hs.loadSpoon=
+- =RecursiveBinder.escapeKey= is the keybinding used to abort
+- The next line is just for convenience, so that I can use =singleKey= without having to type out =spoon.RecursiveBinder.singleKey= every time
+- Next, I create a table of keybindings. The first two are to open the browser and the terminal respectively, and next set is a nested group.
+- Pressing option+space will trigger RecursiveBinder. Helper text will popup at the bottom of your screen with the =browser=, =terminal=, and =domain+= key bindings.
+- Pressing =b= or =t= will call the functions provided, and open Firefox and Terminal respectively (and also dismiss the helper text)
+- Pressing =d= will enter the the next layer, and the helper will change to show the =g= and =y= key bindings, and pressing one of those will call the corresponding functions, and open GitHub and YouTube respectively (in your default browser)
+***** Styling
+Some simple styling
+#+BEGIN_SRC lua
+spoon.RecursiveBinder.helperFormat = {
+    atScreenEdge = 2,  -- Bottom edge (default value)
+    textStyle = {  -- An hs.styledtext object
+        font = {
+            name = "Fira Code",
+            size = 18
+        }
+    }
+}
+#+END_SRC
+Refer to the =hs.alert.defaultStyle= documentation for general styling, and =hs.styledtext= for text styling
+*** Leader key
+**** Loading from config.json
+- To make later configuration easier, I set it up so that it loads as much of the config as possible from an easily editable JSON file
+- The config.json file is in the private folder, which is where personal aspects of the config are stored. This way, you can separate those from the main configuration, if you were to upload your Hammerspoon config somewhere
+#+BEGIN_SRC lua
+local config = hs.json.read("private/config.json")
+#+END_SRC
+This is what that config.json file looks like:
+#+BEGIN_SRC json
+{
+  "applications": [
+    {
+      "bundleID": "org.mozilla.firefox",
+      "key": "b",
+      "name": "Firefox"
+    },
+    {
+      "bundleID": "com.microsoft.VSCode",
+      "key": "c",
+      "name": "VSCode"
+    }
+  ],
+  "domains": [
+    {
+      "key": "g",
+      "name": "GitHub",
+      "url": "github.com"
+    },
+    {
+      "key": "y",
+      "name": "YouTube",
+      "url": "youtube.com"
+    }
+  ],
+  "notes": {
+    "rootPath": "/Users/your_username_here/notes_html/",
+    "contents": [
+      {
+        "folder": "programming",
+        "key": "p",
+        "name": "Programming",
+        "contents": [
+          {
+            "file": "python",
+            "key": "p",
+            "name": "Python"
+          },
+          {
+            "file": "js",
+            "key": "j",
+            "name": "JavaScript"
+          }
+        ]
+      },
+      {
+        "file": "general",
+        "key": "g",
+        "name": "General"
+      }
+    ]
+  }
+}
+#+END_SRC
+
+#+ATTR_SHORTCODE: note "Using YAML instead of JSON" true
+#+BEGIN_admonition
+If your config.json is getting too big, it might be a good idea to convert it into a different file type, such as YAML (as it is easier to read/write). I’ll leave that as an exercise for the reader (partly because I haven’t done that yet either, though I do intend to). As a starting point, you may want to look into [[https://github.com/gvvaughan/lyaml][this]].
+#+END_admonition
+**** Applications & Domains key map
+- Here, I'm iterating through the list of applications in my config, and adding them to the keymap one by one. For this, I can use a function in Hammerspoon called =hs.fnutils.each=. It takes in a table and a function, which will be called for each element in the table
+- For each application, I'm assigning the corresponding key and a function that will launch it using Hammerspoon's =hs.application.launchOrFocusByBundleID=
+- If you want to find the bundleid of an application the following AppleScript will return it: =id of app 'Firefox'= (just replace Firefox with the application name, as it appears in your Applications folder). You can also run this in a shell like this:
+#+BEGIN_SRC sh
+osascript -e "id of app 'Firefox'"
+#+END_SRC
+The following lua code will add the applications to a key map
+#+BEGIN_SRC lua
+local applicationsKeyMap = {}
+hs.fnutils.each(config.applications, function(app)
+    applicationsKeyMap[singleKey(app.key, app.name)] = function()
+        hs.application.launchOrFocusByBundleID(app.bundleID)
+    end
+end)
+#+END_SRC
+As another example, here is how I'm loading the domains key map
+#+BEGIN_SRC lua
+local domainsKeyMap = {}
+hs.fnutils.each(config.domains, function(domain)
+    domainsKeyMap[singleKey(domain.key, domain.name)] = function()
+        hs.urlevent.openURL("https://" .. domain.url)
+    end
+end)
+#+END_SRC
+**** Notes key map
+If you looked at the config above, you may have noticed the notes section. I also set up a keymap to open those notes in the browser. I think the format of the config is self explanatory, so I'll go ahead with the actual lua code
+#+BEGIN_SRC lua
+local function generate(data, path)
+    local folder = {}
+    hs.fnutils.each(data, function(elem)
+        if elem['contents'] ~= nil then
+            -- Sub-folder
+            folder[singleKey(elem.key, elem.folder .. '+')] = generate(elem.contents, path .. elem.folder .. '/')
+        else
+            -- File
+            folder[singleKey(elem.key, elem.name)] = function()
+                hs.urlevent.openURL("file://" .. path .. elem.file .. ".html")
+            end
+        end
+    end)
+    return folder
+end
+local notesKeyMap = generate(config.notes.contents, config.notes.rootPath)
+#+END_SRC
+This one is more complicated, but I'm including it to show you just how much you can achieve with this.
+I'll go through it part by part.
+***** Explanation
+- All of my notes are in a folder called notes_html in my =$HOME= folder (aka =~/=), and I've categorised some into sub-folders. For example, there is a sub-folder named programming, with separate notes for each programming language.
+- =generate= is a recursive function that is called on the notes section of the config
+- It iterates over the list provided, and for each element, it does one of two things.
+- If it is a sub-folder (a simple way to check this is to check for the =contents= attribute), then it calls the function again for that folder's list of entries(files or folders), and assigns it to the corresponding key in the keymap
+- If it is a file, then it just assigns the corresponding key in the keymap and attaches the function to open the note
+- For any programmers reading, the idea is similar to a depth first search of a tree
+- To open the note, I'm using the =hs.urlevent.openURL= function. They are all html files, so they are automatically opened in my default browser
+- While recursively going through the notes, I'm also passing along the current path when calling the function and in the case of a sub-folder appending it to the end of the path
+- Now to use this, you don't really need to understand all of this. Just set all of it in the config.json, making sure to set the correct =config.notes.rootPath= as well.
+**** Putting it all together
+All that remains is to put it all together, like so
+#+BEGIN_SRC lua
+local keyMap = {
+    [singleKey('o', 'open+')] = applicationsKeyMap,
+    [singleKey('d', 'domain+')] = domainsKeyMap,
+    [singleKey('n', 'note+')] = notesKeyMap,
+    [singleKey('h', 'hammerspoon+')] = {
+        [singleKey('r', 'reload')] = function() hs.reload() hs.console.clearConsole() end,
+        [singleKey('c', 'config')] = function() hs.execute("/usr/local/bin/code ~/.hammerspoon") end
+    }
+}
+
+hs.hotkey.bind({'option'}, 'space', spoon.RecursiveBinder.recursiveBind(keyMap))
+#+END_SRC
+Here, I've also included a couple of keybindings for Hammerspoon. One to reload the config, and the other to open the config in VSCode
+*** Bonus
+**** Sorted helper text
+- If you used this, you may have noticed that the order of the keys in the helper text is not consistent. To fix this, I added some more code to sort the helper text before showing.
+- The following code is to be added to =RecursiveBinder.spoon/init.lua=
+- Not much needs to change. A function called =compareLetters= is added, and the beginning of the for loop(in =showHelper=), and the part just before it are changed as shown
+#+BEGIN_SRC lua
+-- Function to compare two letters
+-- It sorts according to the ASCII code, and for letters, it will be alphabetical
+-- However, for capital letters (65-90), I'm adding 32.5 (this came from 97 - 65 + 0.5, where 97 is a and 65 is A) to the ASCII code before comparing
+-- This way, each capital letter comes after the corresponding simple letter but before letters that come after it in the alphabetical order
+local function compareLetters(a, b)
+    asciiA = string.byte(a)
+    asciiB = string.byte(b)
+    if asciiA >= 65 and asciiA <= 90 then
+        asciiA = asciiA + 32.5
+    end
+    if asciiB >= 65 and asciiB <= 90 then
+        asciiB = asciiB + 32.5
+    end
+    return asciiA < asciiB
+end
+
+-- Here I am adding a bit of code to sort before showing
+-- Only the part between START and END changes
+local function showHelper(keyFuncNameTable)
+    local helper = ''
+    local separator = ''
+    local lastLine = ''
+    local count = 0
+
+    -- START
+    local sortedKeyFuncNameTable = {}
+    for keyName, funcName in pairs(keyFuncNameTable) do
+        table.insert(sortedKeyFuncNameTable, {keyName = keyName, funcName = funcName})
+    end
+    table.sort(sortedKeyFuncNameTable, function(a, b) return compareLetters(a.keyName, b.keyName) end)
+
+    for _, value in ipairs(sortedKeyFuncNameTable) do
+        local keyName = value.keyName
+        local funcName = value.funcName
+        -- END
+        count = count + 1
+        local newEntry = keyName .. ' -> ' .. funcName
+        -- make sure each entry is of the same length
+        if string.len(newEntry) > obj.helperEntryLengthInChar then
+            newEntry =
+                string.sub(newEntry, 1, obj.helperEntryLengthInChar - 2) .. '..'
+        elseif string.len(newEntry) < obj.helperEntryLengthInChar then
+            newEntry = newEntry ..  string.rep(' ', obj.helperEntryLengthInChar - string.len(newEntry))
+        end
+        -- create new line for every helperEntryEachLine entries
+        if count % (obj.helperEntryEachLine + 1) == 0 then
+            separator = '\n '
+        elseif count == 1 then
+            separator = ' '
+        else
+            separator = '  '
+        end
+        helper = helper .. separator .. newEntry
+    end
+    helper = string.match(helper, '[^\n].+$')
+    previousHelperID = hs.alert.show(helper, obj.helperFormat, true)
+end
+#+END_SRC
+To cleanly integrate this into RecursiveBinder, much more changes are required, but for now, this works for me.
+*** Conclusion
+OK, time for some closing words. I have been using Hammerspoon for about a year and a half, and so far, I am beyond impressed. The power it brings is frankly amazing, and there is so much you can do with it. Like I said in the beginning, you are only limited by your imagination.
