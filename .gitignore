@@ -1,3 +1,7 @@
 .DS_Store
+
+# Hugo
 /content
 /public
+/resources/_gen
+/.hugo_build.lock
