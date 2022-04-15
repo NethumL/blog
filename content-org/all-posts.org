@@ -2,7 +2,7 @@
 #+HUGO_CUSTOM_FRONT_MATTER: :author "Nethum Lamahewage"
 #+HUGO_BASE_DIR: ../
 #+HUGO_PAIRED_SHORTCODES: admonition
-#+PROPERTY: header-args :results none
+#+PROPERTY: header-args :noeval
 #+MACRO: relref @@hugo:[@@$1@@hugo:]({{< relref "$2" >}})@@
 
 * About
