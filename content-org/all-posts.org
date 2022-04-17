@@ -11,7 +11,7 @@
 :EXPORT_FILE_NAME: index
 :END:
 The about page
-* Hammerspoon :@hammerspoon:
+* Configuration :@configuration:
 ** Setting up a global leader key for macOS with Hammerspoon :dotfiles:hammerspoon:
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: hammerspoon-global-leader-key
