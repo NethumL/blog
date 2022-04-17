@@ -101,7 +101,7 @@ hs.hotkey.bind({'option'}, 'space', spoon.RecursiveBinder.recursiveBind(keyMap))
 - Next, I create a table of keybindings. The first two are to open the browser and the terminal respectively, and next set is a nested group.
 - Pressing option+space will trigger RecursiveBinder. Helper text will popup at the bottom of your screen with the =browser=, =terminal=, and =domain+= key bindings.
 - Pressing =b= or =t= will call the functions provided, and open Firefox and Terminal respectively (and also dismiss the helper text)
-- Pressing =d= will enter the the next layer, and the helper will change to show the =g= and =y= key bindings, and pressing one of those will call the corresponding functions, and open GitHub and YouTube respectively (in your default browser)
+- Pressing =d= will enter the next layer, and the helper will change to show the =g= and =y= key bindings, and pressing one of those will call the corresponding functions, and open GitHub and YouTube respectively (in your default browser)
 ***** Styling
 Some simple styling
 #+BEGIN_SRC lua
