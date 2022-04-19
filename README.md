@@ -18,7 +18,7 @@
 
 # Building
 
-The exact build process can be seen in the 'Build' GitHub action, but the overall idea is:
+The exact build process can be seen in the 'Build' GitHub workflow, but the overall idea is:
 
 - Export content in .org to .md using [ox-hugo](https://github.com/kaushalmodi/ox-hugo)
 - Build site using [Hugo](https://gohugo.io) and the [LoveIt](https://github.com/dillonzq/LoveIt) theme
