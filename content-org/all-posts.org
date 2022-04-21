@@ -9,8 +9,29 @@
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: about
 :EXPORT_FILE_NAME: index
+:EXPORT_DATE: 2022-04-21
 :END:
-The about page
+Hi!
+
+I'm Nethum Lamahewage. I'm primarily a programmer - mainly as a hobby since about mid-2019, and now also as a student.
+
+As of 2022, I'm a Computer Science & Engineering undergraduate at the University of Moratuwa.
+** Online Presence
+My main "official" online presences are currently limited to the following.
+*** [[https://github.com/NethumL][GitHub]]
+This is where some of my "important" projects are hosted. The majority of them are private for various reasons, but a few are public, including the [[https://github.com/NethumL/nethuml.github.io][source]] for this website. The ones that are private are that way usually because I don't consider them particularly useful for most people.
+
+The list of private repositories includes my dotfiles repo. If you're not familiar with what they are, [[https://www.webpro.nl/articles/getting-started-with-dotfiles][here]] is a nice introduction. It has my dotfiles dating back to the beginning of 2021. I'm pretty sure that that's not when I started properly using dotfiles, but that's as far back as my commit history goes. In the future, I may open it up, but for now, I'm planning on making at least a few posts about individual components of it here.
+*** [[https://www.linkedin.com/in/nethumlamahewage][LinkedIn]]
+This is my other official presence online. It exists mainly for career purposes (it's LinkedIn).
+
+You can expect it to be reasonably up to date, at least with the more important details.
+*** [[https://nethumlamahewage.medium.com][Medium]]
+I originally joined Medium for the purpose of having an online blog. Since I set up this site, I won't be using Medium that often.
+
+All of my posts will be here on this site, but a few of them will occasionally be posted there as well.
+** About this site
+This is a [[https://gohugo.io][Hugo]]-generated static site using [[https://orgmode.org][Org Mode]], [[https://ox-hugo.scripter.co][ox-hugo]], and the [[https://github.com/dillonzq/LoveIt][LoveIt]] theme, hosted on [[https://docs.github.com/en/pages][GitHub Pages]]. I will likely be doing a separate post about how this is set up and the process I went through to get to this site, and if/when I do, I'll link it here.
 * Configuration :@configuration:
 ** Setting up a global leader key for macOS with Hammerspoon :dotfiles:hammerspoon:
 :PROPERTIES:
