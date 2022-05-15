@@ -36,7 +36,7 @@ enableEmoji = true
     [params.header.title]
       logo = ""
       name = "home"
-      pre = "<i class='fa-solid fa-terminal'></i>"
+      pre = "<i class='fas fa-terminal'></i>"
       typeit = false
 
   [params.footer]
