@@ -12,13 +12,17 @@ enableEmoji = true
   posts = "/posts/:year/:month/:filename/"
 
 [params]
-  version = "0.2.X"
+  title = "Nethum Lamahewage - Thoughts"
   description = "Nethum Lamahewage's blog"
   keywords = ["blog"]
+  version = "0.2.X"
   defaultTheme = "auto"
   gitRepo = "https://github.com/NethumL/nethuml.github.io.git"
   dateFormat = "January 2, 2006"
   fingerprint = "sha384"
+
+  [params.app]
+    title = "NethumL's blog"
 
   [params.search]
     enable = true
