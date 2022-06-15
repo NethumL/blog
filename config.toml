@@ -18,6 +18,7 @@ enableEmoji = true
   defaultTheme = "auto"
   gitRepo = "https://github.com/NethumL/nethuml.github.io.git"
   dateFormat = "January 2, 2006"
+  fingerprint = "sha384"
 
   [params.search]
     enable = true
