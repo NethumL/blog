@@ -3,6 +3,7 @@
 #+HUGO_BASE_DIR: ../
 #+HUGO_PAIRED_SHORTCODES: admonition
 #+PROPERTY: header-args :noeval
+#+MACRO: ref @@hugo:[@@$1@@hugo:]({{< ref "$2" >}})@@
 #+MACRO: relref @@hugo:[@@$1@@hugo:]({{< relref "$2" >}})@@
 
 * About
@@ -345,6 +346,363 @@ end
 To cleanly integrate this into RecursiveBinder, much more changes are required, but for now, this works for me.
 *** Conclusion
 OK, time for some closing words. I have been using Hammerspoon for about a year and a half, and so far, I am beyond impressed. The power it brings is frankly amazing, and there is so much you can do with it. Like I said in the beginning, you are only limited by your imagination.
+** My blog setup with Hugo and Org Mode :org_mode:hugo:
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: blog-setup-with-hugo-org-mode
+:EXPORT_FILE_NAME: index
+:EXPORT_DATE: 2022-06-14
+:END:
+*** Introduction
+I started this site on the 15th of April 2022. However, I wrote my first article on the 11th of May 2021, on Medium. I've republished it and the second one here, because I want this to be the original source for all my articles.
+
+Going forward, this is going to be the home for all my articles, so I wanted to write one about how this site came to be.
+
+Fair warning, this article is a bit long, as you can probably see. This article is not a step-by-step guide of how I setup this site. This is more about my reasoning for why it is the way it is, and some details of how I set up /specific/ things. If you want to know more about the basics of setting up a Hugo site, it would be best to look at their [[https://gohugo.io/getting-started][getting started guide]] or one of the many tutorials already out there.
+
+Also, I've included a lot of links in the article. That's partly if readers want to know more about what I've done or used, and also just to show where I got my information from.
+*** Why this article exists
+There are a few major reasons to do this:
+1. It took a long time to get to this point and I want to write down the process I went through to get here.
+2. I'm hoping that this article will be helpful to someone who's also looking to set up a similar site. For reference, this is a site with the content written in [[https://orgmode.org][Org Mode]] with [[https://ox-hugo.scripter.co][ox-hugo]] powered by [[https://gohugo.io][Hugo]] and hosted on [[https://pages.github.com][GitHub Pages]].
+3. It's just kind of what you do when you set up a blog site like this. You write an article about how and why you did it. It's basically a law at this point.
+*** Why I wanted a blog
+Honestly, my main reason to start writing these articles, was because I was told that it would be a helpful for me in the future. Partly to show what I've done over the years, and also to help me practice putting things into words for other people to read.
+
+And besides, I'm hoping at least some of them are useful to other people as well.
+*** Why Medium
+The main reason was just that it was recommended to me by others. There's also the fact that it's a large site, so I'm likely to have a wider reach by posting there.
+On top of that when I wrote my first article on Medium, I didn't really consider any alternatives.
+*** Why not Medium
+For me, there were a few reasons to not use Medium. These may not apply to you, but they bothered me enough to push me to set up a blog myself.
+**** I'm used to a different setup
+While I don't know if I could be a classified as a vimmer, I do use vim in all the editors/IDEs I use, and even in the [[https://github.com/tridactyl/tridactyl][browser]]. I wrote my first two articles before setting up this site, so they were directly posted to Medium. However, I didn't write those articles in the Medium editor. I wrote them in [[https://orgmode.org][Org Mode]] in [[https://github.com/doomemacs/doomemacs][Doom Emacs]], because that's my preferred editor for writing.
+
+#+ATTR_SHORTCODE: info "" true
+#+BEGIN_admonition
+If you're already familiar with either Emacs or Org Mode, you probably don't need me to tell you why. If you're familiar with Markdown, then it might help you to think of Org Mode as Markdown on speed (it's so much more than that, but that should be a good starting point). If you want to know more, checkout the [[https://orgmode.org][official website]] and the [[https://orgmode.org/features.html][features page]].
+#+END_admonition
+
+I've set up Doom Emacs with vim keybindings, so I can use all of those familiar keybindings, but with all the power of Emacs and Org Mode. Compared to that, I feel that Medium's editor falls short. While it does support basic formatting, quotes, lists, embeds, and some other stuff, it is still lacking. For example, you can add code blocks, but they won't have syntax highlighting. For that, you have to put your code on some other site like GitHub Gists or CodePen, and embed it in the Medium editor. While over here with Org Mode, I get all of those, along with any custom things I want to add.
+**** Problems with Medium
+Another major issue is the site itself. A disclaimer first: I am still only a CSE student, so maybe I just don't know enough about web development to accurately understand all this, but, here's what I can see and understand.
+
+According to [[https://medium.engineering/the-stack-that-helped-medium-drive-2-6-millennia-of-reading-time-e56801f7c492][this article]] on the Medium Engineering blog, they're using their "own Single Page Application framework that uses Closure as a standard library". When I load up an article and scroll to the bottom, the Network tab in the Developer Tools says it has transferred somewhere around 3 MB, and after transferring, the total size is above 10 MB. Personally, I think that's too much. You are of course welcome to disagree. But, Medium is, effectively, a site for people to post their ideas in article form, and also read articles written by other people. It allows anyone, not just people with the technical knowledge or time to do it themselves, to write articles and have them be read by people around the world. Most of the content is text, with some images, and sometimes embedded content such as YouTube videos or code (from GitHub Gists for example). It seems to me, that a site like this should be kind of lightweight. However, it's clearly not. If I go to any random article, it takes about 3 seconds to load (depending on the article). I know that's not the end of the world, but I generally try to avoid sites like that. It also seems a bit slow when reading articles. I should mention that my internet connection, while not exceedingly fast, is reasonably fast, but Medium still seems a bit slow on it.
+
+Side note, while writing this part of this post, I went on Medium to test its speed and network usage, and it turns out I used quite a bit of data just doing that. Some time after I had properly started looking into setting up my own blog, I remember clicking on a link to a Medium article about something, and the actual /content/ of the article was the /last/ to load. I don't know about you, but I think that's a bit too far.
+
+There are other minor issues (not necessarily specific to Medium), such as the risk that my profile might suddenly be deleted, or that they could just stop running the site ([[https://en.wikipedia.org/wiki/Vendor_lock-in][vendor lock-in]]), and so on.
+*** Moving to a custom blog
+**** Deciding on setup
+When I was looking around for alternatives, I did briefly consider [[https://dev.to][DEV]], as it doesn't seem to have the same performance issues, and according to their [[https://dev.to/p/editor_guide][Editor Guide]], they use Markdown along with some other niceties. A minor issue is that it seems to be a community for developers. The problem with that is, my articles aren't necessarily targeted at developers. For instance, my article about {{{ref(setting up a global leader key in hammerspoon,/posts/hammerspoon-global-leader-key)}}} is not for developers. It's for macOS users who like to customise their systems. Similarly, I would probably be posting articles that are even less aimed at developers, so I didn't go with DEV.
+
+However, I do have a tendency to try more custom options, so I looked into [[https://www.cloudflare.com/en-gb/learning/performance/static-site-generator][static site generators]] (SSGs). I had previously checked out [[https://jekyllrb.com][Jekyll]] for something else, and I think I was aware of [[https://gohugo.io][Hugo]]. After some consideration, I decided to go with Hugo. It's been some time since I made the decision, but I think it was because it was better suited for use with Org Mode, but don't quote me on that.
+**** Why a Static Site Generator?
+Before I get into my experience in trying out Hugo and eventually setting up this site, I should probably go over why I decided to go with a static site generator. The blog sites I have seen are generally web-apps. I'm referring to the dynamic nature of them. They provide their own editor to write articles and when you go to the page for a specific article, they load the article contents from a database and generate the page on the fly/on request. Some have a backend API and a frontend framework that communicate, and the frontend framework builds the HTML that the browser then renders. With all this processing work, it does take some time. And since there's a frontend framework involved, it will take some time to build the page. I'm not going to go into the pros and cons of using a frontend framework here. This isn't the article for that, and besides, there's enough discussion about that already.
+
+My issue with that setup for a blog site is, I would prefer to have better performance given that is it a _blog site_. I understand that to cater to the general public, it pretty much needs to be dynamic, so this setup is almost inevitable (note that I said /almost/, because for all I know there's a successful site out there that does things differently). But for me, I'm fine with a bit more setup time. I can invest the time it would take me to setup a system that works for me.
+
+Using a static site means that when someone goes to a page, the browser simply fetches HTML from the server and then processes it. All the content is right there. Any code that it needs to parse and evaluate can be strictly for functional purposes (eg: folding content, search, clipboard).
+
+I've already mentioned that I prefer to write in Org Mode. I also prefer to have control over my content, and using a static site generator would give me that. I could style the website however I want (I know I haven't done that yet, but the option is available) and adjust it to suit my needs.
+**** Trying out Hugo
+I didn't have any experience with Hugo, so I wanted to first try it out separately before I started making my actual blog with it. For that purpose, I set up a test site with some dummy posts. I used it to try out the various things I would need, such as:
+- Normal markup
+- Links between posts
+- Code blocks
+- Diagrams
+#+ATTR_SHORTCODE: note "About the following section" true
+#+BEGIN_admonition
+At this point, I was using the [[https://github.com/rhazdon/hugo-theme-hello-friend-ng][Hello Friend NG]] theme, so most of the following information is specific to that theme.
+#+END_admonition
+I setup a site using the [[https://gohugo.io/getting-started][getting started guide]], then spent some time messing around with it
+***** Normal markup
+There's not really anything to say for this. I can just use the Org Mode markup that I'm used to.
+***** Links between posts
+I was hoping that I would be able to use normal org-mode links, but those didn't work because of the way ox-hugo works. Instead, I used Hugo's [[https://gohugo.io/content-management/cross-references/#use-ref-and-relref][ref and relref shortcodes]]. As an aside: there are a lot of [[https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes][built-in shortcodes]] that are really useful.
+***** Equations (LaTeX)
+Given that this is a website, my first thought was to use [[https://www.mathjax.org][MathJax]]. At the time, I was testing out the [[https://github.com/rhazdon/hugo-theme-hello-friend-ng][Hello Friend NG]] theme, and in that, I just added a bit of extra HTML to the head to include a link to the MathJax CDN.
+
+#+BEGIN_SRC html
+<!-- layouts/partials/mathjax.html -->
+
+<!-- Config -->
+<script src="{{ "js/mathjax-config.js" | absURL }}"></script>
+
+<!-- CDN link for MathJax -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6" integrity="sha384-1/AagWQhAo3drUi4tSBCeroqfpVVIw36CDyuqV03iQ5NJwW2adh8PLrZekInk8c+" crossorigin="anonymous"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js" integrity="sha384-/1zmJ1mBdfKIOnwPxpdG6yaRrxP6qu3eVYm0cz2nOx+AcL4d3AqEFrwcqGZVVroG" crossorigin="anonymous"></script>
+#+END_SRC
+and for MathJax, I added this config in static/js
+#+BEGIN_SRC js
+/* static/js/mathjax-config.js */
+
+window.MathJax = {
+  loader: {load: []},
+  tex: {
+    packages: {'[+]': []}
+  }
+};
+#+END_SRC
+
+I also wanted to include [[https://mermaid-js.github.io/mermaid][Mermaid]] and [[https://github.com/pgf-tikz/pgf][TikZ]] (using [[https://tikzjax.com][TikZJax]]), so I wrote a bit of Go template to make it easier to add more such "addons" and enable them per post as required.
+And to add them to the head, I made use of the Hello Friend NG theme's =extra-head.html= partial
+#+BEGIN_SRC html
+<!-- layouts/partials/extra-head.html -->
+
+{{ range $addon := .Params.addons }}
+    {{ partial $addon ".html" . }}
+{{ end }}
+#+END_SRC
+To enable specific addons in a post, I just set it in the front matter through [[https://ox-hugo.scripter.co/doc/custom-front-matter/#single-value-parameters][this property]] in ox-hugo
+#+BEGIN_SRC org
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :addons '("mathjax" "tikz")
+#+END_SRC
+***** Diagrams (Mermaid)
+For Mermaid, I had to include the CDN and enable mermaid as well, following [[https://gohugo.io/content-management/diagrams/#mermaid-diagrams][this part]] of the Hugo docs.
+#+BEGIN_SRC html
+<!-- layouts/partials/mermaid.html -->
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js" integrity="sha256-8L3O8tirFUa8Va4NSTAyIbHJeLd6OnlcxgupV9F77e0=" crossorigin="anonymous"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
+#+END_SRC
+#+BEGIN_SRC html
+<!-- layouts/_default/_markup/render-codeblock-mermaid.html -->
+
+<div class="mermaid">
+  {{- .Inner | safeHTML }}
+</div>
+{{ .Page.Store.Set "hasMermaid" true }}
+#+END_SRC
+And to use it in org-mode, I used source code blocks.
+#+BEGIN_SRC org
+,#+BEGIN_SRC mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+,#+END_SRC
+#+END_SRC
+***** Diagrams (GoAT)
+Hugo supports [[https://github.com/bep/goat][GoAT]] natively, according to [[https://gohugo.io/content-management/diagrams/#goat-diagrams-ascii][this]].
+#+BEGIN_SRC org
+,#+BEGIN_SRC goat
+      .               .                .               .--- 1          .-- 1     / 1
+     / \              |                |           .---+            .-+         +
+    /   \         .---+---.         .--+--.        |   '--- 2      |   '-- 2   / \ 2
+   +     +        |       |        |       |    ---+            ---+          +
+  / \   / \     .-+-.   .-+-.     .+.     .+.      |   .--- 3      |   .-- 3   \ / 3
+ /   \ /   \    |   |   |   |    |   |   |   |     '---+            '-+         +
+ 1   2 3   4    1   2   3   4    1   2   3   4         '--- 4          '-- 4     \ 4
+
+,#+END_SRC
+#+END_SRC
+***** Diagrams (TikZ)
+Thanks to [[https://tikzjax.com][TikZJax]], it's possible to use TikZ diagrams on the web. While I'm unlikely to use TikZ (given that most of my articles are going to be about programming and technology), I had used [[https://github.com/circuitikz/circuitikz][CircuiTikZ]] before (for some of my university notes), so I wanted to try it just because. Using it was as easy as adding a couple of links to the CSS and JS to the =head=.
+#+BEGIN_SRC html
+<!-- layouts/partials/mermaid.html -->
+
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+#+END_SRC
+To draw TikZ diagrams, you just do this:
+#+BEGIN_SRC org
+,#+begin_tikzjax
+\draw (0,0) circle (1in);
+,#+end_tikzjax
+#+END_SRC
+***** RSS feed
+I didn't really need to do anything for this. It just works.
+**** Final decisions
+At this point, I had got basically everything working that I wanted. I had also figured out the deployment process by then, but I'll get to that in the next topic. I was in the process of making my actual site, when I started having second thoughts about the theme (it was [[https://github.com/rhazdon/hugo-theme-hello-friend-ng][Hello Friend NG]] at this point). It's a nice theme, but I just wasn't feeling it. There was also the fact that I hadn't looked at that many themes before deciding on it. That didn't sit right with me, so I spent some more time (read /procrastinated/) looking at many other themes. I installed a few and tried them out, before I found the [[https://hugoloveit.com][LoveIt theme]]. It had basically everything I wanted, and I liked the look of it. It's not perfect of course. I would have preferred if it was a bit lighter. Compared to other sites, it's light, but compared to minimal sites, it's not (it does well on normal scales, but I think I would be happier with a more minimal one). I can live with that, for now. Everything else is great.
+
+It took some time to configure it to my liking, but I eventually did. I'm not going to go into that part. I don't think it would be that interesting, and besides, you can see the [[https://github.com/NethumL/nethuml.github.io/blob/main/config.toml][config.toml]] in the source repository. Due to some of the stuff I had already done being specific to my previous theme, I had to spend some time dealing with that.
+
+Enabling equations using [[https://katex.org][KaTeX]] was as simple as adding this line in the source.
+#+BEGIN_SRC org
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :math '(("enable" . t))
+#+END_SRC
+
+Mermaid support was built-in. I had to use the shortcode like this:
+#+BEGIN_SRC org
+,#+BEGIN_EXPORT hugo
+{{< mermaid >}}
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+{{< /mermaid >}}
+,#+END_EXPORT
+#+END_SRC
+
+To enable TikZJax, I need to add the links to the front matter, using ox-hugo's [[https://ox-hugo.scripter.co/doc/custom-front-matter/#front-matter-extra][extra front matter]] feature.
+#+BEGIN_SRC org
+,#+BEGIN_SRC toml :front_matter_extra t :noeval
+[library]
+    [library.css]
+      tikz = "https://tikzjax.com/v1/fonts.css"
+    [library.js]
+      tikz = "https://tikzjax.com/v1/tikzjax.js"
+,#+END_SRC
+#+END_SRC
+
+The LoveIt theme also came with support for two search systems: [[https://lunrjs.com][Lunr]] and [[https://www.algolia.com][Algolia]]. Lunr seemed to be easier to setup, so I used that.
+
+There are some other bonus features, such as being able to add charts using [[https://echarts.apache.org][ECharts]] like this:
+#+BEGIN_SRC org
+,#+BEGIN_EXPORT hugo
+{{< echarts >}}
+{
+  "title": { "text": "Summary Line Chart", "top": "2%", "left": "center" },
+  "tooltip": { "trigger": "axis" },
+  "legend": { "data": ["Email Marketing", "Affiliate Advertising", "Video Advertising", "Direct View", "Search Engine"], "top": "10%" },
+  "grid": { "left": "5%", "right": "5%", "bottom": "5%", "top": "20%", "containLabel": true },
+  "toolbox": { "feature": { "saveAsImage": { "title": "Save as Image" } } },
+  "xAxis": { "type": "category", "boundaryGap": false, "data": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] },
+  "yAxis": { "type": "value" },
+  "series": [
+    { "name": "Email Marketing", "type": "line", "stack": "Total", "data": [120, 132, 101, 134, 90, 230, 210] },
+    { "name": "Affiliate Advertising", "type": "line", "stack": "Total", "data": [220, 182, 191, 234, 290, 330, 310] },
+    { "name": "Video Advertising", "type": "line", "stack": "Total", "data": [150, 232, 201, 154, 190, 330, 410] },
+    { "name": "Direct View", "type": "line", "stack": "Total", "data": [320, 332, 301, 334, 390, 330, 320] },
+    { "name": "Search Engine", "type": "line", "stack": "Total", "data": [820, 932, 901, 934, 1290, 1330, 1320] }
+  ]
+}
+{{< /echarts >}}
+,#+END_EXPORT
+#+END_SRC
+
+There are even more useful features as you can see [[https://github.com/dillonzq/LoveIt/#features][here]].
+*** Hosting
+An important thing I had to figure out was how to set up the site. I was already looking into using GitHub Pages for this, but I had never done that before, so it took some time. Most of the other Hugo users were using Markdown, so they just set up a GitHub workflow to build the site from the markdown source, but I was using Org Mode for the source. Locally, I exported it to Markdown using ox-hugo, and built the site using Hugo. Most of the ones I found that were also using ox-hugo were exporting to Markdown locally and putting that in the repository to be used in the workflow. I didn't want to do that, because I only wanted the Org Mode version to be in repository, considering that it was the actual /source/ for the website. I found [[https://github.com/HaoZeke/haozeke.github.io][one website]] that seemed to be doing what I wanted, but their setup seemed to be quite complicated, using nix and Rakefiles and stuff. I wasn't familiar with them, so it took me a while to figure out exactly what I needed to do. I eventually did, and with a /lot/ of trial and error, I managed it.
+
+I'll briefly explain how my system works, and then I'll show the build process. The content is all in org-mode, and at the time of writing, all contained within the =all-posts.org= file. Locally, I have the [[https://ox-hugo.scripter.co][ox-hugo]] package installed in my Emacs, and I export to .md, then run Hugo to build the site. But on GitHub pages, I need to automate it with [[https://github.com/features/actions][GitHub Actions]]. Like I said, I wanted the site to be generated from the source, without me committing the intermediate .md into the repository. So, that means there are two main steps. First, I need to convert from .org to .md. Then, I can run Hugo. Running Hugo in GitHub Actions was easy. I found the [[https://github.com/peaceiris/actions-hugo][peaceiris/actions-hugo]] action to setup Hugo in the workflow, and then I could just run ~hugo --minify~ in a separate step to build the site. Converting to .md was the issue. I needed to setup Emacs for that, which by itself, is almost trivial thanks to [[https://github.com/purcell/setup-emacs][purcell/setup-emacs]]. However, I also need to setup the required environment within Emacs, because I need to install some packages and configure Emacs a bit before it can do what I want. This took a lot of time to do properly. I wrote a short shell script that calls Emacs and runs an Emacs Lisp file that does the actual work. After that's done, Hugo can take over.
+**** Converting to Markdown
+You can see the actual contents of the [[https://github.com/NethumL/nethuml.github.io/blob/main/publish.el][script]] on the repository, so here I'll split it into sections and explain.
+
+First, I need to prepare the Emacs package manager and install some packages.
+#+BEGIN_SRC emacs-lisp
+;; Prepare package manager
+(require 'package)
+(package-initialize)
+(unless package-archive-contents
+  (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (package-refresh-contents))
+
+;; Install packages if not installed already
+(dolist (pkg '(org-contrib ox-hugo plantuml-mode))
+  (unless (package-installed-p pkg)
+    (package-install pkg)))
+#+END_SRC
+Then, I load the packages and configure them
+#+BEGIN_SRC emacs-lisp
+;; Load packages
+(require 'org)
+(require 'ox-hugo)
+
+;; Prepare plantuml
+;; This is for future use
+(require 'plantuml-mode)
+(setq org-plantuml-jar-path plantuml-jar-path)
+(defadvice plantuml-download-jar (around auto-confirm compile activate)
+  (cl-letf (((symbol-function 'yes-or-no-p) (lambda (&rest args) t))
+            ((symbol-function 'y-or-n-p) (lambda (&rest args) t)))
+    ad-do-it))
+(plantuml-download-jar)
+
+;; Prepare org-babel
+;; This is for any code blocks need to be evaluated
+(setq org-confirm-babel-evaluate nil)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((plantuml . t) (python . t)))
+#+END_SRC
+And here is the actual publishing function. It executes the buffer with =org-babel= and then exports to Markdown. I'm using ~org-hugo-export-wim-to-md~ which will run the correct export process based on context.
+#+BEGIN_SRC emacs-lisp
+(defun npl-publish-all ()
+  (message "Publishing from emacs...")
+  (org-babel-execute-buffer t)
+  (org-hugo-export-wim-to-md t)
+  (message "Finished exporting to markdown"))
+#+END_SRC
+
+That was the content of =publish.el=. Here is the =build.sh= shell script that runs the elisp.
+#+BEGIN_SRC sh
+echo "Running build script"
+mkdir -p content-org/images/generated
+emacs --batch --no-init-file --load publish.el content-org/all-posts.org --funcall npl-publish-all
+#+END_SRC
+It just loads =publish.el= and then calls the ~npl-publish-all~ function on the =all-posts.org= file. It also creates a folder for any images that =org-babel= may generate.
+**** Deploying
+The entire process is "pieced together" by the [[https://github.com/NethumL/nethuml.github.io/blob/main/.github/workflows/build.yml][workflow file]]. Most of it is self-explanatory, and you could probably figure it out by referring the [[https://docs.github.com/en/actions/using-workflows/about-workflows][GitHub documentation for workflows]].
+
+There's one important part in the workflow file though.
+
+There's this bit in the "on" section:
+#+BEGIN_SRC yaml
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: "Start the SSH session for interactive debugging"
+        required: false
+        default: false
+#+END_SRC
+and this bit in the middle of the job:
+#+BEGIN_SRC yaml
+      - name: Start SSH session
+        uses: luchihoratiu/debug-via-ssh@main
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
+        with:
+          NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+          SSH_PASS: ${{ secrets.SSH_PASS }}
+#+END_SRC
+Those were added for debugging purposes. If a build fails only on GitHub and I'm having trouble figuring out why, I can manually trigger the workflow, setting the =debug_enabled= input to =true=, and use [[https://ngrok.com][ngrok]] to remote into the container where the workflow is running. There, I can try to interactively run commands to try and figure out what's wrong. At some point, I think I also tried [[https://github.com/mxschmitt/action-tmate][tmate]], but it didn't work out. I can't remember why though. For all I know, I was doing something wrong.
+
+Anyway, for more information about this way of debugging, refer the [[https://github.com/luchihoratiu/debug-via-ssh][luchihoratiu/debug-via-ssh]] action. Make sure to set the mentioned secrets for the actions through GitHub's repository settings. Refer the [[https://docs.github.com/en/actions/security-guides/encrypted-secrets][documentation]] for more information.
+*** How it could be better
+**** Reduce loading of heavy resources
+Right now, there's a bit more resources being loaded by the site than I would prefer. The two largest ones are font files for FontAwesome. The thing is, I'm barely using them on my website, and there's probably a good way to load only the parts that are actually being used.
+
+In addition to that, there's also quite a bit of JavaScript, for things such as clipboard, animations, searching, etc. While these are legitimately useful features, I would prefer to have them load when required. Again, there's probably a simple way to do that, and I'll have to look into that. Right now, I think I can live with this setup.
+**** Related posts
+There's no good way (at least as far as I can tell) to add links to related posts at the bottom of an article. I know I could just add normal links, but I would like to have them be presented nicely. That's something I intend to look into eventually (a [[https://gohugo.io/content-management/shortcodes][shortcode]] is probably the simplest answer).
+*** Going forward
+**** Republishing on Medium
+I plan on republishing /some/ of my posts on Medium as well. Medium still has the advantage of being a large site used by many people, so it will likely have a much wider reach than my own.
+
+I will probably only do that for posts that I think are worth going through the bother of copying over to Medium.
+**** Writing process
+As I've already mentioned, I'm using Emacs to write this blog. More specifically, I'm using [[https://bitbucket.org/mituharu/emacs-mac][emacs-mac]] with [[https://github.com/doomemacs/doomemacs][Doom Emacs]]. When writing, I generally have Firefox running as well, because I often need to refer other websites to make sure I'm accurate. And of course since this is a website, I have the Hugo server running in the background with the preview of the current post in a separate tab.
+**** Analytics
+One of the things that Medium offers is analytics about my articles. I can view detailed statistics about views, reads, traffic sources, etc. As it stands now, this site doesn't have any of that. It's a statically generated site, and the JavaScript that it includes are for functional purposes. It's hosted on GitHub Pages as well, and as far as I'm aware, they don't provide any analytics functionality, which makes sense. It's supposed to be just for hosting.
+
+It would of course be possible for me to integrate some sort of analytics, but I'm not sure I want to do that. The reason is, by doing that, I enter into the realm of tracking my readers. Even if it was simply counting numbers of views, I'm not sure I want that on my site. This is just where I stand right now. I'm a bit wary of that stuff, and at least to start with, want to keep my site simple.
+
+Say I was fine with that. There's still the issue of how I would do that. One of the most common services is Google Analytics, but that's definitely not something I want on my site. There are other more privacy respecting services, but right now, I'm going to keep this site analytics free (from my side at least).
+**** Rolling my own
+I'm a developer (mainly as a hobby and as a student at the time of writing), so I would like to actually make the site myself. Right now, I'm using Hugo with a theme that someone else made. I would prefer to either write my own theme, or to do the whole thing myself. I'm not actually sure which one would be harder. On the one hand, I'm not familiar with Hugo themes, so that would take me some time to learn and implement. On the other, even though I do have some practice with web development, handling the whole process of generating the site would probably take a while, especially considering I need to do all the styling myself and also setup the conversion of the actual articles to HTML.
+
+I fully intend to actually go through with this, but like I said before, I'm satisfied with the current setup, and I'm kind of busy these days. It would be a nice challenge though, so I'm looking forward to when I can properly sink some time into that project.
+*** Thanks to
+There are a few people that I need to thank, without whom this site probably wouldn't exist. I've attached links on the headings in this section to their websites/webpages.
+**** [[https://github.com][GitHub]]
+The source of the site is hosted as a GitHub [[https://github.com/NethumL/nethuml.github.io][repository]]. GitHub Actions are used to [[https://github.com/NethumL/nethuml.github.io/actions][build and deploy]] the site. The site is also hosted on [[https://pages.github.com][GitHub Pages]].
+**** [[https://gohugo.io][Hugo]]
+I'm using Hugo to generate the HTML for this site. I'm not going into all the reasons to choose this SSG over others, because that's not what this post is about, but, thank you to the developers/contributors of Hugo, and the community around it.
+**** [[https://ox-hugo.scripter.co][ox-hugo]]
+This is for exporting the Org Mode source to Markdown to be used by Hugo. Hugo does support Org Mode directly, but I didn't want to risk missing out on some feature that Hugo had only implemented for Markdown.
+**** [[https://hugoloveit.com][LoveIt theme]]
+This is the theme that I eventually settled on, after going through a few others. It has all the features I need and many more that I never even considered, and it looks good as well.
+**** [[https://orgmode.org][Org Mode]]
+I already talked a bit about it before; this was one of my main reasons to switch to this setup. I feel right at home writing in Org Mode, whether it's quick little notes, complete notes for university, task management, or articles like this.
+**** [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+Doom Emacs was my entry point into Emacs. It's an easy way to get into Emacs, and it provides a lot of stuff out of the box that you would normally have to manually configure in Emacs. Without this, I probably would not have started using Emacs and Org Mode.
+**** Everyone else
+There's probably other people I've missed. Actually scratch that. There's definitely other people I've missed, such as the writers of all the articles and posts I read to figure out what I needed to set this whole thing up and many others. These are just the ones I can directly point out and the ones that came to mind while writing this.
 * Programming :@programming:
 ** Integrating spellchecking into a PyQt5 QTextEdit widget with enchant :python:pyqt:
 :PROPERTIES:
