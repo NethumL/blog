@@ -59,6 +59,7 @@ enableEmoji = true
     [params.home.profile]
       enable = true
       title = "Nethum Lamahewage"
+      subtitle = ""
       typeit = false
       social = true
 
