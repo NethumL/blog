@@ -32,7 +32,7 @@ I originally joined Medium for the purpose of having an online blog. Since I set
 
 All of my posts will be here on this site, but a few of them will occasionally be posted there as well.
 ** About this site
-This is a [[https://gohugo.io][Hugo]]-generated static site using [[https://orgmode.org][Org Mode]], [[https://ox-hugo.scripter.co][ox-hugo]], and the [[https://github.com/dillonzq/LoveIt][LoveIt]] theme, hosted on [[https://docs.github.com/en/pages][GitHub Pages]]. I will likely be doing a separate post about how this is set up and the process I went through to get to this site, and if/when I do, I'll link it here.
+This is a [[https://gohugo.io][Hugo]]-generated static site using [[https://orgmode.org][Org Mode]], [[https://ox-hugo.scripter.co][ox-hugo]], and the [[https://github.com/dillonzq/LoveIt][LoveIt]] theme, hosted on [[https://docs.github.com/en/pages][GitHub Pages]]. I will likely be doing a separate post about how this is set up and the process I went through to get to this site, and if/when I do, I'll link it here. /UPDATE/ : {{{ref(the post is ready,/posts/blog-setup-with-hugo-org-mode)}}}.
 * Configuration :@configuration:
 ** Setting up a global leader key for macOS with Hammerspoon :dotfiles:hammerspoon:
 :PROPERTIES:
