@@ -112,7 +112,10 @@ enableEmoji = true
       enable = false
 
   [params.analytics]
-    enable = false
+    enable = true
+
+    [params.analytics.goatcounter]
+      code = "nethuml-github-io"
 
 [markup]
   [markup.highlight]
