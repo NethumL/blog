@@ -111,6 +111,9 @@ enableEmoji = true
     [params.page.comment]
       enable = false
 
+  [params.verification]
+    google = "_w7XSxfL86h6CBflSYO1-kM_2DOgEWlVt2W-l6hz8dQ"
+
   [params.analytics]
     enable = true
 
