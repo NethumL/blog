@@ -358,6 +358,7 @@ OK, time for some closing words. I have been using Hammerspoon for about a year 
 :EXPORT_HUGO_BUNDLE: blog-setup-with-hugo-org-mode
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-06-14
+:EXPORT_HUGO_LASTMOD: 2022-09-03
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary I set up this static site using Hugo and Org Mode with hosting on GitHub Pages. In this article I go through the how and why
 :END:
 *** Introduction
@@ -372,9 +373,9 @@ Also, I've included a lot of links in the article. That's partly if readers want
 There are a few major reasons to do this:
 1. It took a long time to get to this point and I want to write down the process I went through to get here.
 2. I'm hoping that this article will be helpful to someone who's also looking to set up a similar site. For reference, this is a site with the content written in [[https://orgmode.org][Org Mode]] with [[https://ox-hugo.scripter.co][ox-hugo]] powered by [[https://gohugo.io][Hugo]] and hosted on [[https://pages.github.com][GitHub Pages]].
-3. It's just kind of what you do when you set up a blog site like this. You write an article about how and why you did it. It's basically a law at this point.
+3. It's just kind of what you do when you set up a blog site like this. You write an article about how and why you did it. (it's basically a law at this point)
 *** Why I wanted a blog
-Honestly, my main reason to start writing these articles, was because I was told that it would be a helpful for me in the future. Partly to show what I've done over the years, and also to help me practice putting things into words for other people to read.
+Honestly, my main reason to start writing these articles was because I was told that it would be helpful for me in the future. Partly to show what I've done over the years, and also to help me practice putting things into words for other people to read.
 
 And besides, I'm hoping at least some of them are useful to other people as well.
 *** Why Medium
@@ -383,16 +384,16 @@ On top of that when I wrote my first article on Medium, I didn't really consider
 *** Why not Medium
 For me, there were a few reasons to not use Medium. These may not apply to you, but they bothered me enough to push me to set up a blog myself.
 **** I'm used to a different setup
-While I don't know if I could be a classified as a vimmer, I do use vim in all the editors/IDEs I use, and even in the [[https://github.com/tridactyl/tridactyl][browser]]. I wrote my first two articles before setting up this site, so they were directly posted to Medium. However, I didn't write those articles in the Medium editor. I wrote them in [[https://orgmode.org][Org Mode]] in [[https://github.com/doomemacs/doomemacs][Doom Emacs]], because that's my preferred editor for writing.
+While I don't know if I could be a classified as a vimmer, I do use vim in all the editors/IDEs I use, and even in [[https://github.com/tridactyl/tridactyl][the browser]]. I wrote my first two articles before setting up this site, so they were directly posted to Medium. However, I didn't write those articles in the Medium editor. I wrote them in [[https://orgmode.org][Org Mode]] in [[https://github.com/doomemacs/doomemacs][Doom Emacs]], because that's my preferred editor for writing.
 
 #+ATTR_SHORTCODE: info "" true
 #+BEGIN_admonition
 If you're already familiar with either Emacs or Org Mode, you probably don't need me to tell you why. If you're familiar with Markdown, then it might help you to think of Org Mode as Markdown on speed (it's so much more than that, but that should be a good starting point). If you want to know more, checkout the [[https://orgmode.org][official website]] and the [[https://orgmode.org/features.html][features page]].
 #+END_admonition
 
-I've set up Doom Emacs with vim keybindings, so I can use all of those familiar keybindings, but with all the power of Emacs and Org Mode. Compared to that, I feel that Medium's editor falls short. While it does support basic formatting, quotes, lists, embeds, and some other stuff, it is still lacking. For example, you can add code blocks, but they won't have syntax highlighting. For that, you have to put your code on some other site like GitHub Gists or CodePen, and embed it in the Medium editor. While over here with Org Mode, I get all of those, along with any custom things I want to add.
+I've set up Doom Emacs with vim keybindings, so I can use all of those familiar keybindings, but with all the power of Emacs and Org Mode. Compared to that, I feel that Medium's editor falls short. While it does support basic formatting, quotes, lists, embeds, and some other stuff, it is still lacking. For example, you can add code blocks, but they won't have syntax highlighting. For that, you have to put your code on some other site like GitHub Gists or CodePen, and embed it in the Medium editor. While over here with Org Mode, I get all of those for free, along with any custom things I want to add.
 **** Problems with Medium
-Another major issue is the site itself. A disclaimer first: I am still only a CSE student, so maybe I just don't know enough about web development to accurately understand all this, but, here's what I can see and understand.
+Another major issue is the site itself. A disclaimer first: I am still only a CSE /student/, so maybe I just don't know enough about web development to accurately understand all this, but, here's what I /can/ see and understand.
 
 According to [[https://medium.engineering/the-stack-that-helped-medium-drive-2-6-millennia-of-reading-time-e56801f7c492][this article]] on the Medium Engineering blog, they're using their "own Single Page Application framework that uses Closure as a standard library". When I load up an article and scroll to the bottom, the Network tab in the Developer Tools says it has transferred somewhere around 3 MB, and after transferring, the total size is above 10 MB. Personally, I think that's too much. You are of course welcome to disagree. But, Medium is, effectively, a site for people to post their ideas in article form, and also read articles written by other people. It allows anyone, not just people with the technical knowledge or time to do it themselves, to write articles and have them be read by people around the world. Most of the content is text, with some images, and sometimes embedded content such as YouTube videos or code (from GitHub Gists for example). It seems to me, that a site like this should be kind of lightweight. However, it's clearly not. If I go to any random article, it takes about 3 seconds to load (depending on the article). I know that's not the end of the world, but I generally try to avoid sites like that. It also seems a bit slow when reading articles. I should mention that my internet connection, while not exceedingly fast, is reasonably fast, but Medium still seems a bit slow on it.
 
@@ -405,11 +406,11 @@ When I was looking around for alternatives, I did briefly consider [[https://dev
 
 However, I do have a tendency to try more custom options, so I looked into [[https://www.cloudflare.com/en-gb/learning/performance/static-site-generator][static site generators]] (SSGs). I had previously checked out [[https://jekyllrb.com][Jekyll]] for something else, and I think I was aware of [[https://gohugo.io][Hugo]]. After some consideration, I decided to go with Hugo. It's been some time since I made the decision, but I think it was because it was better suited for use with Org Mode, but don't quote me on that.
 **** Why a Static Site Generator?
-Before I get into my experience in trying out Hugo and eventually setting up this site, I should probably go over why I decided to go with a static site generator. The blog sites I have seen are generally web-apps. I'm referring to the dynamic nature of them. They provide their own editor to write articles and when you go to the page for a specific article, they load the article contents from a database and generate the page on the fly/on request. Some have a backend API and a frontend framework that communicate, and the frontend framework builds the HTML that the browser then renders. With all this processing work, it does take some time. And since there's a frontend framework involved, it will take some time to build the page. I'm not going to go into the pros and cons of using a frontend framework here. This isn't the article for that, and besides, there's enough discussion about that already.
+Before I get into my experience in trying out Hugo and eventually setting up this site, I should probably go over why I decided to go with a static site generator. The blog sites I have seen are generally web-apps. They provide their own editor to write articles and when you go to the page for a specific article, they load the article contents from a database and generate the page on the fly/on request. Some have a backend API and a frontend framework that communicate, and the frontend framework builds the HTML that the browser then renders. With all this processing work, it does take some time. And since there's a frontend framework involved, it will take some time to build the page. I'm not going to go into the pros and cons of using a frontend framework here. This isn't the article for that, and besides, there's enough discussion about that already.
 
 My issue with that setup for a blog site is, I would prefer to have better performance given that is it a _blog site_. I understand that to cater to the general public, it pretty much needs to be dynamic, so this setup is almost inevitable (note that I said /almost/, because for all I know there's a successful site out there that does things differently). But for me, I'm fine with a bit more setup time. I can invest the time it would take me to setup a system that works for me.
 
-Using a static site means that when someone goes to a page, the browser simply fetches HTML from the server and then processes it. All the content is right there. Any code that it needs to parse and evaluate can be strictly for functional purposes (eg: folding content, search, clipboard).
+Using a static site means that when someone goes to a page, the browser simply fetches HTML from the server and then processes it. All the content is right there. Any code that it needs to parse and evaluate can be strictly for functional purposes (e.g. folding content, search, clipboard).
 
 I've already mentioned that I prefer to write in Org Mode. I also prefer to have control over my content, and using a static site generator would give me that. I could style the website however I want (I know I haven't done that yet, but the option is available) and adjust it to suit my needs.
 **** Trying out Hugo
@@ -422,7 +423,7 @@ I didn't have any experience with Hugo, so I wanted to first try it out separate
 #+BEGIN_admonition
 At this point, I was using the [[https://github.com/rhazdon/hugo-theme-hello-friend-ng][Hello Friend NG]] theme, so most of the following information is specific to that theme.
 #+END_admonition
-I setup a site using the [[https://gohugo.io/getting-started][getting started guide]], then spent some time messing around with it
+I setup a site following the [[https://gohugo.io/getting-started][getting started guide]], then spent some time messing around with it
 ***** Normal markup
 There's not really anything to say for this. I can just use the Org Mode markup that I'm used to.
 ***** Links between posts
@@ -452,7 +453,7 @@ window.MathJax = {
 };
 #+END_SRC
 
-I also wanted to include [[https://mermaid-js.github.io/mermaid][Mermaid]] and [[https://github.com/pgf-tikz/pgf][TikZ]] (using [[https://tikzjax.com][TikZJax]]), so I wrote a bit of Go template to make it easier to add more such "addons" and enable them per post as required.
+I also wanted to include [[https://mermaid-js.github.io/mermaid][Mermaid]] and [[https://github.com/pgf-tikz/pgf][TikZ]] (using [[https://tikzjax.com][TikZJax]]), so I did a bit of Go templating to make it easier to add more such "addons" and enable them per post as required.
 And to add them to the head, I made use of the Hello Friend NG theme's =extra-head.html= partial
 #+BEGIN_SRC html
 <!-- layouts/partials/extra-head.html -->
@@ -528,7 +529,7 @@ At this point, I had got basically everything working that I wanted. I had also 
 
 It took some time to configure it to my liking, but I eventually did. I'm not going to go into that part. I don't think it would be that interesting, and besides, you can see the [[https://github.com/NethumL/nethuml.github.io/blob/main/config.toml][config.toml]] in the source repository. Due to some of the stuff I had already done being specific to my previous theme, I had to spend some time dealing with that.
 
-Enabling equations using [[https://katex.org][KaTeX]] was as simple as adding this line in the source.
+Enabling equations using [[https://katex.org][KaTeX]] was as simple as adding this line in the [[https://orgmode.org/manual/Property-Syntax.html][properties drawer]] of the relevant article.
 #+BEGIN_SRC org
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :math '(("enable" . t))
 #+END_SRC
@@ -549,6 +550,7 @@ graph TD;
 To enable TikZJax, I need to add the links to the front matter, using ox-hugo's [[https://ox-hugo.scripter.co/doc/custom-front-matter/#front-matter-extra][extra front matter]] feature.
 #+BEGIN_SRC org
 ,#+BEGIN_SRC toml :front_matter_extra t :noeval
+
 [library]
     [library.css]
       tikz = "https://tikzjax.com/v1/fonts.css"
@@ -585,11 +587,11 @@ There are some other bonus features, such as being able to add charts using [[ht
 
 There are even more useful features as you can see [[https://github.com/dillonzq/LoveIt/#features][here]].
 *** Hosting
-An important thing I had to figure out was how to set up the site. I was already looking into using GitHub Pages for this, but I had never done that before, so it took some time. Most of the other Hugo users were using Markdown, so they just set up a GitHub workflow to build the site from the markdown source, but I was using Org Mode for the source. Locally, I exported it to Markdown using ox-hugo, and built the site using Hugo. Most of the ones I found that were also using ox-hugo were exporting to Markdown locally and putting that in the repository to be used in the workflow. I didn't want to do that, because I only wanted the Org Mode version to be in repository, considering that it was the actual /source/ for the website. I found [[https://github.com/HaoZeke/haozeke.github.io][one website]] that seemed to be doing what I wanted, but their setup seemed to be quite complicated, using nix and Rakefiles and stuff. I wasn't familiar with them, so it took me a while to figure out exactly what I needed to do. I eventually did, and with a /lot/ of trial and error, I managed it.
+An important thing I had to figure out was how to set up the site. I was already looking into using GitHub Pages for this, but I had never done that before, so it took some time. Most of the other Hugo users were using Markdown, so they just set up a GitHub workflow to build the site from the markdown source, but I was using Org Mode for the source. Locally, I exported it to Markdown using ox-hugo, and built the site using Hugo. Most of the ones I found that were also using ox-hugo were exporting to Markdown locally and putting that in the repository to be used in the workflow. I didn't want to do that, because I wanted only the Org Mode version to be in repository, considering that it was the actual /source/ for the website. I found [[https://github.com/HaoZeke/haozeke.github.io][one website]] that seemed to be doing what I wanted, but their setup seemed to be quite complicated, using nix and Rakefiles and stuff. I wasn't familiar with them, so it took me a while to figure out exactly what I needed to do. I eventually did, and with a /lot/ of trial and error, I managed it.
 
 I'll briefly explain how my system works, and then I'll show the build process. The content is all in org-mode, and at the time of writing, all contained within the =all-posts.org= file. Locally, I have the [[https://ox-hugo.scripter.co][ox-hugo]] package installed in my Emacs, and I export to .md, then run Hugo to build the site. But on GitHub pages, I need to automate it with [[https://github.com/features/actions][GitHub Actions]]. Like I said, I wanted the site to be generated from the source, without me committing the intermediate .md into the repository. So, that means there are two main steps. First, I need to convert from .org to .md. Then, I can run Hugo. Running Hugo in GitHub Actions was easy. I found the [[https://github.com/peaceiris/actions-hugo][peaceiris/actions-hugo]] action to setup Hugo in the workflow, and then I could just run ~hugo --minify~ in a separate step to build the site. Converting to .md was the issue. I needed to setup Emacs for that, which by itself, is almost trivial thanks to [[https://github.com/purcell/setup-emacs][purcell/setup-emacs]]. However, I also need to setup the required environment within Emacs, because I need to install some packages and configure Emacs a bit before it can do what I want. This took a lot of time to do properly. I wrote a short shell script that calls Emacs and runs an Emacs Lisp file that does the actual work. After that's done, Hugo can take over.
 **** Converting to Markdown
-You can see the actual contents of the [[https://github.com/NethumL/nethuml.github.io/blob/main/publish.el][script]] on the repository, so here I'll split it into sections and explain.
+You can see the actual contents of the [[https://github.com/NethumL/nethuml.github.io/blob/main/publish.el][script]] in the repository, so here I'll split it into sections and explain.
 
 First, I need to prepare the Emacs package manager and install some packages.
 #+BEGIN_SRC emacs-lisp
@@ -668,7 +670,7 @@ and this bit in the middle of the job:
           NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
           SSH_PASS: ${{ secrets.SSH_PASS }}
 #+END_SRC
-Those were added for debugging purposes. If a build fails only on GitHub and I'm having trouble figuring out why, I can manually trigger the workflow, setting the =debug_enabled= input to =true=, and use [[https://ngrok.com][ngrok]] to remote into the container where the workflow is running. There, I can try to interactively run commands to try and figure out what's wrong. At some point, I think I also tried [[https://github.com/mxschmitt/action-tmate][tmate]], but it didn't work out. I can't remember why though. For all I know, I was doing something wrong.
+Those were added for debugging purposes. If a build fails only on GitHub and I'm having trouble figuring out why, I can manually trigger the workflow, setting the =debug_enabled= input to =true=, and use [[https://ngrok.com][ngrok]] to remote into the container where the workflow is running. There, I can interactively run commands to try and figure out what's wrong. At some point, I think I also tried [[https://github.com/mxschmitt/action-tmate][tmate]], but it didn't work out. I can't remember why though. For all I know, I was doing something wrong.
 
 Anyway, for more information about this way of debugging, refer the [[https://github.com/luchihoratiu/debug-via-ssh][luchihoratiu/debug-via-ssh]] action. Make sure to set the mentioned secrets for the actions through GitHub's repository settings. Refer the [[https://docs.github.com/en/actions/security-guides/encrypted-secrets][documentation]] for more information.
 *** How it could be better
