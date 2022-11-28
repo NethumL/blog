@@ -15,15 +15,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        emacs_version:
-          - 27.2
     steps:
       - name: Set up Emacs
         uses: purcell/setup-emacs@master
         with:
-          version: ${{matrix.emacs_version}}
+          version: 27.2
 
       - uses: actions/checkout@v3
         with:
