@@ -11,6 +11,10 @@
   (unless (package-installed-p pkg)
     (package-install pkg)))
 
+(require 'url-methods)
+(url-scheme-register-proxy "http")
+(url-scheme-register-proxy "https")
+
 ;; Load packages
 (require 'org)
 (require 'ox-hugo)
