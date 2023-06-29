@@ -11,6 +11,7 @@
 :EXPORT_HUGO_SECTION: about
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-04-21
+:EXPORT_HUGO_LASTMOD: 2023-06-29
 :END:
 Hi!
 
@@ -26,7 +27,7 @@ The list of private repositories includes my dotfiles repo. If you're not famili
 *** [[https://www.linkedin.com/in/nethumlamahewage][LinkedIn]]
 This is my other official presence online. It exists mainly for career purposes (it's LinkedIn).
 
-You can expect it to be reasonably up to date, at least with the more important details.
+You can expect it to be reasonably up-to-date, at least with the more important details.
 *** [[https://nethumlamahewage.medium.com][Medium]]
 I originally joined Medium for the purpose of having an online blog. Since I set up this site, I won't be using Medium that often.
 
@@ -51,6 +52,7 @@ Additionally, unless explicitly mentioned, the content of this site is not AI-ge
 :EXPORT_HUGO_BUNDLE: hammerspoon-global-leader-key
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-04-15
+:EXPORT_HUGO_LASTMOD: 2023-06-29
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How to use Hammerspoon to set up a global leader key on macOS with nested key bindings to run arbitrary commands similar to Vim
 :END:
 *** Introduction
@@ -58,7 +60,7 @@ I've been using macOS for a little over a year now. Before that, I had only ever
 At first, I used macOS much like I used to use Windows. However, since I am doing a CS degree, I needed to get familiar with programming related tools, and that is how I found Vim. I found it interesting and gave it a go. I won't go into what that was like here, as there are many people on the internet who have told their stories of learning Vim. Eventually, I gained an interest in configuring my system to suit me better, and I came across Hammerspoon.
 *** Hammerspoon
 **** About
-Simply put, it is a automation tool running on [[https://www.lua.org][Lua]]. It has numerous APIs for macOS functionality, and with it, you can control pretty much whatever you want to. Basically, you're only limited by your imagination (and your skill at writing the relevant code).
+Simply put, it is an automation tool running on [[https://www.lua.org][Lua]]. It has numerous APIs for macOS functionality, and with it, you can control pretty much whatever you want to. Basically, you're only limited by your imagination (and your skill at writing the relevant code).
 **** Installing
 Using either [[https://brew.sh][Homebrew]] or from the [[https://www.hammerspoon.org][website]]
 **** Configuring
@@ -92,7 +94,7 @@ You can go to Hammerspoon's [[https://www.hammerspoon.org/go/][Getting started g
 Now let's jump into the RecursiveBinder Spoon
 *** RecursiveBinder Spoon
 **** About
-- When I first started configuring Hammerspoon, I setup a hyper key, and added a few keybindings. But I soon hit a roadblock where I was using up all the keys (or at least the most easily accessible ones)
+- When I first started configuring Hammerspoon, I set up a hyper key, and added a few keybindings. But I soon hit a roadblock where I was using up all the keys (or at least the most easily accessible ones)
 - It wasn't that long since I had been introduced to Vim, and I was getting comfortable with the leader key system. It turned out that there was a Spoon for Hammerspoon called RecursiveBinder that could do the same thing.
 **** Installing
 - Download from [[https://www.hammerspoon.org/Spoons/RecursiveBinder.html][here]]
@@ -134,7 +136,7 @@ hs.hotkey.bind({'option'}, 'space', spoon.RecursiveBinder.recursiveBind(keyMap))
 - =RecursiveBinder.escapeKey= is the keybinding used to abort
 - The next line is just for convenience, so that I can use =singleKey= without having to type out =spoon.RecursiveBinder.singleKey= every time
 - Next, I create a table of keybindings. The first two are to open the browser and the terminal respectively, and next set is a nested group.
-- Pressing option+space will trigger RecursiveBinder. Helper text will popup at the bottom of your screen with the =browser=, =terminal=, and =domain+= key bindings.
+- Pressing option+space will trigger RecursiveBinder. Helper text will pop up at the bottom of your screen with the =browser=, =terminal=, and =domain+= key bindings.
 - Pressing =b= or =t= will call the functions provided, and open Firefox and Terminal respectively (and also dismiss the helper text)
 - Pressing =d= will enter the next layer, and the helper will change to show the =g= and =y= key bindings, and pressing one of those will call the corresponding functions, and open GitHub and YouTube respectively (in your default browser)
 ***** Styling
@@ -245,7 +247,7 @@ hs.fnutils.each(config.domains, function(domain)
 end)
 #+END_SRC
 **** Notes key map
-If you looked at the config above, you may have noticed the notes section. I also set up a keymap to open those notes in the browser. I think the format of the config is self explanatory, so I'll go ahead with the actual lua code
+If you looked at the config above, you may have noticed the notes section. I also set up a keymap to open those notes in the browser. I think the format of the config is self-explanatory, so I'll go ahead with the actual lua code
 #+BEGIN_SRC lua
 local function generate(data, path)
     local folder = {}
@@ -364,7 +366,7 @@ OK, time for some closing words. I have been using Hammerspoon for about a year 
 :EXPORT_HUGO_BUNDLE: blog-setup-with-hugo-org-mode
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-06-14
-:EXPORT_HUGO_LASTMOD: 2022-09-03
+:EXPORT_HUGO_LASTMOD: 2023-06-29
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary I set up this static site using Hugo and Org Mode with hosting on GitHub Pages. In this article I go through the how and why
 :END:
 *** Introduction
@@ -372,7 +374,7 @@ I started this site on the 15th of April 2022. However, I wrote my first article
 
 Going forward, this is going to be the home for all my articles, so I wanted to write one about how this site came to be.
 
-Fair warning, this article is a bit long, as you can probably see. This article is not a step-by-step guide of how I setup this site. This is more about my reasoning for why it is the way it is, and some details of how I set up /specific/ things. If you want to know more about the basics of setting up a Hugo site, it would be best to look at their [[https://gohugo.io/getting-started][getting started guide]] or one of the many tutorials already out there.
+Fair warning, this article is a bit long, as you can probably see. This article is not a step-by-step guide of how I set up this site. This is more about my reasoning for why it is the way it is, and some details of how I set up /specific/ things. If you want to know more about the basics of setting up a Hugo site, it would be best to look at their [[https://gohugo.io/getting-started][getting started guide]] or one of the many tutorials already out there.
 
 Also, I've included a lot of links in the article. That's partly if readers want to know more about what I've done or used, and also just to show where I got my information from.
 *** Why this article exists
@@ -414,7 +416,7 @@ However, I do have a tendency to try more custom options, so I looked into [[htt
 **** Why a Static Site Generator?
 Before I get into my experience in trying out Hugo and eventually setting up this site, I should probably go over why I decided to go with a static site generator. The blog sites I have seen are generally web-apps. They provide their own editor to write articles and when you go to the page for a specific article, they load the article contents from a database and generate the page on the fly/on request. Some have a backend API and a frontend framework that communicate, and the frontend framework builds the HTML that the browser then renders. With all this processing work, it does take some time. And since there's a frontend framework involved, it will take some time to build the page. I'm not going to go into the pros and cons of using a frontend framework here. This isn't the article for that, and besides, there's enough discussion about that already.
 
-My issue with that setup for a blog site is, I would prefer to have better performance given that is it a _blog site_. I understand that to cater to the general public, it pretty much needs to be dynamic, so this setup is almost inevitable (note that I said /almost/, because for all I know there's a successful site out there that does things differently). But for me, I'm fine with a bit more setup time. I can invest the time it would take me to setup a system that works for me.
+My issue with that setup for a blog site is, I would prefer to have better performance given that is it a _blog site_. I understand that to cater to the general public, it pretty much needs to be dynamic, so this setup is almost inevitable (note that I said /almost/, because for all I know there's a successful site out there that does things differently). But for me, I'm fine with a bit more setup time. I can invest the time it would take me to set up a system that works for me.
 
 Using a static site means that when someone goes to a page, the browser simply fetches HTML from the server and then processes it. All the content is right there. Any code that it needs to parse and evaluate can be strictly for functional purposes (e.g. folding content, search, clipboard).
 
@@ -429,7 +431,7 @@ I didn't have any experience with Hugo, so I wanted to first try it out separate
 #+BEGIN_admonition
 At this point, I was using the [[https://github.com/rhazdon/hugo-theme-hello-friend-ng][Hello Friend NG]] theme, so most of the following information is specific to that theme.
 #+END_admonition
-I setup a site following the [[https://gohugo.io/getting-started][getting started guide]], then spent some time messing around with it
+I set up a site following the [[https://gohugo.io/getting-started][getting started guide]], then spent some time messing around with it
 ***** Normal markup
 There's not really anything to say for this. I can just use the Org Mode markup that I'm used to.
 ***** Links between posts
@@ -565,7 +567,7 @@ To enable TikZJax, I need to add the links to the front matter, using ox-hugo's 
 ,#+END_SRC
 #+END_SRC
 
-The LoveIt theme also came with support for two search systems: [[https://lunrjs.com][Lunr]] and [[https://www.algolia.com][Algolia]]. Lunr seemed to be easier to setup, so I used that.
+The LoveIt theme also came with support for two search systems: [[https://lunrjs.com][Lunr]] and [[https://www.algolia.com][Algolia]]. Lunr seemed to be easier to set up, so I used that.
 
 There are some other bonus features, such as being able to add charts using [[https://echarts.apache.org][ECharts]] like this:
 #+BEGIN_SRC org
@@ -595,7 +597,7 @@ There are even more useful features as you can see [[https://github.com/dillonzq
 *** Hosting
 An important thing I had to figure out was how to set up the site. I was already looking into using GitHub Pages for this, but I had never done that before, so it took some time. Most of the other Hugo users were using Markdown, so they just set up a GitHub workflow to build the site from the markdown source, but I was using Org Mode for the source. Locally, I exported it to Markdown using ox-hugo, and built the site using Hugo. Most of the ones I found that were also using ox-hugo were exporting to Markdown locally and putting that in the repository to be used in the workflow. I didn't want to do that, because I wanted only the Org Mode version to be in repository, considering that it was the actual /source/ for the website. I found [[https://github.com/HaoZeke/haozeke.github.io][one website]] that seemed to be doing what I wanted, but their setup seemed to be quite complicated, using nix and Rakefiles and stuff. I wasn't familiar with them, so it took me a while to figure out exactly what I needed to do. I eventually did, and with a /lot/ of trial and error, I managed it.
 
-I'll briefly explain how my system works, and then I'll show the build process. The content is all in org-mode, and at the time of writing, all contained within the =all-posts.org= file. Locally, I have the [[https://ox-hugo.scripter.co][ox-hugo]] package installed in my Emacs, and I export to .md, then run Hugo to build the site. But on GitHub pages, I need to automate it with [[https://github.com/features/actions][GitHub Actions]]. Like I said, I wanted the site to be generated from the source, without me committing the intermediate .md into the repository. So, that means there are two main steps. First, I need to convert from .org to .md. Then, I can run Hugo. Running Hugo in GitHub Actions was easy. I found the [[https://github.com/peaceiris/actions-hugo][peaceiris/actions-hugo]] action to setup Hugo in the workflow, and then I could just run ~hugo --minify~ in a separate step to build the site. Converting to .md was the issue. I needed to setup Emacs for that, which by itself, is almost trivial thanks to [[https://github.com/purcell/setup-emacs][purcell/setup-emacs]]. However, I also need to setup the required environment within Emacs, because I need to install some packages and configure Emacs a bit before it can do what I want. This took a lot of time to do properly. I wrote a short shell script that calls Emacs and runs an Emacs Lisp file that does the actual work. After that's done, Hugo can take over.
+I'll briefly explain how my system works, and then I'll show the build process. The content is all in org-mode, and at the time of writing, all contained within the =all-posts.org= file. Locally, I have the [[https://ox-hugo.scripter.co][ox-hugo]] package installed in my Emacs, and I export to .md, then run Hugo to build the site. But on GitHub pages, I need to automate it with [[https://github.com/features/actions][GitHub Actions]]. Like I said, I wanted the site to be generated from the source, without me committing the intermediate .md into the repository. So, that means there are two main steps. First, I need to convert from .org to .md. Then, I can run Hugo. Running Hugo in GitHub Actions was easy. I found the [[https://github.com/peaceiris/actions-hugo][peaceiris/actions-hugo]] action to set up Hugo in the workflow, and then I could just run ~hugo --minify~ in a separate step to build the site. Converting to .md was the issue. I needed to set up Emacs for that, which by itself, is almost trivial thanks to [[https://github.com/purcell/setup-emacs][purcell/setup-emacs]]. However, I also need to set up the required environment within Emacs, because I need to install some packages and configure Emacs a bit before it can do what I want. This took a lot of time to do properly. I wrote a short shell script that calls Emacs and runs an Emacs Lisp file that does the actual work. After that's done, Hugo can take over.
 **** Converting to Markdown
 You can see the actual contents of the [[https://github.com/NethumL/nethuml.github.io/blob/main/publish.el][script]] in the repository, so here I'll split it into sections and explain.
 
@@ -696,11 +698,11 @@ As I've already mentioned, I'm using Emacs to write this blog. More specifically
 **** Analytics
 One of the things that Medium offers is analytics about my articles. I can view detailed statistics about views, reads, traffic sources, etc. As it stands now, this site doesn't have any of that. It's a statically generated site, and the JavaScript that it includes are for functional purposes. It's hosted on GitHub Pages as well, and as far as I'm aware, they don't provide any analytics functionality, which makes sense. It's supposed to be just for hosting.
 
-It would of course be possible for me to integrate some sort of analytics, but I'm not sure I want to do that. The reason is, by doing that, I enter into the realm of tracking my readers. Even if it was simply counting numbers of views, I'm not sure I want that on my site. This is just where I stand right now. I'm a bit wary of that stuff, and at least to start with, want to keep my site simple.
+It would of course be possible for me to integrate some sort of analytics, but I'm not sure I want to do that. The reason is, by doing that, I enter into the realm of tracking my readers. Even if it was simply counting numbers of views, I'm not sure if I want that on my site. This is just where I stand right now. I'm a bit wary of that stuff, and at least to start with, want to keep my site simple.
 
 Say I was fine with that. There's still the issue of how I would do that. One of the most common services is Google Analytics, but that's definitely not something I want on my site. There are other more privacy respecting services, but right now, I'm going to keep this site analytics free (from my side at least).
 **** Rolling my own
-I'm a developer (mainly as a hobby and as a student at the time of writing), so I would like to actually make the site myself. Right now, I'm using Hugo with a theme that someone else made. I would prefer to either write my own theme, or to do the whole thing myself. I'm not actually sure which one would be harder. On the one hand, I'm not familiar with Hugo themes, so that would take me some time to learn and implement. On the other, even though I do have some practice with web development, handling the whole process of generating the site would probably take a while, especially considering I need to do all the styling myself and also setup the conversion of the actual articles to HTML.
+I'm a developer (mainly as a hobby and as a student at the time of writing), so I would like to actually make the site myself. Right now, I'm using Hugo with a theme that someone else made. I would prefer to either write my own theme, or to do the whole thing myself. I'm not actually sure which one would be harder. On the one hand, I'm not familiar with Hugo themes, so that would take me some time to learn and implement. On the other, even though I do have some practice with web development, handling the whole process of generating the site would probably take a while, especially considering I need to do all the styling myself and also set up the conversion of the actual articles to HTML.
 
 I fully intend to actually go through with this, but like I said before, I'm satisfied with the current setup, and I'm kind of busy these days. It would be a nice challenge though, so I'm looking forward to when I can properly sink some time into that project.
 *** Thanks to
@@ -734,7 +736,7 @@ I feel like I also need to clarify what exactly I mean by "simultaneous keybindi
 *** Why simultaneous keybindings?
 I'm not really sure how this started, but I think it's when I heard about how some Vim users configure =j+k= to the escape key, because they use the escape key quite often to go back to normal mode in Vim.
 
-In [[https://vim.fandom.com/wiki/Avoid_the_escape_key#Alternative_mappings][this page]] from the Vim Tips Wiki on the Fandom website, they talk about different ways to avoid pressing the actual escape key. One of the ways they suggest to do this is to map =jj= (pressing =j= twice in quick succession) to escape. As an alternative, they suggest using =jk= instead, as it would be faster to type than =jj=.
+In [[https://vim.fandom.com/wiki/Avoid_the_escape_key#Alternative_mappings][this page]] from the Vim Tips Wiki on the Fandom website, they talk about different ways to avoid pressing the actual escape key. One of the ways they suggest doing this is to map =jj= (pressing =j= twice in quick succession) to escape. As an alternative, they suggest using =jk= instead, as it would be faster to type than =jj=.
 
 At some point, I really took this to heart and added it to my Karabiner Elements configuration so that pressing =j= and =k= at the same time produced =Escape=. After using that for a while, and seeing just how convenient it is, I looked into what other keys I could do that with, and I eventually added enter, backspace, and delete to the simultaneous keybindings. The configuration in the [[*How?][How?]] section is my real set of simultaneous keybindings. Of those, the only one that I don't use constantly is the one for =delete_forward= and that's only because I don't usually need to delete forward.
 
@@ -762,7 +764,7 @@ With Goku, the "complex modification" is simply this:
     [{:sim [:h :k] } :!Tx]
   ]}
 #+END_SRC
-For completeness sake, this is a minimal but complete Goku config with just the simultaneous keybindings.
+For completeness’ sake, this is a minimal but complete Goku config with just the simultaneous keybindings.
 #+BEGIN_SRC clojure
 {
   :profiles
@@ -842,13 +844,13 @@ Here's the "complex modification" in the generated Karabiner JSON config for map
 }
 #+END_SRC
 *** Improvements and limitations
-This method of doing simultaneous keybindings of course only works on macOS. Right now, I'm almost exclusively using macOS, so that's fine for me, but there have been times that I've had to use Windows. I've tried to find a good way of doing it in Windows, but I couldn't find one. If you know a method to do it, let me know. As for Linux, I have no idea. There's almost definitely a way to do it in Linux, but since I don't daily-drive it right now, I haven't looked into it too much. I've also looked at [[https://github.com/kmonad/kmonad][KMonad]], but I haven't really had time to try it out. If someone has, please let me know. I would like to have my keyboard config be cross-platform.
+This method of doing simultaneous keybindings of course only works on macOS. Right now, I'm almost exclusively using macOS, so that's fine for me, but there have been times that I've had to use Windows. I've tried to find a good way of doing it on Windows, but I couldn't find one. If you know a method to do it, let me know. As for Linux, I have no idea. There's almost definitely a way to do it on Linux, but since I don't daily-drive it right now, I haven't looked into it too much. I've also looked at [[https://github.com/kmonad/kmonad][KMonad]], but I haven't really had time to try it out. If someone has, please let me know. I would like to have my keyboard config be cross-platform.
 
 Also, please don't simply tell me to use [[https://www.autohotkey.com][AutoHotkey]] to do this on Windows. I know it exists, and it worked for other stuff, but I couldn't get a good simultaneous keybinding working on that. However, if you know of a specific way to do it in AutoHotkey, please do let me know.
 
 Those 5 simultaneous keybindings are the only ones I've found to be useful. I would like to do the same with similar special keys, but I haven't thought of any others that I would actually use.
 
-And finally, I know simultaneous keybindings aren't perfect. I still sometimes find myself failing to press both keys at the same time and instead pressing them one after the other and having to backspace the two letters I accidentally typed. This does depend on the keyboard though. Mechanical keyboards seem to make it easier.
+And finally, I know simultaneous keybindings aren't perfect. I still sometimes find myself failing to press both keys at the same time and instead pressing them one after the other and having to backspace the two letters I accidentally typed. This does depend on the keyboard, though. Mechanical keyboards seem to make it easier.
 *** Conclusion
 There's not much of a conclusion for this. I've configured simultaneous keybindings on my computer with Karabiner Elements, and I use those keybindings constantly. That's pretty much it.
 * Programming :@programming:
@@ -857,6 +859,7 @@ There's not much of a conclusion for this. I've configured simultaneous keybindi
 :EXPORT_HUGO_BUNDLE: pyqt-spellcheck
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-04-16
+:EXPORT_HUGO_LASTMOD: 2023-06-29
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How to build a QTextEdit widget with spellchecking in PyQt5 with the enchant library
 :END:
 *** Introduction
@@ -866,7 +869,7 @@ If you are interested in an explanation of the code, read on.
 
 First, a little introduction to what will be used for this.
 **** [[https://www.riverbankcomputing.com/software/pyqt][PyQt5]]
-This is a set of Python bindings for the cross-platform [[https://www.qt.io][Qt framework]]. There is another set of bindings called [[https://wiki.qt.io/Qt_for_Python][PySide2]]. I won't go into the differences between them here, but all of the code here should work fine with PySide2 as well, with only the relevant import statements needing to be changed.
+This is a set of Python bindings for the cross-platform [[https://www.qt.io][Qt framework]]. There is another set of bindings called [[https://wiki.qt.io/Qt_for_Python][PySide2]]. I won't go into the differences between them here, but all the code here should work fine with PySide2 as well, with only the relevant import statements needing to be changed.
 You can install it using =pip install PyQt5=.
 **** [[https://github.com/AbiWord/enchant][enchant]]
 This is a spellchecking library written in C and C++. There are other spellchecking libraries of course, but I chose this as it seemed to work better than the others I tried. If you want to use a different library for the spellchecking, you can do that by simple replacing the implementation of the wrapper in the next section.
