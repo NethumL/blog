@@ -719,6 +719,138 @@ I already talked a bit about it before; this was one of my main reasons to switc
 Doom Emacs was my entry point into Emacs. It's an easy way to get into Emacs, and it provides a lot of stuff out of the box that you would normally have to manually configure in Emacs. Without this, I probably would not have started using Emacs and Org Mode.
 **** Everyone else
 There's probably other people I've missed. Actually scratch that. There's definitely other people I've missed, such as the writers of all the articles and posts I read to figure out what I needed to set this whole thing up and many others. These are just the ones I can directly point out and the ones that came to mind while writing this.
+** Simultaneous keybindings with Karabiner Elements :dotfiles:karabiner:
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: simultaneous-keybindings-with-karabiner-elements
+:EXPORT_FILE_NAME: index
+:EXPORT_DATE: 2023-06-29
+:EXPORT_HUGO_LASTMOD: 2023-06-29
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How and why I set up simultaneous keybindings in Karabiner Elements
+:END:
+*** Introduction
+This will be a short post. I just wanted to talk about my simultaneous keybindings with [[https://karabiner-elements.pqrs.org][Karabiner Elements]]. They've been really useful for me, and I use them constantly.
+
+I feel like I also need to clarify what exactly I mean by "simultaneous keybindings". When I press two keys on the keyboard, I want my computer to interpret that as *one* specific key (e.g. pressing =a= and =b= together is interpreted as =c=). I am *not* talking about pressing one key on the keyboard and having the computer interpret that as pressing two keys. I'm making this distinction because whenever I searched about this, I usually came across articles and questions about the second case.
+*** Why simultaneous keybindings?
+I'm not really sure how this started, but I think it's when I heard about how some Vim users configure =j+k= to the escape key, because they use the escape key quite often to go back to normal mode in Vim.
+
+In [[https://vim.fandom.com/wiki/Avoid_the_escape_key#Alternative_mappings][this page]] from the Vim Tips Wiki on the Fandom website, they talk about different ways to avoid pressing the actual escape key. One of the ways they suggest to do this is to map =jj= (pressing =j= twice in quick succession) to escape. As an alternative, they suggest using =jk= instead, as it would be faster to type than =jj=.
+
+At some point, I really took this to heart and added it to my Karabiner Elements configuration so that pressing =j= and =k= at the same time produced =Escape=. After using that for a while, and seeing just how convenient it is, I looked into what other keys I could do that with, and I eventually added enter, backspace, and delete to the simultaneous keybindings. The configuration in the [[*How?][How?]] section is my real set of simultaneous keybindings. Of those, the only one that I don't use constantly is the one for =delete_forward= and that's only because I don't usually need to delete forward.
+
+I use those keybindings constantly. Escape is of course useful since I use Vim keybindings a lot. Enter and backspace should be self-explanatory. It's really nice to be able to use them without even having to move my fingers away from the home row. Those keybindings have had a great effect on my typing, making it more fluid.
+
+Also, in my config in the [[*How?][How?]] section, you'll notice that I mapped =hk= to =C-x=. That's because =C-x= is my prefix key in [[https://github.com/tmux/tmux][tmux]].
+*** How?
+I currently use [[https://github.com/yqrashawn/GokuRakuJoudo][GokuRakuJoudo]] to manage my Karabiner Elements configuration.
+#+ATTR_SHORTCODE: info "About GokuRakuJoudo" true
+#+BEGIN_admonition
+If you use Karabiner Elements and don't use [[https://github.com/yqrashawn/GokuRakuJoudo][GokuRakuJoudo]], I highly recommend it. It uses the [[https://github.com/edn-format/edn][edn]] file format as configuration and updates the actual Karabiner Elements JSON configuration based on that.
+
+It will take some time to migrate your configuration to Goku's edn config file, but it's worth it. It's so much easier to edit and maintain.
+
+Check out the "Why use Goku?" section in its README to see what I'm talking about.
+#+END_admonition
+With Goku, the "complex modification" is simply this:
+#+BEGIN_SRC clojure
+{:des "Simultaneous keys"
+  :rules [:Main
+    [{:sim [:j :k] :modi {:optional [:any] }} :escape]
+    [{:sim [:k :l] :modi {:optional [:any] }} :return_or_enter]
+    [{:sim [:j :l] :modi {:optional [:any] }} :delete_or_backspace]
+    [{:sim [:h :l] :modi {:optional [:any] }} :delete_forward]
+    [{:sim [:h :k] } :!Tx]
+  ]}
+#+END_SRC
+For completeness sake, this is a minimal but complete Goku config with just the simultaneous keybindings.
+#+BEGIN_SRC clojure
+{
+  :profiles
+    {:Main { :default true :sim 30 :delay 500 :alone 500 :held 500}}
+  :main [
+    {:des "Simultaneous keys"
+      :rules [:Main
+        [{:sim [:j :k] :modi {:optional [:any] }} :escape]
+        [{:sim [:k :l] :modi {:optional [:any] }} :return_or_enter]
+        [{:sim [:j :l] :modi {:optional [:any] }} :delete_or_backspace]
+        [{:sim [:h :l] :modi {:optional [:any] }} :delete_forward]
+        [{:sim [:h :k] } :!Tx]
+      ]}
+  ]
+}
+#+END_SRC
+Here's the "complex modification" in the generated Karabiner JSON config for mapping =jk= and =kl=.
+#+BEGIN_SRC json
+{
+  "description": "Simultaneous keys",
+  "manipulators": [
+    {
+      "from": {
+        "modifiers": {
+          "optional": ["any"]
+        },
+        "simultaneous": [
+          {
+            "key_code": "j"
+          },
+          {
+            "key_code": "k"
+          }
+        ],
+        "simultaneous_options": {
+          "detect_key_down_uninterruptedly": false,
+          "key_down_order": "insensitive",
+          "key_up_order": "insensitive",
+          "key_up_when": "any"
+        }
+      },
+      "to": [
+        {
+          "key_code": "escape"
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "from": {
+        "modifiers": {
+          "optional": ["any"]
+        },
+        "simultaneous": [
+          {
+            "key_code": "k"
+          },
+          {
+            "key_code": "l"
+          }
+        ],
+        "simultaneous_options": {
+          "detect_key_down_uninterruptedly": false,
+          "key_down_order": "insensitive",
+          "key_up_order": "insensitive",
+          "key_up_when": "any"
+        }
+      },
+      "to": [
+        {
+          "key_code": "return_or_enter"
+        }
+      ],
+      "type": "basic"
+    }
+  ]
+}
+#+END_SRC
+*** Improvements and limitations
+This method of doing simultaneous keybindings of course only works on macOS. Right now, I'm almost exclusively using macOS, so that's fine for me, but there have been times that I've had to use Windows. I've tried to find a good way of doing it in Windows, but I couldn't find one. If you know a method to do it, let me know. As for Linux, I have no idea. There's almost definitely a way to do it in Linux, but since I don't daily-drive it right now, I haven't looked into it too much. I've also looked at [[https://github.com/kmonad/kmonad][KMonad]], but I haven't really had time to try it out. If someone has, please let me know. I would like to have my keyboard config be cross-platform.
+
+Also, please don't simply tell me to use [[https://www.autohotkey.com][AutoHotkey]] to do this on Windows. I know it exists, and it worked for other stuff, but I couldn't get a good simultaneous keybinding working on that. However, if you know of a specific way to do it in AutoHotkey, please do let me know.
+
+Those 5 simultaneous keybindings are the only ones I've found to be useful. I would like to do the same with similar special keys, but I haven't thought of any others that I would actually use.
+
+And finally, I know simultaneous keybindings aren't perfect. I still sometimes find myself failing to press both keys at the same time and instead pressing them one after the other and having to backspace the two letters I accidentally typed. This does depend on the keyboard though. Mechanical keyboards seem to make it easier.
+*** Conclusion
+There's not much of a conclusion for this. I've configured simultaneous keybindings on my computer with Karabiner Elements, and I use those keybindings constantly. That's pretty much it.
 * Programming :@programming:
 ** Integrating spellchecking into a PyQt5 QTextEdit widget with enchant :python:pyqt:
 :PROPERTIES:
