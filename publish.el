@@ -1,5 +1,7 @@
 ;;; publish.el -*- lexical-binding: t; -*-
 
+(setq npl-content-files '("all-posts.org"))
+
 ;; Install packages
 (require 'package)
 (package-initialize)
@@ -36,8 +38,11 @@
 
 (defun npl-publish-all ()
   (message "Publishing from emacs...")
-  (org-babel-execute-buffer t)
-  (org-hugo-export-wim-to-md t)
+  (dolist (elt npl-content-files)
+    (find-file elt)
+    (org-babel-execute-buffer t)
+    (org-hugo-export-wim-to-md t)
+    (message (format "Exported from %s" elt)))
   (message "Finished exporting to markdown"))
 
 ;;; publish.el ends here

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
-echo "Running build script"
+echo "Preparing"
 mkdir -p content-org/images/generated
-emacs --batch --no-init-file --load publish.el content-org/all-posts.org --funcall npl-publish-all
+
+echo "Exporting to MD"
+(
+    cd content-org || exit
+    emacs --batch --no-init-file --load ../publish.el --funcall npl-publish-all
+)
