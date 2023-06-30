@@ -2,7 +2,7 @@
 
 # nethuml.github.io
 
-[![Build status](https://img.shields.io/github/workflow/status/NethumL/nethuml.github.io/Build)](https://github.com/NethumL/nethuml.github.io/actions/workflows/build.yml)
+[![Build status](https://img.shields.io/github/actions/workflow/status/NethumL/nethuml.github.io/build.yml?branch=main)](https://github.com/NethumL/nethuml.github.io/actions/workflows/build.yml)
 
 </div>
 
