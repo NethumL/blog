@@ -1,6 +1,6 @@
 ;;; publish.el -*- lexical-binding: t; -*-
 
-(setq npl-content-files '("all-posts.org"))
+(setq npl-content-files '("about.org" "configuration.org" "programming.org"))
 
 ;; Install packages
 (require 'package)

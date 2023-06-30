@@ -2,52 +2,12 @@
 #+HUGO_CUSTOM_FRONT_MATTER: :author "Nethum Lamahewage"
 #+HUGO_BASE_DIR: ../
 #+HUGO_PAIRED_SHORTCODES: admonition
+#+HUGO_CATEGORIES: configuration
 #+PROPERTY: header-args :noeval
 #+MACRO: ref @@hugo:[@@$1@@hugo:]({{< ref "$2" >}})@@
 #+MACRO: relref @@hugo:[@@$1@@hugo:]({{< relref "$2" >}})@@
 
-* About
-:PROPERTIES:
-:EXPORT_HUGO_SECTION: about
-:EXPORT_FILE_NAME: index
-:EXPORT_DATE: 2022-04-21
-:EXPORT_HUGO_LASTMOD: 2023-06-29
-:END:
-Hi!
-
-I'm Nethum Lamahewage. I'm primarily a programmer - mainly as a hobby since about mid-2019, and now also as a student.
-
-As of 2022, I'm a Computer Science & Engineering undergraduate at the University of Moratuwa.
-** Online Presence
-My main "official" online presences are currently limited to the following.
-*** [[https://github.com/NethumL][GitHub]]
-This is where some of my "important" projects are hosted. The majority of them are private for various reasons, but a few are public, including the [[https://github.com/NethumL/nethuml.github.io][source]] for this website. The ones that are private are that way usually because I don't consider them particularly useful for most people.
-
-The list of private repositories includes my dotfiles repo. If you're not familiar with what they are, [[https://www.webpro.nl/articles/getting-started-with-dotfiles][here]] is a nice introduction. It has my dotfiles dating back to the beginning of 2021. I'm pretty sure that that's not when I started properly using dotfiles, but that's as far back as my commit history goes. In the future, I may open it up, but for now, I'm planning on making at least a few posts about individual components of it here.
-*** [[https://www.linkedin.com/in/nethumlamahewage][LinkedIn]]
-This is my other official presence online. It exists mainly for career purposes (it's LinkedIn).
-
-You can expect it to be reasonably up-to-date, at least with the more important details.
-*** [[https://nethumlamahewage.medium.com][Medium]]
-I originally joined Medium for the purpose of having an online blog. Since I set up this site, I won't be using Medium that often.
-
-All of my posts will be here on this site, but a few of them will occasionally be posted there as well.
-** About this site
-This is a [[https://gohugo.io][Hugo]]-generated static site using [[https://orgmode.org][Org Mode]], [[https://ox-hugo.scripter.co][ox-hugo]], and the [[https://github.com/dillonzq/LoveIt][LoveIt]] theme, hosted on [[https://docs.github.com/en/pages][GitHub Pages]]. I will likely be doing a separate post about how this is set up and the process I went through to get to this site, and if/when I do, I'll link it here. /UPDATE/ : {{{ref(the post is ready,/posts/blog-setup-with-hugo-org-mode)}}}.
-
-The source is a [[https://github.com/NethumL/nethuml.github.io][git repository]] hosted on GitHub. If you have any comments, suggestions, corrections, questions, etc., right now, I think the best way to send them to me is through the [[https://github.com/NethumL/nethuml.github.io/issues][issues page]] on GitHub. I will probably set up a comment system on the site itself in the future, but for now, I think the issues page is the best option.
-
-If you want to know when I post new articles on this site, you can use the @@hugo:<a href="/index.xml" target="_blank" rel="noopener noreffer me">RSS feed</a>@@. If you're unfamiliar with RSS feeds, read [[https://www.lifewire.com/what-is-an-rss-feed-4684568][this article on Lifewire]] or the [[https://en.wikipedia.org/wiki/RSS][Wikipedia page]]. There are [[https://alternativeto.net/category/books--news/rss-feed-reader][various feed readers]] for pretty much every platform, so get one and add the link to this site's RSS feed into it.
-
-This site uses [[https://www.goatcounter.com][GoatCounter]] for analytics. It doesn't use cookies and is not intended to track users. It's simply there for me to know about the viewership of the site. GoatCounter itself is [[https://github.com/arp242/goatcounter][open source]] and so is [[https://github.com/NethumL/nethuml.github.io][this site]]. I do not like when sites track users, but I think simple analytics under these conditions (cookie-less, open source, non-tracking) are acceptable.
-** Disclaimer
-My version of the disclaimer that similar personal blogs tend to have:
-
-The views expressed on this site are mine, and not those of my employer (or anyone else). On occasion, I may show my writing to others for review before posting here, but whatever they say, the final decision about what actually ends up in the blog is still mine. Others may have an influence on what I say, but no control.
-
-Additionally, unless explicitly mentioned, the content of this site is not AI-generated.
-* Configuration :@configuration:
-** Setting up a global leader key for macOS with Hammerspoon :dotfiles:hammerspoon:
+* Setting up a global leader key for macOS with Hammerspoon :dotfiles:hammerspoon:
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: hammerspoon-global-leader-key
 :EXPORT_FILE_NAME: index
@@ -55,20 +15,20 @@ Additionally, unless explicitly mentioned, the content of this site is not AI-ge
 :EXPORT_HUGO_LASTMOD: 2023-06-29
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How to use Hammerspoon to set up a global leader key on macOS with nested key bindings to run arbitrary commands similar to Vim
 :END:
-*** Introduction
+** Introduction
 I've been using macOS for a little over a year now. Before that, I had only ever known Windows. I have used Ubuntu a bit, but that barely counts. Once I moved to macOS, it took quite some time to get used to it. I do still occasionally boot into Windows, using Bootcamp, but it's only when I need to use some software that doesn't run on macOS.
 At first, I used macOS much like I used to use Windows. However, since I am doing a CS degree, I needed to get familiar with programming related tools, and that is how I found Vim. I found it interesting and gave it a go. I won't go into what that was like here, as there are many people on the internet who have told their stories of learning Vim. Eventually, I gained an interest in configuring my system to suit me better, and I came across Hammerspoon.
-*** Hammerspoon
-**** About
+** Hammerspoon
+*** About
 Simply put, it is an automation tool running on [[https://www.lua.org][Lua]]. It has numerous APIs for macOS functionality, and with it, you can control pretty much whatever you want to. Basically, you're only limited by your imagination (and your skill at writing the relevant code).
-**** Installing
+*** Installing
 Using either [[https://brew.sh][Homebrew]] or from the [[https://www.hammerspoon.org][website]]
-**** Configuring
-***** Setup
+*** Configuring
+**** Setup
 - Create =~/.hammerspoon/init.lua=
 - This is the starting point of your config. You can split your config into separate files (and you should, if you do any serious configuring), and then use the [[https://www.lua.org/pil/8.1.html][=require= function]] to import them
 - The following are a couple of basic examples of what you can do with Hammerspoon
-***** Reload config
+**** Reload config
 You can replace the modifier combination with a [[https://evantravers.com/articles/2020/06/08/hammerspoon-a-better-better-hyper-key][hyper key]] if you want
 #+BEGIN_SRC lua
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "h", function()
@@ -76,7 +36,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "h", function()
     hs.console.clearConsole()
 end)
 #+END_SRC
-***** Wi-Fi watcher
+**** Wi-Fi watcher
 #+BEGIN_SRC lua
 local wifiwatcher = hs.wifi.watcher.new(function()
     local net = hs.wifi.currentNetwork()
@@ -88,15 +48,15 @@ local wifiwatcher = hs.wifi.watcher.new(function()
 end)
 wifiwatcher:start()
 #+END_SRC
-**** More
+*** More
 You can go to Hammerspoon's [[https://www.hammerspoon.org/go/][Getting started guide]] to see some more examples. And if you want to know more about any part of the API, you will find that it is very well [[https://www.hammerspoon.org/docs/index.html][documented]]. You can also find 'Spoons', which are basically plugins which provide additional functionality, at [[https://www.hammerspoon.org/Spoons/][this]] link. And you can find many resources out there about setting up various things using Hammerspoon.
 
 Now let's jump into the RecursiveBinder Spoon
-*** RecursiveBinder Spoon
-**** About
+** RecursiveBinder Spoon
+*** About
 - When I first started configuring Hammerspoon, I set up a hyper key, and added a few keybindings. But I soon hit a roadblock where I was using up all the keys (or at least the most easily accessible ones)
 - It wasn't that long since I had been introduced to Vim, and I was getting comfortable with the leader key system. It turned out that there was a Spoon for Hammerspoon called RecursiveBinder that could do the same thing.
-**** Installing
+*** Installing
 - Download from [[https://www.hammerspoon.org/Spoons/RecursiveBinder.html][here]]
 - Copy into =~/.hammerspoon/Spoons=
 - Your =~/.hammerspoon= directory should now look something like this:
@@ -108,11 +68,11 @@ Now let's jump into the RecursiveBinder Spoon
 │       └── init.lua
 └── init.lua
 #+END_SRC
-**** Configuring
-***** singleKey
+*** Configuring
+**** singleKey
 - This is a convenience function used to easily create a table representing a keybinding with no modifiers, and also automatically translate capital letters to normal letters with shift modifier
 - For example, =singleKey('o', 'open')= returns ={{}, 'o', 'open'}=, and =singleKey('O', 'open')= returns ={{'shift'}, 'o', 'open'}=
-***** Simple keymap and binding
+**** Simple keymap and binding
 #+BEGIN_SRC lua
 hs.loadSpoon("RecursiveBinder")
 
@@ -131,7 +91,7 @@ local keyMap = {
 
 hs.hotkey.bind({'option'}, 'space', spoon.RecursiveBinder.recursiveBind(keyMap))
 #+END_SRC
-****** Explanation
+***** Explanation
 - First load the spoon using =hs.loadSpoon=
 - =RecursiveBinder.escapeKey= is the keybinding used to abort
 - The next line is just for convenience, so that I can use =singleKey= without having to type out =spoon.RecursiveBinder.singleKey= every time
@@ -139,7 +99,7 @@ hs.hotkey.bind({'option'}, 'space', spoon.RecursiveBinder.recursiveBind(keyMap))
 - Pressing option+space will trigger RecursiveBinder. Helper text will pop up at the bottom of your screen with the =browser=, =terminal=, and =domain+= key bindings.
 - Pressing =b= or =t= will call the functions provided, and open Firefox and Terminal respectively (and also dismiss the helper text)
 - Pressing =d= will enter the next layer, and the helper will change to show the =g= and =y= key bindings, and pressing one of those will call the corresponding functions, and open GitHub and YouTube respectively (in your default browser)
-***** Styling
+**** Styling
 Some simple styling
 #+BEGIN_SRC lua
 spoon.RecursiveBinder.helperFormat = {
@@ -153,8 +113,8 @@ spoon.RecursiveBinder.helperFormat = {
 }
 #+END_SRC
 Refer to the =hs.alert.defaultStyle= documentation for general styling, and =hs.styledtext= for text styling
-*** Leader key
-**** Loading from config.json
+** Leader key
+*** Loading from config.json
 - To make later configuration easier, I set it up so that it loads as much of the config as possible from an easily editable JSON file
 - The config.json file is in the private folder, which is where personal aspects of the config are stored. This way, you can separate those from the main configuration, if you were to upload your Hammerspoon config somewhere
 #+BEGIN_SRC lua
@@ -221,7 +181,7 @@ This is what that config.json file looks like:
 #+BEGIN_admonition
 If your config.json is getting too big, it might be a good idea to convert it into a different file type, such as YAML (as it is easier to read/write). I’ll leave that as an exercise for the reader (partly because I haven’t done that yet either, though I do intend to). As a starting point, you may want to look into [[https://github.com/gvvaughan/lyaml][this]].
 #+END_admonition
-**** Applications & Domains key map
+*** Applications & Domains key map
 - Here, I'm iterating through the list of applications in my config, and adding them to the keymap one by one. For this, I can use a function in Hammerspoon called =hs.fnutils.each=. It takes in a table and a function, which will be called for each element in the table
 - For each application, I'm assigning the corresponding key and a function that will launch it using Hammerspoon's =hs.application.launchOrFocusByBundleID=
 - If you want to find the bundleid of an application the following AppleScript will return it: =id of app 'Firefox'= (just replace Firefox with the application name, as it appears in your Applications folder). You can also run this in a shell like this:
@@ -246,7 +206,7 @@ hs.fnutils.each(config.domains, function(domain)
     end
 end)
 #+END_SRC
-**** Notes key map
+*** Notes key map
 If you looked at the config above, you may have noticed the notes section. I also set up a keymap to open those notes in the browser. I think the format of the config is self-explanatory, so I'll go ahead with the actual lua code
 #+BEGIN_SRC lua
 local function generate(data, path)
@@ -268,7 +228,7 @@ local notesKeyMap = generate(config.notes.contents, config.notes.rootPath)
 #+END_SRC
 This one is more complicated, but I'm including it to show you just how much you can achieve with this.
 I'll go through it part by part.
-***** Explanation
+**** Explanation
 - All of my notes are in a folder called notes_html in my =$HOME= folder (aka =~/=), and I've categorised some into sub-folders. For example, there is a sub-folder named programming, with separate notes for each programming language.
 - =generate= is a recursive function that is called on the notes section of the config
 - It iterates over the list provided, and for each element, it does one of two things.
@@ -278,7 +238,7 @@ I'll go through it part by part.
 - To open the note, I'm using the =hs.urlevent.openURL= function. They are all html files, so they are automatically opened in my default browser
 - While recursively going through the notes, I'm also passing along the current path when calling the function and in the case of a sub-folder appending it to the end of the path
 - Now to use this, you don't really need to understand all of this. Just set all of it in the config.json, making sure to set the correct =config.notes.rootPath= as well.
-**** Putting it all together
+*** Putting it all together
 All that remains is to put it all together, like so
 #+BEGIN_SRC lua
 local keyMap = {
@@ -294,8 +254,8 @@ local keyMap = {
 hs.hotkey.bind({'option'}, 'space', spoon.RecursiveBinder.recursiveBind(keyMap))
 #+END_SRC
 Here, I've also included a couple of keybindings for Hammerspoon. One to reload the config, and the other to open the config in VSCode
-*** Bonus
-**** Sorted helper text
+** Bonus
+*** Sorted helper text
 - If you used this, you may have noticed that the order of the keys in the helper text is not consistent. To fix this, I added some more code to sort the helper text before showing.
 - The following code is to be added to =RecursiveBinder.spoon/init.lua=
 - Not much needs to change. A function called =compareLetters= is added, and the beginning of the for loop(in =showHelper=), and the part just before it are changed as shown
@@ -359,9 +319,9 @@ local function showHelper(keyFuncNameTable)
 end
 #+END_SRC
 To cleanly integrate this into RecursiveBinder, much more changes are required, but for now, this works for me.
-*** Conclusion
+** Conclusion
 OK, time for some closing words. I have been using Hammerspoon for about a year and a half, and so far, I am beyond impressed. The power it brings is frankly amazing, and there is so much you can do with it. Like I said in the beginning, you are only limited by your imagination.
-** My blog setup with Hugo and Org Mode :org_mode:hugo:
+* My blog setup with Hugo and Org Mode :org_mode:hugo:
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: blog-setup-with-hugo-org-mode
 :EXPORT_FILE_NAME: index
@@ -369,7 +329,7 @@ OK, time for some closing words. I have been using Hammerspoon for about a year 
 :EXPORT_HUGO_LASTMOD: 2023-06-29
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary I set up this static site using Hugo and Org Mode with hosting on GitHub Pages. In this article I go through the how and why
 :END:
-*** Introduction
+** Introduction
 I started this site on the 15th of April 2022. However, I wrote my first article on the 11th of May 2021, on Medium. I've republished it and the second one here, because I want this to be the original source for all my articles.
 
 Going forward, this is going to be the home for all my articles, so I wanted to write one about how this site came to be.
@@ -377,21 +337,21 @@ Going forward, this is going to be the home for all my articles, so I wanted to 
 Fair warning, this article is a bit long, as you can probably see. This article is not a step-by-step guide of how I set up this site. This is more about my reasoning for why it is the way it is, and some details of how I set up /specific/ things. If you want to know more about the basics of setting up a Hugo site, it would be best to look at their [[https://gohugo.io/getting-started][getting started guide]] or one of the many tutorials already out there.
 
 Also, I've included a lot of links in the article. That's partly if readers want to know more about what I've done or used, and also just to show where I got my information from.
-*** Why this article exists
+** Why this article exists
 There are a few major reasons to do this:
 1. It took a long time to get to this point and I want to write down the process I went through to get here.
 2. I'm hoping that this article will be helpful to someone who's also looking to set up a similar site. For reference, this is a site with the content written in [[https://orgmode.org][Org Mode]] with [[https://ox-hugo.scripter.co][ox-hugo]] powered by [[https://gohugo.io][Hugo]] and hosted on [[https://pages.github.com][GitHub Pages]].
 3. It's just kind of what you do when you set up a blog site like this. You write an article about how and why you did it. (it's basically a law at this point)
-*** Why I wanted a blog
+** Why I wanted a blog
 Honestly, my main reason to start writing these articles was because I was told that it would be helpful for me in the future. Partly to show what I've done over the years, and also to help me practice putting things into words for other people to read.
 
 And besides, I'm hoping at least some of them are useful to other people as well.
-*** Why Medium
+** Why Medium
 The main reason was just that it was recommended to me by others. There's also the fact that it's a large site, so I'm likely to have a wider reach by posting there.
 On top of that when I wrote my first article on Medium, I didn't really consider any alternatives.
-*** Why not Medium
+** Why not Medium
 For me, there were a few reasons to not use Medium. These may not apply to you, but they bothered me enough to push me to set up a blog myself.
-**** I'm used to a different setup
+*** I'm used to a different setup
 While I don't know if I could be a classified as a vimmer, I do use vim in all the editors/IDEs I use, and even in [[https://github.com/tridactyl/tridactyl][the browser]]. I wrote my first two articles before setting up this site, so they were directly posted to Medium. However, I didn't write those articles in the Medium editor. I wrote them in [[https://orgmode.org][Org Mode]] in [[https://github.com/doomemacs/doomemacs][Doom Emacs]], because that's my preferred editor for writing.
 
 #+ATTR_SHORTCODE: info "" true
@@ -400,7 +360,7 @@ If you're already familiar with either Emacs or Org Mode, you probably don't nee
 #+END_admonition
 
 I've set up Doom Emacs with vim keybindings, so I can use all of those familiar keybindings, but with all the power of Emacs and Org Mode. Compared to that, I feel that Medium's editor falls short. While it does support basic formatting, quotes, lists, embeds, and some other stuff, it is still lacking. For example, you can add code blocks, but they won't have syntax highlighting. For that, you have to put your code on some other site like GitHub Gists or CodePen, and embed it in the Medium editor. While over here with Org Mode, I get all of those for free, along with any custom things I want to add.
-**** Problems with Medium
+*** Problems with Medium
 Another major issue is the site itself. A disclaimer first: I am still only a CSE /student/, so maybe I just don't know enough about web development to accurately understand all this, but, here's what I /can/ see and understand.
 
 According to [[https://medium.engineering/the-stack-that-helped-medium-drive-2-6-millennia-of-reading-time-e56801f7c492][this article]] on the Medium Engineering blog, they're using their "own Single Page Application framework that uses Closure as a standard library". When I load up an article and scroll to the bottom, the Network tab in the Developer Tools says it has transferred somewhere around 3 MB, and after transferring, the total size is above 10 MB. Personally, I think that's too much. You are of course welcome to disagree. But, Medium is, effectively, a site for people to post their ideas in article form, and also read articles written by other people. It allows anyone, not just people with the technical knowledge or time to do it themselves, to write articles and have them be read by people around the world. Most of the content is text, with some images, and sometimes embedded content such as YouTube videos or code (from GitHub Gists for example). It seems to me, that a site like this should be kind of lightweight. However, it's clearly not. If I go to any random article, it takes about 3 seconds to load (depending on the article). I know that's not the end of the world, but I generally try to avoid sites like that. It also seems a bit slow when reading articles. I should mention that my internet connection, while not exceedingly fast, is reasonably fast, but Medium still seems a bit slow on it.
@@ -408,12 +368,12 @@ According to [[https://medium.engineering/the-stack-that-helped-medium-drive-2-6
 Side note, while writing this part of this post, I went on Medium to test its speed and network usage, and it turns out I used quite a bit of data just doing that. Some time after I had properly started looking into setting up my own blog, I remember clicking on a link to a Medium article about something, and the actual /content/ of the article was the /last/ to load. I don't know about you, but I think that's a bit too far.
 
 There are other minor issues (not necessarily specific to Medium), such as the risk that my profile might suddenly be deleted, or that they could just stop running the site ([[https://en.wikipedia.org/wiki/Vendor_lock-in][vendor lock-in]]), and so on.
-*** Moving to a custom blog
-**** Deciding on setup
+** Moving to a custom blog
+*** Deciding on setup
 When I was looking around for alternatives, I did briefly consider [[https://dev.to][DEV]], as it doesn't seem to have the same performance issues, and according to their [[https://dev.to/p/editor_guide][Editor Guide]], they use Markdown along with some other niceties. A minor issue is that it seems to be a community for developers. The problem with that is, my articles aren't necessarily targeted at developers. For instance, my article about {{{ref(setting up a global leader key in hammerspoon,/posts/hammerspoon-global-leader-key)}}} is not for developers. It's for macOS users who like to customise their systems. Similarly, I would probably be posting articles that are even less aimed at developers, so I didn't go with DEV.
 
 However, I do have a tendency to try more custom options, so I looked into [[https://www.cloudflare.com/en-gb/learning/performance/static-site-generator][static site generators]] (SSGs). I had previously checked out [[https://jekyllrb.com][Jekyll]] for something else, and I think I was aware of [[https://gohugo.io][Hugo]]. After some consideration, I decided to go with Hugo. It's been some time since I made the decision, but I think it was because it was better suited for use with Org Mode, but don't quote me on that.
-**** Why a Static Site Generator?
+*** Why a Static Site Generator?
 Before I get into my experience in trying out Hugo and eventually setting up this site, I should probably go over why I decided to go with a static site generator. The blog sites I have seen are generally web-apps. They provide their own editor to write articles and when you go to the page for a specific article, they load the article contents from a database and generate the page on the fly/on request. Some have a backend API and a frontend framework that communicate, and the frontend framework builds the HTML that the browser then renders. With all this processing work, it does take some time. And since there's a frontend framework involved, it will take some time to build the page. I'm not going to go into the pros and cons of using a frontend framework here. This isn't the article for that, and besides, there's enough discussion about that already.
 
 My issue with that setup for a blog site is, I would prefer to have better performance given that is it a _blog site_. I understand that to cater to the general public, it pretty much needs to be dynamic, so this setup is almost inevitable (note that I said /almost/, because for all I know there's a successful site out there that does things differently). But for me, I'm fine with a bit more setup time. I can invest the time it would take me to set up a system that works for me.
@@ -421,7 +381,7 @@ My issue with that setup for a blog site is, I would prefer to have better perfo
 Using a static site means that when someone goes to a page, the browser simply fetches HTML from the server and then processes it. All the content is right there. Any code that it needs to parse and evaluate can be strictly for functional purposes (e.g. folding content, search, clipboard).
 
 I've already mentioned that I prefer to write in Org Mode. I also prefer to have control over my content, and using a static site generator would give me that. I could style the website however I want (I know I haven't done that yet, but the option is available) and adjust it to suit my needs.
-**** Trying out Hugo
+*** Trying out Hugo
 I didn't have any experience with Hugo, so I wanted to first try it out separately before I started making my actual blog with it. For that purpose, I set up a test site with some dummy posts. I used it to try out the various things I would need, such as:
 - Normal markup
 - Links between posts
@@ -432,11 +392,11 @@ I didn't have any experience with Hugo, so I wanted to first try it out separate
 At this point, I was using the [[https://github.com/rhazdon/hugo-theme-hello-friend-ng][Hello Friend NG]] theme, so most of the following information is specific to that theme.
 #+END_admonition
 I set up a site following the [[https://gohugo.io/getting-started][getting started guide]], then spent some time messing around with it
-***** Normal markup
+**** Normal markup
 There's not really anything to say for this. I can just use the Org Mode markup that I'm used to.
-***** Links between posts
+**** Links between posts
 I was hoping that I would be able to use normal org-mode links, but those didn't work because of the way ox-hugo works. Instead, I used Hugo's [[https://gohugo.io/content-management/cross-references/#use-ref-and-relref][ref and relref shortcodes]]. As an aside: there are a lot of [[https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes][built-in shortcodes]] that are really useful.
-***** Equations (LaTeX)
+**** Equations (LaTeX)
 Given that this is a website, my first thought was to use [[https://www.mathjax.org][MathJax]]. At the time, I was testing out the [[https://github.com/rhazdon/hugo-theme-hello-friend-ng][Hello Friend NG]] theme, and in that, I just added a bit of extra HTML to the head to include a link to the MathJax CDN.
 
 #+BEGIN_SRC html
@@ -474,7 +434,7 @@ To enable specific addons in a post, I just set it in the front matter through [
 #+BEGIN_SRC org
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :addons '("mathjax" "tikz")
 #+END_SRC
-***** Diagrams (Mermaid)
+**** Diagrams (Mermaid)
 For Mermaid, I had to include the CDN and enable mermaid as well, following [[https://gohugo.io/content-management/diagrams/#mermaid-diagrams][this part]] of the Hugo docs.
 #+BEGIN_SRC html
 <!-- layouts/partials/mermaid.html -->
@@ -502,7 +462,7 @@ graph TD;
     C-->D;
 ,#+END_SRC
 #+END_SRC
-***** Diagrams (GoAT)
+**** Diagrams (GoAT)
 Hugo supports [[https://github.com/bep/goat][GoAT]] natively, according to [[https://gohugo.io/content-management/diagrams/#goat-diagrams-ascii][this]].
 #+BEGIN_SRC org
 ,#+BEGIN_SRC goat
@@ -516,7 +476,7 @@ Hugo supports [[https://github.com/bep/goat][GoAT]] natively, according to [[htt
 
 ,#+END_SRC
 #+END_SRC
-***** Diagrams (TikZ)
+**** Diagrams (TikZ)
 Thanks to [[https://tikzjax.com][TikZJax]], it's possible to use TikZ diagrams on the web. While I'm unlikely to use TikZ (given that most of my articles are going to be about programming and technology), I had used [[https://github.com/circuitikz/circuitikz][CircuiTikZ]] before (for some of my university notes), so I wanted to try it just because. Using it was as easy as adding a couple of links to the CSS and JS to the =head=.
 #+BEGIN_SRC html
 <!-- layouts/partials/mermaid.html -->
@@ -530,9 +490,9 @@ To draw TikZ diagrams, you just do this:
 \draw (0,0) circle (1in);
 ,#+end_tikzjax
 #+END_SRC
-***** RSS feed
+**** RSS feed
 I didn't really need to do anything for this. It just works.
-**** Final decisions
+*** Final decisions
 At this point, I had got basically everything working that I wanted. I had also figured out the deployment process by then, but I'll get to that in the next topic. I was in the process of making my actual site, when I started having second thoughts about the theme (it was [[https://github.com/rhazdon/hugo-theme-hello-friend-ng][Hello Friend NG]] at this point). It's a nice theme, but I just wasn't feeling it. There was also the fact that I hadn't looked at that many themes before deciding on it. That didn't sit right with me, so I spent some more time (read /procrastinated/) looking at many other themes. I installed a few and tried them out, before I found the [[https://hugoloveit.com][LoveIt theme]]. It had basically everything I wanted, and I liked the look of it. It's not perfect of course. I would have preferred if it was a bit lighter. Compared to other sites, it's light, but compared to minimal sites, it's not (it does well on normal scales, but I think I would be happier with a more minimal one). I can live with that, for now. Everything else is great.
 
 It took some time to configure it to my liking, but I eventually did. I'm not going to go into that part. I don't think it would be that interesting, and besides, you can see the [[https://github.com/NethumL/nethuml.github.io/blob/main/config.toml][config.toml]] in the source repository. Due to some of the stuff I had already done being specific to my previous theme, I had to spend some time dealing with that.
@@ -594,11 +554,11 @@ There are some other bonus features, such as being able to add charts using [[ht
 #+END_SRC
 
 There are even more useful features as you can see [[https://github.com/dillonzq/LoveIt/#features][here]].
-*** Hosting
+** Hosting
 An important thing I had to figure out was how to set up the site. I was already looking into using GitHub Pages for this, but I had never done that before, so it took some time. Most of the other Hugo users were using Markdown, so they just set up a GitHub workflow to build the site from the markdown source, but I was using Org Mode for the source. Locally, I exported it to Markdown using ox-hugo, and built the site using Hugo. Most of the ones I found that were also using ox-hugo were exporting to Markdown locally and putting that in the repository to be used in the workflow. I didn't want to do that, because I wanted only the Org Mode version to be in repository, considering that it was the actual /source/ for the website. I found [[https://github.com/HaoZeke/haozeke.github.io][one website]] that seemed to be doing what I wanted, but their setup seemed to be quite complicated, using nix and Rakefiles and stuff. I wasn't familiar with them, so it took me a while to figure out exactly what I needed to do. I eventually did, and with a /lot/ of trial and error, I managed it.
 
 I'll briefly explain how my system works, and then I'll show the build process. The content is all in org-mode, and at the time of writing, all contained within the =all-posts.org= file. Locally, I have the [[https://ox-hugo.scripter.co][ox-hugo]] package installed in my Emacs, and I export to .md, then run Hugo to build the site. But on GitHub pages, I need to automate it with [[https://github.com/features/actions][GitHub Actions]]. Like I said, I wanted the site to be generated from the source, without me committing the intermediate .md into the repository. So, that means there are two main steps. First, I need to convert from .org to .md. Then, I can run Hugo. Running Hugo in GitHub Actions was easy. I found the [[https://github.com/peaceiris/actions-hugo][peaceiris/actions-hugo]] action to set up Hugo in the workflow, and then I could just run ~hugo --minify~ in a separate step to build the site. Converting to .md was the issue. I needed to set up Emacs for that, which by itself, is almost trivial thanks to [[https://github.com/purcell/setup-emacs][purcell/setup-emacs]]. However, I also need to set up the required environment within Emacs, because I need to install some packages and configure Emacs a bit before it can do what I want. This took a lot of time to do properly. I wrote a short shell script that calls Emacs and runs an Emacs Lisp file that does the actual work. After that's done, Hugo can take over.
-**** Converting to Markdown
+*** Converting to Markdown
 You can see the actual contents of the [[https://github.com/NethumL/nethuml.github.io/blob/main/publish.el][script]] in the repository, so here I'll split it into sections and explain.
 
 First, I need to prepare the Emacs package manager and install some packages.
@@ -655,7 +615,7 @@ mkdir -p content-org/images/generated
 emacs --batch --no-init-file --load publish.el content-org/all-posts.org --funcall npl-publish-all
 #+END_SRC
 It just loads =publish.el= and then calls the ~npl-publish-all~ function on the =all-posts.org= file. It also creates a folder for any images that =org-babel= may generate.
-**** Deploying
+*** Deploying
 The entire process is "pieced together" by the [[https://github.com/NethumL/nethuml.github.io/blob/main/.github/workflows/build.yml][workflow file]]. Most of it is self-explanatory, and you could probably figure it out by referring the [[https://docs.github.com/en/actions/using-workflows/about-workflows][GitHub documentation for workflows]].
 
 There's one important part in the workflow file though.
@@ -681,47 +641,47 @@ and this bit in the middle of the job:
 Those were added for debugging purposes. If a build fails only on GitHub and I'm having trouble figuring out why, I can manually trigger the workflow, setting the =debug_enabled= input to =true=, and use [[https://ngrok.com][ngrok]] to remote into the container where the workflow is running. There, I can interactively run commands to try and figure out what's wrong. At some point, I think I also tried [[https://github.com/mxschmitt/action-tmate][tmate]], but it didn't work out. I can't remember why though. For all I know, I was doing something wrong.
 
 Anyway, for more information about this way of debugging, refer the [[https://github.com/luchihoratiu/debug-via-ssh][luchihoratiu/debug-via-ssh]] action. Make sure to set the mentioned secrets for the actions through GitHub's repository settings. Refer the [[https://docs.github.com/en/actions/security-guides/encrypted-secrets][documentation]] for more information.
-*** How it could be better
-**** Reduce loading of heavy resources
+** How it could be better
+*** Reduce loading of heavy resources
 Right now, there's a bit more resources being loaded by the site than I would prefer. The two largest ones are font files for FontAwesome. The thing is, I'm barely using them on my website, and there's probably a good way to load only the parts that are actually being used.
 
 In addition to that, there's also quite a bit of JavaScript, for things such as clipboard, animations, searching, etc. While these are legitimately useful features, I would prefer to have them load when required. Again, there's probably a simple way to do that, and I'll have to look into that. Right now, I think I can live with this setup.
-**** Related posts
+*** Related posts
 There's no good way (at least as far as I can tell) to add links to related posts at the bottom of an article. I know I could just add normal links, but I would like to have them be presented nicely. That's something I intend to look into eventually (a [[https://gohugo.io/content-management/shortcodes][shortcode]] is probably the simplest answer).
-*** Going forward
-**** Republishing on Medium
+** Going forward
+*** Republishing on Medium
 I plan on republishing /some/ of my posts on Medium as well. Medium still has the advantage of being a large site used by many people, so it will likely have a much wider reach than my own.
 
 I will probably only do that for posts that I think are worth going through the bother of copying over to Medium.
-**** Writing process
+*** Writing process
 As I've already mentioned, I'm using Emacs to write this blog. More specifically, I'm using [[https://bitbucket.org/mituharu/emacs-mac][emacs-mac]] with [[https://github.com/doomemacs/doomemacs][Doom Emacs]]. When writing, I generally have Firefox running as well, because I often need to refer other websites to make sure I'm accurate. And of course since this is a website, I have the Hugo server running in the background with the preview of the current post in a separate tab.
-**** Analytics
+*** Analytics
 One of the things that Medium offers is analytics about my articles. I can view detailed statistics about views, reads, traffic sources, etc. As it stands now, this site doesn't have any of that. It's a statically generated site, and the JavaScript that it includes are for functional purposes. It's hosted on GitHub Pages as well, and as far as I'm aware, they don't provide any analytics functionality, which makes sense. It's supposed to be just for hosting.
 
 It would of course be possible for me to integrate some sort of analytics, but I'm not sure I want to do that. The reason is, by doing that, I enter into the realm of tracking my readers. Even if it was simply counting numbers of views, I'm not sure if I want that on my site. This is just where I stand right now. I'm a bit wary of that stuff, and at least to start with, want to keep my site simple.
 
 Say I was fine with that. There's still the issue of how I would do that. One of the most common services is Google Analytics, but that's definitely not something I want on my site. There are other more privacy respecting services, but right now, I'm going to keep this site analytics free (from my side at least).
-**** Rolling my own
+*** Rolling my own
 I'm a developer (mainly as a hobby and as a student at the time of writing), so I would like to actually make the site myself. Right now, I'm using Hugo with a theme that someone else made. I would prefer to either write my own theme, or to do the whole thing myself. I'm not actually sure which one would be harder. On the one hand, I'm not familiar with Hugo themes, so that would take me some time to learn and implement. On the other, even though I do have some practice with web development, handling the whole process of generating the site would probably take a while, especially considering I need to do all the styling myself and also set up the conversion of the actual articles to HTML.
 
 I fully intend to actually go through with this, but like I said before, I'm satisfied with the current setup, and I'm kind of busy these days. It would be a nice challenge though, so I'm looking forward to when I can properly sink some time into that project.
-*** Thanks to
+** Thanks to
 There are a few people that I need to thank, without whom this site probably wouldn't exist. I've attached links on the headings in this section to their websites/webpages.
-**** [[https://github.com][GitHub]]
+*** [[https://github.com][GitHub]]
 The source of the site is hosted as a GitHub [[https://github.com/NethumL/nethuml.github.io][repository]]. GitHub Actions are used to [[https://github.com/NethumL/nethuml.github.io/actions][build and deploy]] the site. The site is also hosted on [[https://pages.github.com][GitHub Pages]].
-**** [[https://gohugo.io][Hugo]]
+*** [[https://gohugo.io][Hugo]]
 I'm using Hugo to generate the HTML for this site. I'm not going into all the reasons to choose this SSG over others, because that's not what this post is about, but, thank you to the developers/contributors of Hugo, and the community around it.
-**** [[https://ox-hugo.scripter.co][ox-hugo]]
+*** [[https://ox-hugo.scripter.co][ox-hugo]]
 This is for exporting the Org Mode source to Markdown to be used by Hugo. Hugo does support Org Mode directly, but I didn't want to risk missing out on some feature that Hugo had only implemented for Markdown.
-**** [[https://hugoloveit.com][LoveIt theme]]
+*** [[https://hugoloveit.com][LoveIt theme]]
 This is the theme that I eventually settled on, after going through a few others. It has all the features I need and many more that I never even considered, and it looks good as well.
-**** [[https://orgmode.org][Org Mode]]
+*** [[https://orgmode.org][Org Mode]]
 I already talked a bit about it before; this was one of my main reasons to switch to this setup. I feel right at home writing in Org Mode, whether it's quick little notes, complete notes for university, task management, or articles like this.
-**** [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+*** [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
 Doom Emacs was my entry point into Emacs. It's an easy way to get into Emacs, and it provides a lot of stuff out of the box that you would normally have to manually configure in Emacs. Without this, I probably would not have started using Emacs and Org Mode.
-**** Everyone else
+*** Everyone else
 There's probably other people I've missed. Actually scratch that. There's definitely other people I've missed, such as the writers of all the articles and posts I read to figure out what I needed to set this whole thing up and many others. These are just the ones I can directly point out and the ones that came to mind while writing this.
-** Simultaneous keybindings with Karabiner Elements :dotfiles:karabiner:
+* Simultaneous keybindings with Karabiner Elements :dotfiles:karabiner:
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: simultaneous-keybindings-with-karabiner-elements
 :EXPORT_FILE_NAME: index
@@ -729,11 +689,11 @@ There's probably other people I've missed. Actually scratch that. There's defini
 :EXPORT_HUGO_LASTMOD: 2023-06-29
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How and why I set up simultaneous keybindings in Karabiner Elements
 :END:
-*** Introduction
+** Introduction
 This will be a short post. I just wanted to talk about my simultaneous keybindings with [[https://karabiner-elements.pqrs.org][Karabiner Elements]]. They've been really useful for me, and I use them constantly.
 
 I feel like I also need to clarify what exactly I mean by "simultaneous keybindings". When I press two keys on the keyboard, I want my computer to interpret that as *one* specific key (e.g. pressing =a= and =b= together is interpreted as =c=). I am *not* talking about pressing one key on the keyboard and having the computer interpret that as pressing two keys. I'm making this distinction because whenever I searched about this, I usually came across articles and questions about the second case.
-*** Why simultaneous keybindings?
+** Why simultaneous keybindings?
 I'm not really sure how this started, but I think it's when I heard about how some Vim users configure =j+k= to the escape key, because they use the escape key quite often to go back to normal mode in Vim.
 
 In [[https://vim.fandom.com/wiki/Avoid_the_escape_key#Alternative_mappings][this page]] from the Vim Tips Wiki on the Fandom website, they talk about different ways to avoid pressing the actual escape key. One of the ways they suggest doing this is to map =jj= (pressing =j= twice in quick succession) to escape. As an alternative, they suggest using =jk= instead, as it would be faster to type than =jj=.
@@ -743,7 +703,7 @@ At some point, I really took this to heart and added it to my Karabiner Elements
 I use those keybindings constantly. Escape is of course useful since I use Vim keybindings a lot. Enter and backspace should be self-explanatory. It's really nice to be able to use them without even having to move my fingers away from the home row. Those keybindings have had a great effect on my typing, making it more fluid.
 
 Also, in my config in the [[*How?][How?]] section, you'll notice that I mapped =hk= to =C-x=. That's because =C-x= is my prefix key in [[https://github.com/tmux/tmux][tmux]].
-*** How?
+** How?
 I currently use [[https://github.com/yqrashawn/GokuRakuJoudo][GokuRakuJoudo]] to manage my Karabiner Elements configuration.
 #+ATTR_SHORTCODE: info "About GokuRakuJoudo" true
 #+BEGIN_admonition
@@ -843,7 +803,7 @@ Here's the "complex modification" in the generated Karabiner JSON config for map
   ]
 }
 #+END_SRC
-*** Improvements and limitations
+** Improvements and limitations
 This method of doing simultaneous keybindings of course only works on macOS. Right now, I'm almost exclusively using macOS, so that's fine for me, but there have been times that I've had to use Windows. I've tried to find a good way of doing it on Windows, but I couldn't find one. If you know a method to do it, let me know. As for Linux, I have no idea. There's almost definitely a way to do it on Linux, but since I don't daily-drive it right now, I haven't looked into it too much. I've also looked at [[https://github.com/kmonad/kmonad][KMonad]], but I haven't really had time to try it out. If someone has, please let me know. I would like to have my keyboard config be cross-platform.
 
 Also, please don't simply tell me to use [[https://www.autohotkey.com][AutoHotkey]] to do this on Windows. I know it exists, and it worked for other stuff, but I couldn't get a good simultaneous keybinding working on that. However, if you know of a specific way to do it in AutoHotkey, please do let me know.
@@ -851,248 +811,5 @@ Also, please don't simply tell me to use [[https://www.autohotkey.com][AutoHotke
 Those 5 simultaneous keybindings are the only ones I've found to be useful. I would like to do the same with similar special keys, but I haven't thought of any others that I would actually use.
 
 And finally, I know simultaneous keybindings aren't perfect. I still sometimes find myself failing to press both keys at the same time and instead pressing them one after the other and having to backspace the two letters I accidentally typed. This does depend on the keyboard, though. Mechanical keyboards seem to make it easier.
-*** Conclusion
+** Conclusion
 There's not much of a conclusion for this. I've configured simultaneous keybindings on my computer with Karabiner Elements, and I use those keybindings constantly. That's pretty much it.
-* Programming :@programming:
-** Integrating spellchecking into a PyQt5 QTextEdit widget with enchant :python:pyqt:
-:PROPERTIES:
-:EXPORT_HUGO_BUNDLE: pyqt-spellcheck
-:EXPORT_FILE_NAME: index
-:EXPORT_DATE: 2022-04-16
-:EXPORT_HUGO_LASTMOD: 2023-06-29
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How to build a QTextEdit widget with spellchecking in PyQt5 with the enchant library
-:END:
-*** Introduction
-I was working on a project using PyQt5 when I found myself in need of spellchecking in a QTextEdit widget. I tried to find a reasonable implementation of it, but I didn't find one. Maybe it exists somewhere out there, but, it was an interesting little side project, so I decided to try making it myself. If you just want the code, you can get it from the [[https://github.com/NethumL/pyqt-spellcheck][GitHub repository]].
-
-If you are interested in an explanation of the code, read on.
-
-First, a little introduction to what will be used for this.
-**** [[https://www.riverbankcomputing.com/software/pyqt][PyQt5]]
-This is a set of Python bindings for the cross-platform [[https://www.qt.io][Qt framework]]. There is another set of bindings called [[https://wiki.qt.io/Qt_for_Python][PySide2]]. I won't go into the differences between them here, but all the code here should work fine with PySide2 as well, with only the relevant import statements needing to be changed.
-You can install it using =pip install PyQt5=.
-**** [[https://github.com/AbiWord/enchant][enchant]]
-This is a spellchecking library written in C and C++. There are other spellchecking libraries of course, but I chose this as it seemed to work better than the others I tried. If you want to use a different library for the spellchecking, you can do that by simple replacing the implementation of the wrapper in the next section.
-You can install the library from the [[https://github.com/AbiWord/enchant][GitHub repository]], and you can install the Python bindings using =pip install pyenchant=.
-*** Wrapping enchant
-While this part isn't necessary, I initially did this in case I needed to change the library doing the spellchecking without needing to change the rest of the code. This wrapper will provide an "interface" to get a list of suggestions given a word, add a word to the personal word list, and to check a particular word's spelling.
-
-The code itself should be pretty self-explanatory, but I have added some comments as additional explanation.
-#+BEGIN_SRC python
-from typing import Callable
-from enchant import DictWithPWL
-from PyQt5.QtCore import QTemporaryFile
-
-class SpellCheckWrapper:
-    def __init__(
-        self, personal_word_list: list[str], addToDictionary: Callable[[str], None]
-    ):
-        # Here, we take a function: addToDictionary(str)
-        # That's what we call when adding a new word to the personal word list
-        # The reason we take this from outside is that this way, when using this class,
-        #   we can store the permanent personal word list however we like, and this class doesn't need to care
-
-        # Creating temporary file for enchant to store the personal word list temporarily
-        self.file = QTemporaryFile()
-        self.file.open()
-        self.dictionary = DictWithPWL(
-            "en_US",
-            self.file.fileName(),
-        )
-
-        self.addToDictionary = addToDictionary
-
-        self.word_list = set(personal_word_list)
-        self.load_words()
-
-    def load_words(self):
-        for word in self.word_list:
-            self.dictionary.add(word)
-
-    def suggestions(self, word: str) -> list[str]:
-        return self.dictionary.suggest(word)
-
-    def correction(self, word: str) -> str:
-        # Get the best match
-        return self.dictionary.suggest(word)[0]
-
-    def add(self, new_word: str) -> bool:
-        if self.check(new_word):
-            return False
-        self.word_list.add(new_word)
-        self.addToDictionary(new_word)
-        self.dictionary.add(new_word)
-        return True
-
-    def check(self, word: str) -> bool:
-        return self.dictionary.check(word)
-
-    def getNewWords(self) -> set[str]:
-        return self.word_list
-#+END_SRC
-*** Custom QSyntaxHighlighter
-Qt conveniently has a =QSyntaxHighlighter= ([[https://doc.qt.io/qt-5/qsyntaxhighlighter.html][docs]]) class which we can use to show any words that are misspelled. Here, we will subclass it to use a =SpellCheckWrapper= instance to check the spellings of all the words, and show the usual red line under any misspelled words.
-#+BEGIN_SRC python
-import re
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QSyntaxHighlighter, QTextCharFormat
-
-from spellcheckwrapper import SpellCheckWrapper
-
-
-class SpellCheckHighlighter(QSyntaxHighlighter):
-    # Matches strings of length 2 or more
-    wordRegEx = re.compile(r"\b([A-Za-z]{2,})\b")
-
-    def highlightBlock(self, text: str) -> None:
-        if not hasattr(self, "speller"):
-            return
-
-        # Formatting for misspelled words
-        self.misspelledFormat = QTextCharFormat()
-        self.misspelledFormat.setUnderlineStyle(QTextCharFormat.SpellCheckUnderline)  # Platform and theme dependent
-        self.misspelledFormat.setUnderlineColor(Qt.red)
-
-        for word_object in self.wordRegEx.finditer(text):
-            if not self.speller.check(word_object.group()):
-                self.setFormat(
-                    word_object.start(),
-                    word_object.end() - word_object.start(),
-                    self.misspelledFormat,
-                )
-
-    def setSpeller(self, speller: SpellCheckWrapper):
-        self.speller = speller
-#+END_SRC
-*** Correction action
-Now we need to create a simple =QAction= ([[https://doc.qt.io/qt-5/qaction.html][docs]]) that will fire a custom signal when clicked, and pass its text as an argument. We will be using this to create the list of suggested words in the context menu.
-#+BEGIN_SRC python
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QAction
-
-
-class SpecialAction(QAction):
-    actionTriggered = pyqtSignal(str)
-
-    def __init__(self, *args):
-        super().__init__(*args)
-
-        self.triggered.connect(self.emitTriggered)
-
-    def emitTriggered(self):
-        self.actionTriggered.emit(self.text())
-#+END_SRC
-*** Subclassing QTextEdit
-Now we come to the main part of this article. I will break down this class into a few sections. The first one is for the imports and the constructor. Each one after that will be for the other methods in the class.
-**** Imports and constructor
-This part should be self-explanatory.
-#+BEGIN_SRC python
-from PyQt5.QtCore import QEvent, Qt, pyqtSlot
-from PyQt5.QtGui import QContextMenuEvent, QMouseEvent, QTextCursor
-from PyQt5.QtWidgets import QMenu, QTextEdit
-
-# Importing the classes we wrote in the previous sections
-from correction_action import SpecialAction
-from highlighter import SpellCheckHighlighter
-from spellcheckwrapper import SpellCheckWrapper
-
-
-class SpellTextEdit(QTextEdit):
-    def __init__(self, *args):
-        if args and type(args[0]) == SpellCheckWrapper:
-            super().__init__(*args[1:])
-            self.speller = args[0]
-        else:
-            super().__init__(*args)
-
-        self.highlighter = SpellCheckHighlighter(self.document())
-        if hasattr(self, "speller"):
-            self.highlighter.setSpeller(self.speller)
-#+END_SRC
-**** Set speller
-#+BEGIN_SRC python
-def setSpeller(self, speller):
-    self.speller = speller
-    self.highlighter.setSpeller(self.speller)
-#+END_SRC
-**** Mouse press event
-This is a little hack to make it so that right-clicking will move the text cursor to the mouse position. If the mouse press event is a right click, then we change that into a left click.
-#+BEGIN_SRC python
-def mousePressEvent(self, event: QMouseEvent) -> None:
-    if event.button() == Qt.RightButton:
-        event = QMouseEvent(
-            QEvent.MouseButtonPress,
-            event.pos(),
-            Qt.LeftButton,
-            Qt.LeftButton,
-            Qt.NoModifier,
-        )
-    super().mousePressEvent(event)
-#+END_SRC
-**** Context menu event
-Here, we need to build the context menu. First, we can use the built-in =createStandardContextMenu= method to make the basics. Then, we add on the list of suggestions, and a button to add to dictionary.
-
-=createSuggestionsMenu= is explained in the next section.
-#+BEGIN_SRC python
-def contextMenuEvent(self, event: QContextMenuEvent) -> None:
-    self.contextMenu = self.createStandardContextMenu(event.pos())
-
-    # Select and retrieve the word under the cursor
-    textCursor = self.textCursor()
-    textCursor.select(QTextCursor.WordUnderCursor)
-    self.setTextCursor(textCursor)
-    wordToCheck = textCursor.selectedText()
-
-    if wordToCheck != "":
-        suggestions = self.speller.suggestions(wordToCheck)
-
-        if len(suggestions) > 0:
-            self.contextMenu.addSeparator()
-            self.contextMenu.addMenu(self.createSuggestionsMenu(suggestions))
-
-        if not self.speller.check(wordToCheck):
-            # This action will add the selected word to the personal word list
-            addToDictionary_action = SpecialAction(
-                "Add to dictionary", self.contextMenu
-            )
-            addToDictionary_action.triggered.connect(self.addToDictionary)
-            self.contextMenu.addAction(addToDictionary_action)
-
-    self.contextMenu.exec_(event.globalPos())
-#+END_SRC
-**** Create suggestions menu
-We create the suggestions menu from the given list of suggestions. Here, we use that =SpecialAction= from before. When one is clicked, the =correctWord= method is called.
-#+BEGIN_SRC python
-def createSuggestionsMenu(self, suggestions: list[str]):
-    suggestionsMenu = QMenu("Change to", self)
-    for word in suggestions:
-        action = SpecialAction(word, self.contextMenu)
-        action.actionTriggered.connect(self.correctWord)
-        suggestionsMenu.addAction(action)
-
-    return suggestionsMenu
-#+END_SRC
-**** Replace the selected word with the given correction
-#+BEGIN_SRC python
-@pyqtSlot(str)
-def correctWord(self, word: str):
-    textCursor = self.textCursor()
-    textCursor.beginEditBlock()
-    textCursor.removeSelectedText()
-    textCursor.insertText(word)
-    textCursor.endEditBlock()
-#+END_SRC
-**** Add to dictionary
-This adds the selected word to the dictionary.
-#+BEGIN_SRC python
-@pyqtSlot()
-def addToDictionary(self):
-    textCursor = self.textCursor()
-    new_word = textCursor.selectedText()
-    self.speller.add(new_word)
-    self.highlighter.rehighlight()
-#+END_SRC
-*** Conclusion
-There you have it. If you want to try it out, I have included a small [[https://github.com/NethumL/pyqt-spellcheck/blob/main/src/example.py][example application]] in the GitHub repository.
-
-There are of course some improvements to be made. For example, with the current implementation, if a user selects some text and right-clicks, the selection will change to the word under the pointer. As I wrote this code for use in another project of mine, this basic functionality was enough.
