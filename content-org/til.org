@@ -1,0 +1,80 @@
+#+AUTHOR:
+#+HUGO_CUSTOM_FRONT_MATTER: :author "Nethum Lamahewage"
+#+HUGO_BASE_DIR: ../
+#+HUGO_PAIRED_SHORTCODES: admonition
+#+HUGO_CATEGORIES: til
+#+PROPERTY: header-args :noeval
+#+MACRO: ref @@hugo:[@@$1@@hugo:]({{< ref "$2" >}})@@
+#+MACRO: relref @@hugo:[@@$1@@hugo:]({{< relref "$2" >}})@@
+
+* TIL: Hosting a Vite React Router app at a subpath with nginx :programming:web:react:vite:
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: til-vite-react-nginx-host-subpath
+:EXPORT_FILE_NAME: index
+:EXPORT_DATE: 2023-07-21
+:EXPORT_HUGO_LASTMOD: 2023-07-21
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How to host a Vite React Router app at a subpath with nginx
+:END:
+This is my first TIL on this site, so if you want to know why I started this, read the paragraph at the end of this post.
+
+The background is that I was working on a project where for certain reasons, the deployment had to be done so that our frontend was hosted at a subpath instead of at the root. We learnt about this after we had already been working on the project for a bit. The project was a React frontend, set up with [[https://vitejs.dev][Vite]], and using [[https://reactrouter.com][React Router]]. It was going to be served using [[https://nginx.org][nginx]]. There was an [[https://github.com/wiput1999/react-subdirectory][guide]] showing how to do this with React, React Router, and nginx, but it was for [[https://create-react-app.dev][Create React App]]. Incidentally, the part specific to Create React App is also [[https://create-react-app.dev/docs/deployment/#building-for-relative-paths][in their documentation]]. However, I couldn't find out how to do it with Vite. I looked around, but I didn't find anything. I found things that were close, but they either didn't work at all, or only partially worked. When I was close to giving up, I thought, why not try asking ChatGPT. I don't have any other ideas to try, so I did. The first answer it gave didn't work (initial HTML shell loaded, but not the bundled JS or CSS). But after I told it the issue, it gave another answer that included suggesting that I use the =alias= directive in nginx. And it worked (not the full solution from ChatGPT, just the part with the =alias= directive).
+
+This was with Vite's "react-ts" template. Here's how to host it at =/frontend/=
+
+=nginx.conf=:
+#+BEGIN_SRC conf
+server {
+  listen       8080;
+  location ^~ /frontend {
+    index  index.html index.htm;
+    alias /usr/share/nginx/html;
+    try_files $uri $uri/ /index.html =404;
+  }
+}
+#+END_SRC
+
+=vite.config.ts=:
+#+BEGIN_SRC typescript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  base: '/frontend/',
+});
+#+END_SRC
+
+I had to pass React Router the basename like this:
+#+BEGIN_SRC jsx
+<BrowserRouter basename={"/frontend"}>
+#+END_SRC
+
+I was also hosting the frontend in nginx using Docker, so here's the Dockerfile:
+#+BEGIN_SRC docker
+FROM node:18-alpine as builder
+WORKDIR /app
+COPY package.json .
+COPY package-lock.json .
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM nginxinc/nginx-unprivileged:stable-alpine-slim
+
+# Update nginx user/group in alpine
+ENV ENABLE_PERMISSIONS=TRUE
+ENV DEBUG_PERMISSIONS=TRUE
+ENV USER_NGINX=10015
+ENV GROUP_NGINX=10015
+
+COPY --from=builder /app/dist /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+USER 10015
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
+#+END_SRC
+
+And that's all. There's probably a better way to do it, but that would probably involve me learning some nginx. And there are obvious issues with this one as well. It doesn't really make sense to use a Dockerfile to host a frontend like this, instead of simply putting the static files in a CDN, for example. All of this was project-specific, so we just had to do it this way, and we needed to make it work.
+
+Now, I'll get to why I'm starting this TIL category in the first place. As you may have noticed, this is significantly shorter than most of my other posts. The intention of these articles is to show something new I learnt that may be useful to someone else. It's usually something small (if it's long, I'll just write a normal post). I will try to restrict these TILs to things that I can't find elsewhere. Additionally, this gives me something to write about. I get to practice writing these kinds of short posts, so that I can improve for when I write a proper full-length post. So for these TILs, I'll have them in their own separate category on the site.
