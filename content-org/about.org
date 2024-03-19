@@ -11,7 +11,7 @@
 :EXPORT_HUGO_SECTION: about
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-04-21
-:EXPORT_HUGO_LASTMOD: 2023-06-29
+:EXPORT_HUGO_LASTMOD: 2024-03-19
 :END:
 Hi!
 
@@ -21,7 +21,7 @@ As of 2022, I'm a Computer Science & Engineering undergraduate at the University
 ** Online Presence
 My main "official" online presences are currently limited to the following.
 *** [[https://github.com/NethumL][GitHub]]
-This is where some of my "important" projects are hosted. The majority of them are private for various reasons, but a few are public, including the [[https://github.com/NethumL/nethuml.github.io][source]] for this website. The ones that are private are that way usually because I don't consider them particularly useful for most people.
+This is where some of my "important" projects are hosted. The majority of them are private for various reasons, but a few are public, including the [[https://github.com/NethumL/blog][source]] for this website. The ones that are private are that way usually because I don't consider them particularly useful for most people.
 
 The list of private repositories includes my dotfiles repo. If you're not familiar with what they are, [[https://www.webpro.nl/articles/getting-started-with-dotfiles][here]] is a nice introduction. It has my dotfiles dating back to the beginning of 2021. I'm pretty sure that that's not when I started properly using dotfiles, but that's as far back as my commit history goes. In the future, I may open it up, but for now, I'm planning on making at least a few posts about individual components of it here.
 *** [[https://www.linkedin.com/in/nethumlamahewage][LinkedIn]]
@@ -35,11 +35,11 @@ All of my posts will be here on this site, but a few of them will occasionally b
 ** About this site
 This is a [[https://gohugo.io][Hugo]]-generated static site using [[https://orgmode.org][Org Mode]], [[https://ox-hugo.scripter.co][ox-hugo]], and the [[https://github.com/dillonzq/LoveIt][LoveIt]] theme, hosted on [[https://docs.github.com/en/pages][GitHub Pages]]. I will likely be doing a separate post about how this is set up and the process I went through to get to this site, and if/when I do, I'll link it here. /UPDATE/ : {{{ref(the post is ready,/posts/blog-setup-with-hugo-org-mode)}}}.
 
-The source is a [[https://github.com/NethumL/nethuml.github.io][git repository]] hosted on GitHub. If you have any comments, suggestions, corrections, questions, etc., right now, I think the best way to send them to me is through the [[https://github.com/NethumL/nethuml.github.io/issues][issues page]] on GitHub. I will probably set up a comment system on the site itself in the future, but for now, I think the issues page is the best option.
+The source is a [[https://github.com/NethumL/blog][git repository]] hosted on GitHub. If you have any comments, suggestions, corrections, questions, etc., right now, I think the best way to send them to me is through the [[https://github.com/NethumL/blog/issues][issues page]] on GitHub. I will probably set up a comment system on the site itself in the future, but for now, I think the issues page is the best option.
 
 If you want to know when I post new articles on this site, you can use the @@hugo:<a href="/index.xml" target="_blank" rel="noopener noreffer me">RSS feed</a>@@. If you're unfamiliar with RSS feeds, read [[https://www.lifewire.com/what-is-an-rss-feed-4684568][this article on Lifewire]] or the [[https://en.wikipedia.org/wiki/RSS][Wikipedia page]]. There are [[https://alternativeto.net/category/books--news/rss-feed-reader][various feed readers]] for pretty much every platform, so get one and add the link to this site's RSS feed into it.
 
-This site uses [[https://www.goatcounter.com][GoatCounter]] for analytics. It doesn't use cookies and is not intended to track users. It's simply there for me to know about the viewership of the site. GoatCounter itself is [[https://github.com/arp242/goatcounter][open source]] and so is [[https://github.com/NethumL/nethuml.github.io][this site]]. I do not like when sites track users, but I think simple analytics under these conditions (cookie-less, open source, non-tracking) are acceptable.
+This site uses [[https://www.goatcounter.com][GoatCounter]] for analytics. It doesn't use cookies and is not intended to track users. It's simply there for me to know about the viewership of the site. GoatCounter itself is [[https://github.com/arp242/goatcounter][open source]] and so is [[https://github.com/NethumL/blog][this site]]. I do not like when sites track users, but I think simple analytics under these conditions (cookie-less, open source, non-tracking) are acceptable.
 ** Disclaimer
 My version of the disclaimer that similar personal blogs tend to have:
 
