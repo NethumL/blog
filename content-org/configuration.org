@@ -326,7 +326,7 @@ OK, time for some closing words. I have been using Hammerspoon for about a year 
 :EXPORT_HUGO_BUNDLE: blog-setup-with-hugo-org-mode
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-06-14
-:EXPORT_HUGO_LASTMOD: 2023-06-29
+:EXPORT_HUGO_LASTMOD: 2024-03-19
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary I set up this static site using Hugo and Org Mode with hosting on GitHub Pages. In this article I go through the how and why
 :END:
 ** Introduction
@@ -495,7 +495,7 @@ I didn't really need to do anything for this. It just works.
 *** Final decisions
 At this point, I had got basically everything working that I wanted. I had also figured out the deployment process by then, but I'll get to that in the next topic. I was in the process of making my actual site, when I started having second thoughts about the theme (it was [[https://github.com/rhazdon/hugo-theme-hello-friend-ng][Hello Friend NG]] at this point). It's a nice theme, but I just wasn't feeling it. There was also the fact that I hadn't looked at that many themes before deciding on it. That didn't sit right with me, so I spent some more time (read /procrastinated/) looking at many other themes. I installed a few and tried them out, before I found the [[https://hugoloveit.com][LoveIt theme]]. It had basically everything I wanted, and I liked the look of it. It's not perfect of course. I would have preferred if it was a bit lighter. Compared to other sites, it's light, but compared to minimal sites, it's not (it does well on normal scales, but I think I would be happier with a more minimal one). I can live with that, for now. Everything else is great.
 
-It took some time to configure it to my liking, but I eventually did. I'm not going to go into that part. I don't think it would be that interesting, and besides, you can see the [[https://github.com/NethumL/nethuml.github.io/blob/main/config.toml][config.toml]] in the source repository. Due to some of the stuff I had already done being specific to my previous theme, I had to spend some time dealing with that.
+It took some time to configure it to my liking, but I eventually did. I'm not going to go into that part. I don't think it would be that interesting, and besides, you can see the [[https://github.com/NethumL/blog/blob/main/config.toml][config.toml]] in the source repository. Due to some of the stuff I had already done being specific to my previous theme, I had to spend some time dealing with that.
 
 Enabling equations using [[https://katex.org][KaTeX]] was as simple as adding this line in the [[https://orgmode.org/manual/Property-Syntax.html][properties drawer]] of the relevant article.
 #+BEGIN_SRC org
@@ -559,7 +559,7 @@ An important thing I had to figure out was how to set up the site. I was already
 
 I'll briefly explain how my system works, and then I'll show the build process. The content is all in org-mode, and at the time of writing, all contained within the =all-posts.org= file. Locally, I have the [[https://ox-hugo.scripter.co][ox-hugo]] package installed in my Emacs, and I export to .md, then run Hugo to build the site. But on GitHub pages, I need to automate it with [[https://github.com/features/actions][GitHub Actions]]. Like I said, I wanted the site to be generated from the source, without me committing the intermediate .md into the repository. So, that means there are two main steps. First, I need to convert from .org to .md. Then, I can run Hugo. Running Hugo in GitHub Actions was easy. I found the [[https://github.com/peaceiris/actions-hugo][peaceiris/actions-hugo]] action to set up Hugo in the workflow, and then I could just run ~hugo --minify~ in a separate step to build the site. Converting to .md was the issue. I needed to set up Emacs for that, which by itself, is almost trivial thanks to [[https://github.com/purcell/setup-emacs][purcell/setup-emacs]]. However, I also need to set up the required environment within Emacs, because I need to install some packages and configure Emacs a bit before it can do what I want. This took a lot of time to do properly. I wrote a short shell script that calls Emacs and runs an Emacs Lisp file that does the actual work. After that's done, Hugo can take over.
 *** Converting to Markdown
-You can see the actual contents of the [[https://github.com/NethumL/nethuml.github.io/blob/main/publish.el][script]] in the repository, so here I'll split it into sections and explain.
+You can see the actual contents of the [[https://github.com/NethumL/blog/blob/main/publish.el][script]] in the repository, so here I'll split it into sections and explain.
 
 First, I need to prepare the Emacs package manager and install some packages.
 #+BEGIN_SRC emacs-lisp
@@ -616,7 +616,7 @@ emacs --batch --no-init-file --load publish.el content-org/all-posts.org --funca
 #+END_SRC
 It just loads =publish.el= and then calls the ~npl-publish-all~ function on the =all-posts.org= file. It also creates a folder for any images that =org-babel= may generate.
 *** Deploying
-The entire process is "pieced together" by the [[https://github.com/NethumL/nethuml.github.io/blob/main/.github/workflows/build.yml][workflow file]]. Most of it is self-explanatory, and you could probably figure it out by referring the [[https://docs.github.com/en/actions/using-workflows/about-workflows][GitHub documentation for workflows]].
+The entire process is "pieced together" by the [[https://github.com/NethumL/blog/blob/main/.github/workflows/build.yml][workflow file]]. Most of it is self-explanatory, and you could probably figure it out by referring the [[https://docs.github.com/en/actions/using-workflows/about-workflows][GitHub documentation for workflows]].
 
 There's one important part in the workflow file though.
 
@@ -668,7 +668,7 @@ I fully intend to actually go through with this, but like I said before, I'm sat
 ** Thanks to
 There are a few people that I need to thank, without whom this site probably wouldn't exist. I've attached links on the headings in this section to their websites/webpages.
 *** [[https://github.com][GitHub]]
-The source of the site is hosted as a GitHub [[https://github.com/NethumL/nethuml.github.io][repository]]. GitHub Actions are used to [[https://github.com/NethumL/nethuml.github.io/actions][build and deploy]] the site. The site is also hosted on [[https://pages.github.com][GitHub Pages]].
+The source of the site is hosted as a GitHub [[https://github.com/NethumL/blog][repository]]. GitHub Actions are used to [[https://github.com/NethumL/blog/actions][build and deploy]] the site. The site is also hosted on [[https://pages.github.com][GitHub Pages]].
 *** [[https://gohugo.io][Hugo]]
 I'm using Hugo to generate the HTML for this site. I'm not going into all the reasons to choose this SSG over others, because that's not what this post is about, but, thank you to the developers/contributors of Hugo, and the community around it.
 *** [[https://ox-hugo.scripter.co][ox-hugo]]
