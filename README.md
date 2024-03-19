@@ -1,8 +1,8 @@
 <div align="center">
 
-# nethuml.github.io
+# blog.nethuml.xyz
 
-[![Build status](https://img.shields.io/github/actions/workflow/status/NethumL/nethuml.github.io/build.yml?branch=main)](https://github.com/NethumL/nethuml.github.io/actions/workflows/build.yml)
+[![Build status](https://img.shields.io/github/actions/workflow/status/NethumL/blog/build.yml?branch=main)](https://github.com/NethumL/blog/actions/workflows/build.yml)
 
 </div>
 
