@@ -17,7 +17,7 @@ enableEmoji = true
   keywords = ["blog"]
   version = "0.2.X"
   defaultTheme = "auto"
-  gitRepo = "https://github.com/NethumL/nethuml.github.io.git"
+  gitRepo = "https://github.com/NethumL/blog.git"
   dateFormat = "January 2, 2006"
   fingerprint = "sha384"
 
@@ -169,6 +169,6 @@ enableEmoji = true
     pre        = "<i class='fab fa-github fa-fw'></i>"
     post       = ""
     name       = ""
-    url        = "https://github.com/NethumL/nethuml.github.io"
+    url        = "https://github.com/NethumL/blog"
     title      = "GitHub"
     weight     = 5
