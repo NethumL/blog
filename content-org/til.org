@@ -1,5 +1,4 @@
 #+AUTHOR:
-#+HUGO_CUSTOM_FRONT_MATTER: :author "Nethum Lamahewage"
 #+HUGO_BASE_DIR: ../
 #+HUGO_PAIRED_SHORTCODES: admonition
 #+HUGO_CATEGORIES: til
@@ -13,7 +12,8 @@
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2023-07-21
 :EXPORT_HUGO_LASTMOD: 2023-07-21
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How to host a Vite React Router app at a subpath with nginx
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :author Nethum Lamahewage
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :summary How to host a Vite React Router app at a subpath with nginx
 :END:
 This is my first TIL on this site, so if you want to know why I started this, read the paragraph at the end of this post.
 

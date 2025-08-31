@@ -1,5 +1,4 @@
 #+AUTHOR:
-#+HUGO_CUSTOM_FRONT_MATTER: :author "Nethum Lamahewage"
 #+HUGO_BASE_DIR: ../
 #+HUGO_PAIRED_SHORTCODES: admonition
 #+HUGO_CATEGORIES: programming
@@ -13,7 +12,8 @@
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-04-16
 :EXPORT_HUGO_LASTMOD: 2023-06-29
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How to build a QTextEdit widget with spellchecking in PyQt5 with the enchant library
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :author Nethum Lamahewage
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :summary How to build a QTextEdit widget with spellchecking in PyQt5 with the enchant library
 :END:
 ** Introduction
 I was working on a project using PyQt5 when I found myself in need of spellchecking in a QTextEdit widget. I tried to find a reasonable implementation of it, but I didn't find one. Maybe it exists somewhere out there, but, it was an interesting little side project, so I decided to try making it myself. If you just want the code, you can get it from the [[https://github.com/NethumL/pyqt-spellcheck][GitHub repository]].

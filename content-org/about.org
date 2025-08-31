@@ -1,5 +1,4 @@
 #+AUTHOR:
-#+HUGO_CUSTOM_FRONT_MATTER: :author "Nethum Lamahewage"
 #+HUGO_BASE_DIR: ../
 #+HUGO_PAIRED_SHORTCODES: admonition
 #+PROPERTY: header-args :noeval
@@ -12,6 +11,7 @@
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-04-21
 :EXPORT_HUGO_LASTMOD: 2024-03-19
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :author Nethum Lamahewage
 :END:
 Hi!
 

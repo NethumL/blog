@@ -1,5 +1,4 @@
 #+AUTHOR:
-#+HUGO_CUSTOM_FRONT_MATTER: :author "Nethum Lamahewage"
 #+HUGO_BASE_DIR: ../
 #+HUGO_PAIRED_SHORTCODES: admonition
 #+HUGO_CATEGORIES: configuration
@@ -13,7 +12,8 @@
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-04-15
 :EXPORT_HUGO_LASTMOD: 2023-06-29
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How to use Hammerspoon to set up a global leader key on macOS with nested key bindings to run arbitrary commands similar to Vim
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :author Nethum Lamahewage
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :summary How to use Hammerspoon to set up a global leader key on macOS with nested key bindings to run arbitrary commands similar to Vim
 :END:
 ** Introduction
 I've been using macOS for a little over a year now. Before that, I had only ever known Windows. I have used Ubuntu a bit, but that barely counts. Once I moved to macOS, it took quite some time to get used to it. I do still occasionally boot into Windows, using Bootcamp, but it's only when I need to use some software that doesn't run on macOS.
@@ -327,7 +327,8 @@ OK, time for some closing words. I have been using Hammerspoon for about a year 
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2022-06-14
 :EXPORT_HUGO_LASTMOD: 2024-03-19
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary I set up this static site using Hugo and Org Mode with hosting on GitHub Pages. In this article I go through the how and why
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :author Nethum Lamahewage
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :summary I set up this static site using Hugo and Org Mode with hosting on GitHub Pages. In this article I go through the how and why
 :END:
 ** Introduction
 I started this site on the 15th of April 2022. However, I wrote my first article on the 11th of May 2021, on Medium. I've republished it and the second one here, because I want this to be the original source for all my articles.
@@ -687,7 +688,8 @@ There's probably other people I've missed. Actually scratch that. There's defini
 :EXPORT_FILE_NAME: index
 :EXPORT_DATE: 2023-06-29
 :EXPORT_HUGO_LASTMOD: 2023-06-29
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary How and why I set up simultaneous keybindings in Karabiner Elements
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :author Nethum Lamahewage
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :summary How and why I set up simultaneous keybindings in Karabiner Elements
 :END:
 ** Introduction
 This will be a short post. I just wanted to talk about my simultaneous keybindings with [[https://karabiner-elements.pqrs.org][Karabiner Elements]]. They've been really useful for me, and I use them constantly.
