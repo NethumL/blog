@@ -1,0 +1,17 @@
+<!-- Refer https://github.com/dillonzq/LoveIt/issues/971#issuecomment-3217581716  -->
+
+{{ define "_default/_markup/render-codeblock.html" }}
+{{- template "_markup/render-codeblock.html" . -}}
+{{ end }}
+
+{{ define "_internal/shortcodes/x.html" }}
+{{- partial "shortcodes/x.html" . -}}
+{{ end }}
+
+{{ define "_internal/shortcodes/x_simple.html" }}
+{{- partial "shortcodes/x_simple.html" . -}}
+{{ end }}
+
+{{ define "_internal/shortcodes/instagram.html" }}
+{{- partial "shortcodes/instagram.html" . -}}
+{{ end }}
