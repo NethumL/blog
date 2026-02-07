@@ -1,0 +1,276 @@
+#+AUTHOR:
+#+HUGO_BASE_DIR: ../
+#+HUGO_PAIRED_SHORTCODES: admonition
+#+HUGO_CATEGORIES: tech
+#+PROPERTY: header-args :noeval
+#+MACRO: ref @@hugo:[@@$1@@hugo:]({{< ref "$2" >}})@@
+#+MACRO: relref @@hugo:[@@$1@@hugo:]({{< relref "$2" >}})@@
+
+* A timeline of claims about AI/LLMs :AI:LLM:
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: timeline-of-claims-about-ai-llms
+:EXPORT_FILE_NAME: index
+:EXPORT_DATE: 2026-01-18
+:EXPORT_HUGO_LASTMOD: 2026-01-18
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :author Nethum Lamahewage
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :summary A timeline of the many claims made about AI/LLMs over the past few years
+:END:
+** Introduction
+*** Background
+I'm a software engineer, and have been for about a year and a half (as of January 2026). ChatGPT was initially released on November 30, 2022[fn:chatgpt-release-date]. It rose to popularity for casual use during my final year at university, and following that, went further to what we see today, where it is being used to replace or at least heavily augment human job roles. In case you are wondering, no, I'm not strictly against using LLMs. I use them often, just like so many people do.
+*** Why?
+Now, there's obviously a bias. There have been many claims about software engineers being replaced by AI/LLMs, which I will go over in the rest of this article. I won't pretend I'm happy that people are claiming that my current job, as it exists right now, won't exist pretty soon. However, I'll do my best to remain reasonable with my analysis of these claims.
+*** AI/LLMs
+Yes, I know LLMs are not the only kind of AI. But right now, to most people, it's the same. That's honestly part of the problem: assuming that the future of AI /has/ to be LLMs. That's not necessary. For all we know (by we, I mean people who are not actively researching machine learning or artificial intelligence), LLMs will be eclipsed by a similar breakthrough, and we'll wonder why we ever thought LLMs would be the future.
+
+When claims like these are discussed online, many say that these people are lying to promote their products or get attention. Now, for many of these claims, I can't say for certain that they were lying when they made the claims, so I will not say they /lied/. However, I hope it's obvious that for most of them, these people are either woefully misinformed (and that's being generous), or do not care about whether their claim is even likely to come true.
+*** Authorship
+And no, I have not used any AI/LLMs to write any part of this article, not even Copilot-like autocomplete[fn:copilot-like-autocomplete]. This article was written exclusively in Emacs org-mode on my laptop, by myself.
+*** Structure of article
+I've gone through different claims made by people and arranged them into a timeline, from oldest to most recent. I'll have one heading per claim, so you can use the table of contents to navigate. I'll also be including multiple sources in some cases, so you can read more details if you want, and where possible, I'll include the original source for the claim. Most of the people making the claims are well-known people in the world of LLMs, and/or hold a top-level position at a well-known company. A few of them don't, and in those cases, I've just mentioned their name. They may be well-known, just not to me.
+
+An additional disclaimer: I'm well aware that this isn't a particularly well-written article, as in my commentary about the topic. The point, as I've mentioned, is to just collect all these claims in one place for easier reference, and note ones that have not come true. Also, in my defense, I'm kind of new to this whole blog-article-writing business.
+
+Enough preamble, let's move on to the claims themselves.
+** 2023
+*** 2023 June, Stability AI Founder
+#+BEGIN_QUOTE
+There are no programmers in 5 years.
+#+END_QUOTE
+By: Emad Mostaque (Founder of Stability AI)
+
+Sources: [[https://www.youtube.com/watch?v=ciX_iFGyS0M][YouTube]] (original), [[https://www.developer-tech.com/news/stability-ai-ceo-replace-human-coders-five-years/][developer-tech.com]]
+
+This claim targets 2028. That's a couple of years away from now, but it is still a lofty claim. For context, Stability AI is well known for a text-to-image model called [[https://stability.ai/stable-image][Stable Diffusion]]. From what I have seen so far, while yes, LLMs are good enough to write code, they're a bit too far away from replacing programmers entirely.
+*** 2023 June, Microsoft AI CEO
+#+BEGIN_QUOTE
+LLM hallucinations will be largely eliminated by 2025.
+
+that's a huge deal. the implications are far more profound than the threat of the models getting things a bit wrong today.
+#+END_QUOTE
+By: Mustafa Suleyman (CEO of Microsoft AI)
+
+Sources: [[https://x.com/mustafasuleyman/status/1667184880235446280][Twitter]] (original)
+
+2025 is over now, and, I hope I don't have to explain that this didn't come true. The implications of this prediction not coming true, aren't so profound. Wouldn't be the first person to make an outlandish claim about how good the thing they're making will be in the near future.
+** 2024
+*** 2024 March, Nvidia CEO
+#+BEGIN_QUOTE
+If I gave an AI math tests, reasoning tests, a history test, a biology test, medical exams, bar exams, you name it, SATs and MCATs, every single test that you can possibly imagine; you make that list of tests, and you put it in front of the computer science industry, I'm guessing in 5 years time, we'll do well on every single one of them.
+#+END_QUOTE
+By: Jensen Huang (CEO of Nvidia)
+
+Sources: [[https://youtu.be/cEg8cOx7UZk?t=1926][YouTube]] (original), [[https://www.reuters.com/technology/nvidia-ceo-says-ai-could-pass-human-tests-five-years-2024-03-01/][Reuters]]
+
+Honestly, this one seems more reasonable than many of the others. This talk is worth listening to. AI being able to pass such tests seems perfectly plausible. They have been trained on a large portion of the Internet, which should presumably include standard exams like SATs or GCSEs. Being trained on enough papers from those exams, I can see AI pretty soon being able to pass them consistently. However, I do feel that I have to point out that someone passing a standard computer science exam isn't sufficient to say that they are a good programmer, for example. Much like passing a driving exam doesn't mean you are good enough to drive by yourself just yet.
+*** 2024 March, you.com CEO
+#+BEGIN_QUOTE
+"There are two definitions of AGI. There's a simple economic one, which is 80% of the jobs will be automated with AI, and then we can call it AGI," Richard Socher, former Salesforce chief scientist and founder of the AI-powered search engine You.com, told Business Insider by email. If you restrict that notion to "digital jobs," he said we could probably get there in the coming three to five years.
+#+END_QUOTE
+By: Richard Socher (CEO of [[https://you.com][you.com]]), quoted by Business Insider
+
+Sources: [[https://www.businessinsider.com/former-salesforce-exec-richard-socher-says-agi-still-years-away-2024-3][Business Insider]]
+
+The problem with this claim is the "digital jobs" part. Because I would assume that "digital jobs" includes software engineering. Also, he's not the only one on this list to talk about redefining AGI.
+*** 2024 May, Elon Musk
+#+BEGIN_QUOTE
+Next year
+#+END_QUOTE
+By: Elon Musk
+
+Sources: [[https://x.com/elonmusk/status/1794240517875920935][Twitter]] (original)
+
+This was in response to Logan Kilpatrick (Lead product for Google AI Studio) asking "How long until AGI?". Suffice it to say, AGI did not arrive in 2025. I mean, neither did FSD, but who's keeping track anyway[fn:fsd-timeline].
+*** 2024 July, AI researcher
+#+BEGIN_QUOTE
+Regarding AGI, the standard definition of AGI is AI that could do any intellectual tasks that a human can. So when we have AGI, AI should [be able] to learn to drive a car, or learn to fly a plane, or learn to write a PHD thesis in a university. For that definition of AGI, I think we are many decades away, maybe even longer. I hope we get there in our lifetime, but I'm not sure.
+
+One of the reason[s] that there's hype about AGI in just a few years, is there's some companies that are using very non-standard definitions of AGI, and if you redefine to be a lower bar, then of course we could get there in 1 or 2 years. But using the standard definition of AGI, AI that can do any intellectual tasks a human can, I think we're still many decades away, but I think it'd be great if we manage to get there.
+#+END_QUOTE
+By: Andrew Ng (Founder of Coursera and Deeplearning.ai)
+
+Sources: [[https://youtu.be/oL3mQlDYKMk?t=771][YouTube]] (original), [[https://www.businessinsider.com/artificial-general-intelligence-development-andrew-ng-openai-microsoft-meta-google-2024-9][Business Insider]]
+
+See, this is the kind of reasonable take I would expect from someone who actually understands LLMs and how they're currently progressing. "Decades" seems like a reasonable timeline.
+*** 2024 October, Anthropic CEO
+#+BEGIN_QUOTE
+I think it could come as early as 2026, though there are also ways it could take much longer.
+#+END_QUOTE
+By: Dario Amodei (CEO of Anthropic)
+
+Sources: [[https://www.darioamodei.com/essay/machines-of-loving-grace#basic-assumptions-and-framework][Dario Amodei's blog]] (original), [[https://www.businessinsider.com/how-anthropic-ceo-dario-amodei-defines-artificial-general-intelligence-2024-10][Business Insider]]
+
+This is a very vague claim. If he meant that AGI would be here at the beginning of 2026, I can confirm that that did not come true. Sorry.
+*** 2024 November, OpenAI CEO
+#+BEGIN_QUOTE
+Interviewer: What are you excited about in 2025? What's to come?
+
+Sam Altman: AGI. Excited for that.
+#+END_QUOTE
+By: Sam Altman (CEO of OpenAI)
+
+Sources: [[https://youtu.be/xXCBz_8hM9w?t=2772][YouTube]] (original)
+
+2025 is already over. No AGI. Not sure what else is there to say here.
+*** 2024 November
+#+BEGIN_QUOTE
+Since joining in January I've shifted from "this is unproductive hype" to "agi is basically here". IMHO, what comes next is relatively little new science, but instead years of grindy engineering to try all the newly obvious ideas in the new paradigm, to scale it up and speed it up, and to find ways to teach it the skills it can’t just learn online. Maybe there’s another wall after this one, but for now there’s 10xes as far as the eye can see.
+#+END_QUOTE
+By: Clive Chan (OpenAI)
+
+Sources: [[https://x.com/itsclivetime/status/1855704120495329667][Twitter]] (original)
+
+This seems, to me at least, to be them moving the goal posts for "AGI is here".
+
+Sure, if you redefine AGI to be the thing LLMs are right now, yeah, AGI is here. Great. Next, let's redefine flying as being able to jump and stay in the air for a few seconds, because hey, humans can already do that.
+** 2025
+*** 2025 January, OpenAI CEO
+#+BEGIN_QUOTE
+We are now confident we know how to build AGI as we have traditionally understood it. We believe that, in 2025, we may see the first AI agents “join the workforce” and materially change the output of companies.
+#+END_QUOTE
+By: Sam Altman (CEO of OpenAI)
+
+Sources: [[https://blog.samaltman.com/reflections][Sam Altman's blog]] (original)
+
+This one isn't necessarily saying we will have AGI in 2025 (spoiler alert, we didn't). But he does seem to be implying that's what the "AI agents" will be.
+*** 2025 March, Anthropic CEO
+#+BEGIN_QUOTE
+I think we'll be there in 3 to 6 months, where AI is writing 90% of the code. And then in 12 months, we may be in a world where AI is writing essentially all of the code.
+#+END_QUOTE
+By: Dario Amodei (CEO of Anthropic)
+
+Sources: [[https://www.cfr.org/event/ceo-speaker-series-dario-amodei-anthropic][CFR]] (original), [[https://www.yahoo.com/tech/anthropics-ceo-says-3-6-062716268.html][Yahoo]]
+
+I don't think I need to explain why he may want people to believe this. Anthropic makes Claude, another LLM chatbot. As I write this now, we're almost at that 12 months timeline, and AI is not writing "essentially all of the code". I mean, I'm not saying you can't try. I just wouldn't recommend letting AI write all of your software's code without /some/ kind of supervision. From a real software engineer.
+*** 2025 March, Replit CEO
+#+BEGIN_QUOTE
+I no longer think you should learn to code.
+#+END_QUOTE
+By: Amjad Masad (CEO of [[https://replit.com][Replit]])
+
+Sources: [[https://x.com/amasad/status/1905103640089825788][Twitter]] (original)
+
+Replit also has a feature where you can vibe code applications. So yeah, let's all stop learning how to code. Replit will do all of the coding for us.
+
+Eventually.
+
+Some day.
+
+AGI is just around the corner, right?
+*** 2025 March, Microsoft CTO
+#+BEGIN_QUOTE
+95% is going to be AI-generated
+...
+Now, that doesn't mean that the AI is doing the software engineering job.
+#+END_QUOTE
+By: Kevin Scott (CTO of Microsoft)
+
+Sources: [[https://youtu.be/KN7KYzpPfiU?t=1816][YouTube]] (original), [[https://www.businessinsider.com/microsoft-cto-ai-generated-code-software-developer-job-change-2025-4][Business Insider]]
+
+This one was more reasonable than a lot of the rest, because he clarifies his statement by saying that AI won't be doing the "software engineering job". He talks about how "it's just raising the level of abstraction". I've used LLMs this way, where I still do the planning and design work for a feature, and then describe specifically what I want the LLM to do, and it can usually do that specific task. I do still have to check all the code it writes, but it saves me the time that I would have spent looking up how to use different APIs or libraries.
+*** 2025 April, Google DeepMind CEO
+#+BEGIN_QUOTE
+[On track for AGI] in the next 5 to 10 years, I think.
+#+END_QUOTE
+By: Demis Hassabis (CEO of Google Deepmind)
+
+Sources: [[https://youtu.be/1XF-NG_35NE?t=337][60 minutes]] (original), [[https://www.businessinsider.com/agi-predictions-sam-altman-dario-amodei-geoffrey-hinton-demis-hassabis-2024-11#demis-hassabis-1][Business Insider]]
+
+This is a bit of a longer timeline, aiming for 2030-2035. I'm writing this article before that time, so I can't say for sure that this one won't come true. But it does seem very optimistic.
+*** 2025 May, Replit CEO
+#+BEGIN_QUOTE
+I don’t think we’re there yet, where they can run the entire company without hiring engineers, but that might be a year, 18 months away.
+#+END_QUOTE
+By: Amjad Masad (CEO of [[https://replit.com][Replit]])
+
+Sources: [[https://www.semafor.com/article/05/21/2025/ai-coding-startup-replit-ceo-amjad-masad-says-companies-soon-wont-need-software-developers][Semafor]]
+
+So, about 2026 May to November?
+
+Insert "press x to doubt" meme.
+*** 2025 June
+#+BEGIN_QUOTE
+cursor is a $100M business that will be worth $0 in 24 months
+
+not because they built wrong - they built perfectly
+
+but they built a sail for a race that's about to end
+
+when AI just writes entire codebases, even the best IDE becomes irrelevant
+#+END_QUOTE
+By: jacob (Founder and CEO of [[https://www.spawn.co][spawn]])
+
+Sources: [[https://x.com/jsnnsa/status/1934427228856611004][Twitter]] (original)
+
+"spawn" is a thing where you can "make a game with words", i.e. AI-generated games. Yes, it's possible to write games fully with AI. On the other hand, you can't write GTA 6 with an LLM, which I'd guess is what they wish would be true.
+*** 2025 October
+#+BEGIN_QUOTE
+Everyone is going to be able to vibe code video games by the end of 2025
+#+END_QUOTE
+By: Logan Kilpatrick (Lead product for Google AI Studio)
+
+Sources: [[https://x.com/OfficialLoganK/status/1982222911231377696][Twitter]] (original)
+
+2025 is over now, I don't see this to even remotely be true yet. Some small games, sure.
+*** 2025 November
+#+BEGIN_QUOTE
+I believe this new model in Claude Code is a glimpse of the future we're hurtling towards, maybe as soon as the first half of next year: software engineering is done.
+
+Soon, we won't bother to check generated code, for the same reasons we don't check compiler output.
+#+END_QUOTE
+By: Adam Wolff (Claude Code at Anthropic)
+
+Sources: [[https://x.com/dmwlff/status/1993036664428806145][Twitter]] (original)
+
+As others have pointed out, compiler output is deterministic, but LLM output, famously, is not. And I can pretty much guarantee that software engineers at Anthropic are still checking generated code.
+
+LLMs don't even output the same result for the same input, due to intentional randomness when running inference on these models.
+** 2026
+*** 2026 January
+#+BEGIN_QUOTE
+Superhuman programming machines in 2026
+
+Not shilling, I can just draw a line on a graph
+#+END_QUOTE
+By: gfodor (Twitter user)
+
+Sources: [[https://x.com/gfodor/status/2006550569545249021][Twitter]] (original)
+
+Most of the other claims I have included in this article are notable people (e.g. CEO, CTO, founder). I'm not saying this person isn't notable, I just don't know who they are. I included this quote because it's not the first time I've seen this take. The claim relies on the idea that based on past progress, you can extrapolate that we will get "superhuman programming machines" in 2026. This obviously assumes that the progress will continue the same way it has. Essentially, that the power/intelligence/capabilities of AI will continue to increase at the same rate until we get "superhuman programming machines". Except, why would it? Anyone who's done a bit of graphing (as in plotting points on a graph and drawing a line through them) should understand that just because there is a trend for the first part doesn't mean that trend will continue. What if the trend hits a wall?
+
+I mean, if you look really closely at a parabolic curve (at any random point), it'll look like a straight line. Zoom out a bit, and you see it's obviously a curve. That might not be the best example to explain my point, but I hope you get what I mean. Extrapolating is not easy. Just because it seems like there's a simple predictable trend, doesn't mean that there will be. If it was that simple to extrapolate future data from past data, then [[https://x.com/pronounced_kyle/status/1768852493092680036][this guy's baby]] really will weigh 7.5 trillion pounds by age 10.
+** Sustainability
+I think we can agree that a lot of people use LLMs for day-to-day work. And I'd guess that most people use the free tier. So for companies like OpenAI, those free tier users would be subsidized by the paid tier users (both individual and enterprise). In early 2025, Sam Altman said that OpenAI is [[https://x.com/sama/status/1876104315296968813][losing money]] on their Pro subscription. In early 2026, OpenAI said they would be [[https://openai.com/index/our-approach-to-advertising-and-expanding-access][testing ads in ChatGPT]]. On the other hand, Google has their ad revenue to support whatever money they're losing on Gemini.
+
+Whether or not this is a bubble is not a discussion that I think I'm equipped to participate in. But there's still a lot of money being poured into AI. Despite some large companies losing money, they still manage to keep going, and [[https://www.cnbc.com/2025/08/04/openai-chatgpt-700-million-users.html][raising]] [[https://www.cnbc.com/2026/01/27/anthropic-fundraising-microsoft-nvidia.html][more]] [[https://www.cnbc.com/2025/11/13/cursor-ai-startup-funding-round-valuation.html][money]].
+** LLMs
+For anyone who isn't familiar with how LLMs work, I recommend learning about them. If you have a background in computer science, then the fundamentals of how these language models work should be pretty easy to grasp. If you want an easy to understand video about how they work, try [[https://youtu.be/LPZh9BOjkQs][this video from 3Blue1Brown]].
+
+I'll try to explain at a high-level how they work. In pre-training, it's shown a huge amount of text, and given the goal of predicting the next word in each text. Eventually, it will get good enough at predicting the next word in a normal piece of text. Then, it's fine-tuned for tasks, for example, as a chatbot. Eventually, it has seen enough text that it has identified patterns, and can use those to predict the next word in pretty much any piece of text you throw at it. When an LLM is used as a chatbot, it's not responding to what you say to it. It's trying to complete the next response that it thinks an intelligent chatbot would give if a human asked it the question that you just asked it (also given the chat history). It's like you trying to guess what someone would respond if you asked them a question.
+
+In my final year research project (in my bachelor's degree), my teammate and I worked on explainability of automated program repair (automated program repair means tools that can automatically fix bugs in code). Basically, we wanted to find a way to explain why a given bug fixing model outputs a specific patch given a specific input. In doing this, we focused mainly on language models, and because of that, I got to learn the basics of how they work. At one point, I set up [[https://github.com/ggml-org/llama.cpp][llama.cpp]] (a tool that does LLM inference), and tried to use it as a chatbot. I was running it on an Intel MacBook Pro, on the CPU (it's possible to run it on the AMD GPU, but I first tried the CPU). So since I had limited memory, I used a small model. A few times, when I asked the chatbot a question, it would print out the response, and, instead of stopping when it was done, /it continued to output my side of the conversation too/. It just kept predicting the next word in a conversation between a chatbot and a human, except it didn't stop when it was supposed to.
+
+When someone says an LLM "lied to them", what happened is that the LLM, based on seeing a lot of example text (+the fine-tuning), predicted that response, which included something that was not true. When a calculator gives you the wrong result, it's a bug in the calculator. It's designed and intended to calculate the correct result for whatever you throw at it (or for some inputs, say that the result is undefined). LLMs are just not designed that way. They just try to predict the next bit of text. Whether that bit of text is not true, is irrelevant. Of course lots of people have put in a lot of effort to reduce these occurrences, it's unlikely they will be reduced to zero any time soon. One approach some LLM developers are taking is to fine-tune the LLM to respond with "I don't know" more often, rather than generate something that's not true.
+** AGI
+Artificial General Intelligence refers to artificial intelligence that can generalize to new problems based on the knowledge it's gained[fn:agi-article]. Practically speaking, this would be some program/model/tool that could solve problems in general, such as passing exams that humans can. Per my understanding, it does not require that the AI be smarter than the average human. Artificial Superintelligence (ASI) is the one that significantly outperforms humans.
+
+Right now, we have many people claiming that AGI is coming next year, or in the next 5 years, etc. However, most of them seem to assume or imply that AGI will be borne of the current series of LLMs. From what has been developed so far, that does not seem likely. What I have seen is that LLMs have been indiscriminately applied to all sorts of areas in AI/ML, that were previously being lead by other specialized models. LLMs have had good success in these other areas, but that doesn't mean it will be the best solution for everything. For human-like text generation, sure, LLMs are great. While there are some LLM-isms, you can easily get them to sound pretty human, and I don't think I've ever seen an LLM make a grammar or spelling error in its output.
+
+In around 2025, I saw an interesting theory of how AGI could actually come about. I can't remember who said it, and I'm paraphrasing from memory, but this is how it went. Current LLMs won't eventually advance into becoming AGI. What will happen is, some other approach to artificial intelligence will produce a model that has very low intelligence, but can actually generalize. I think the example was that this initial model would have the intelligence of an animal. And then, this model will be slowly developed, increasing in intelligence until it reaches human-level. This theory seems plausible to me, as I don't see LLMs as being actually intelligent.
+** Conclusion
+I should have started writing this article way earlier, or at least started keeping track of these claims, because it took a while to find some of the older ones. There are definitely many I missed, because these people have been making absurd claims nonstop.
+
+In addition to all those ridiculous claims, spend a couple of minutes on [[https://aicodinghorrors.com/][aicodinghorrors.com]] and see some real world scenarios.
+
+Some of these claims have not been proven wrong yet. However, I think you should be able to see the pattern. It's not that these technologies necessarily cannot improve to the point where they replace humans completely. It's simply that the people making these claims
+1. stand to gain something (usually a lot) from making these claims and having people believe them
+2. have no one holding them accountable for making these claims and the consequences of other people believing them.
+That second one is what bothers me so. They can just keep making these claims and there are too few people pointing out that they're consistently wrong. That's a major part of why I wrote this article. It's easier to point this fact out to people when it's written down like this. All of these claims are in the scale of months and years. When the time for their prediction comes around, most people have forgotten that they made these claims, but people have already responded to these claims as if they are valid. Honestly, the number of times I have seen people on Twitter talking about rumours that OpenAI has achieved AGI internally.
+
+Hopefully, this article does /something/ to fight against all the "predictions" and wild claims.
+* Footnotes
+
+[fn:chatgpt-release-date] According to [[https://openai.com/index/chatgpt][OpenAI]]
+[fn:copilot-like-autocomplete] I obviously use normal autocomplete, that just completes a single word as I'm typing it
+[fn:agi-article] Based on a [[https://reference-global.com/article/10.2478/jagi-2014-0001][research paper]] about the concept of AGI
+[fn:fsd-timeline] Check out [[https://motherfrunker.ca/fsd][this page]]
