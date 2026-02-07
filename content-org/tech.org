@@ -10,8 +10,8 @@
 :PROPERTIES:
 :EXPORT_HUGO_BUNDLE: timeline-of-claims-about-ai-llms
 :EXPORT_FILE_NAME: index
-:EXPORT_DATE: 2026-01-18
-:EXPORT_HUGO_LASTMOD: 2026-01-18
+:EXPORT_DATE: 2026-02-08
+:EXPORT_HUGO_LASTMOD: 2026-02-08
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :author Nethum Lamahewage
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER+: :summary A timeline of the many claims made about AI/LLMs over the past few years
 :END:
