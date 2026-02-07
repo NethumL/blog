@@ -15,9 +15,9 @@
 :END:
 Hi!
 
-I'm Nethum Lamahewage. I'm primarily a programmer - mainly as a hobby since about mid-2019, and now also as a student.
+I'm Nethum Lamahewage. I'm primarily a programmer - mainly as a hobby since about mid-2019, and now also as my job.
 
-As of 2022, I'm a Computer Science & Engineering undergraduate at the University of Moratuwa.
+As of 2026, I'm working as a Senior Software Engineer.
 ** Online Presence
 My main "official" online presences are currently limited to the following.
 *** [[https://github.com/NethumL][GitHub]]
