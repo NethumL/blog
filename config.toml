@@ -1,5 +1,5 @@
 baseURL = "https://blog.nethuml.xyz"
-languageCode = "en-us"
+locale = "en-us"
 title = "Nethum Lamahewage - Thoughts"
 theme = "LoveIt"
 
