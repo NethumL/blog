@@ -9,7 +9,7 @@ enableEmoji = true
   name = "Nethum Lamahewage"
 
 [permalinks]
-  posts = "/posts/:year/:month/:filename/"
+  posts = "/posts/:year/:month/:contentbasename/"
 
 [params]
   title = "Nethum Lamahewage - Thoughts"
