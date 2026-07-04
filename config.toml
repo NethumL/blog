@@ -74,7 +74,7 @@ enableEmoji = true
   [params.social]
     GitHub = "NethumL"
     Linkedin = "nethumlamahewage"
-    Medium = "@nethumlamahewage"
+    Medium = "nethumlamahewage"
     RSS = true
 
   [params.page]
